@@ -80,6 +80,12 @@ const structure = [
     link: "",
     icon: <Dot size="small" color="secondary" />,
   },
+  {
+    id: 15,
+    label: "School",
+    link: "/app/school",
+    icon: <Dot size="small" color="secondary" />,
+  },
 ];
 
 function Sidebar({ location }) {

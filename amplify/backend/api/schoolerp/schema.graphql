@@ -1,0 +1,7 @@
+type Schools @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  addrs_id: String
+  school_name: String
+  school_principal: String
+  other: String
+}
