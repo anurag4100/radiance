@@ -1,13 +1,21 @@
-import React, {useState} from "react";
+import React, {useState,useEffect} from "react";
 import {useTheme} from "@material-ui/styles";
 
 // styles
 import useStyles from "./styles";
 
 // components
+import mock from "./mock";
+import Widget from "../../components/Widget";
+import PageTitle from "../../components/PageTitle";
+import { Typography } from "../../components/Wrappers";
+import Dot from "../../components/Sidebar/components/Dot";
+import Table from "./components/Table/Table";
+import BigStat from "./components/BigStat/BigStat";
 
 import { API, graphqlOperation } from 'aws-amplify';
 import { createSchools } from '../.././graphql/mutations';
+import { listSchools } from '../.././graphql/queries'
 
 const mainChartData = getMainChartData();
 const PieChartData = [
@@ -36,7 +44,7 @@ export default function Dashboard(props) {
 
     // local
     var [mainChartState, setMainChartState] = useState("monthly");
-
+    var [schools, setSchools] = useState([]);
     async function addSchools() {
       
       try {
@@ -52,10 +60,28 @@ export default function Dashboard(props) {
         console.log('error creating todo:', err)
       }
     }
-
+    useEffect(() => {
+        const fetchData = async () => {
+            console.log("Fetching schools...")
+            const data = await API.graphql(graphqlOperation(listSchools)) ;
+            console.log(data);
+            return data;
+          };
+          fetchData().then(res => setSchools(res?.data?.listSchools)).catch(console.error);
+          console.log("Final schools");
+          console.log(schools.items);
+      }, []);
     return (
         <div>
             <button onClick={async () => {await addSchools();}}>Create</button>
+            <Widget
+                title="Schools"
+                upperTitle
+                noBodyPadding
+                bodyClass={classes.tableWidget}
+            >
+          </Widget>
+          {schools.items && <Table data={schools.items} />}
         </div>
     );
 }

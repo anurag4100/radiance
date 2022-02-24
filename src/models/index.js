@@ -4,8 +4,12 @@ import { schema } from './schema';
 
 
 
-const { Schools } = initSchema(schema);
+const { Subject, Class, Student, Schools, Teacher } = initSchema(schema);
 
 export {
-  Schools
+  Subject,
+  Class,
+  Student,
+  Schools,
+  Teacher
 };

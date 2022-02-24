@@ -1,7 +1,63 @@
+type Subject @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  subject_name: String
+  subject_marks: String
+  details: AWSJSON
+}
+
+type Class @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  year: String
+  subject_id: String
+  class_name: String
+  dept_name: String
+  shift: String
+  Student: Student @hasOne
+  Teachers: [Teacher] @hasMany(indexName: "byClass", fields: ["id"])
+  details: AWSJSON
+}
+
+type Teacher @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  joining_date: String
+  year: String
+  first_name: String
+  middle_name: String
+  last_name: String
+  dob: String
+  religion: String
+  email: String
+  mobile: String
+  Schools: Schools @hasOne
+  classID: ID! @index(name: "byClass")
+  details: AWSJSON
+}
+
+type Student @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  year: String
+  enroll_date: String
+  class: String
+  enroll_fee: String
+  first_name: String
+  middle_name: String
+  last_name: String
+  father_name: String
+  mother_name: String
+  dob: String
+  religion: String
+  email: String
+  mobile: String
+  Schools: Schools @hasOne
+  details: AWSJSON
+}
+
 type Schools @model @auth(rules: [{allow: public}]) {
   id: ID!
   addrs_id: String
   school_name: String
   school_principal: String
   other: String
+  details: AWSJSON
 }
+ 

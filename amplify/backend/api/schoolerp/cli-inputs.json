@@ -3,7 +3,7 @@
   "serviceConfiguration": {
     "apiName": "schoolerp",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/tmp/amplify-be5c9f2b-cabf-4a71-acb9-7fb6485f71e9/amplify/backend/api/schoolerp/schema.graphql",
+    "gqlSchemaPath": "/tmp/amplify-480a705e-fbed-4437-aa9b-d71050d71110/amplify/backend/api/schoolerp/schema.graphql",
     "defaultAuthType": {
       "mode": "API_KEY",
       "keyDescription": "api key description",

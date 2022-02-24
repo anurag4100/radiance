@@ -10,6 +10,14 @@
       "StackName": "amplify-schoolerp-staging-72345",
       "StackId": "arn:aws:cloudformation:us-east-2:265942763278:stack/amplify-schoolerp-staging-72345/89411420-9479-11ec-80a9-02a2f01973be",
       "AmplifyAppId": "d3fv47ggh99x1"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d3fv47ggh99x1",
+          "type": "manual"
+        }
+      }
     }
   }
 }

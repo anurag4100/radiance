@@ -16,6 +16,7 @@ const states = {
 };
 
 export default function TableComponent({ data }) {
+  console.log("data in table:",data);
   const classes = useStyles();
   var keys = Object.keys(data[0]).map(i => i.toUpperCase());
   keys.shift(); // delete "id" key
@@ -24,23 +25,17 @@ export default function TableComponent({ data }) {
     <Table className="mb-0">
       <TableHead>
         <TableRow>
-          {keys.map(key => (
+          {["id","school name","principal"].map(key => (
             <TableCell key={key}>{key}</TableCell>
           ))}
         </TableRow>
       </TableHead>
       <TableBody>
-        {data.map(({ id, name, email, product, price, date, city, status }) => (
+        {data.map(({ id, school_name, school_principal }) => (
           <TableRow key={id}>
-            <TableCell className="pl-3 fw-normal">{name}</TableCell>
-            <TableCell>{email}</TableCell>
-            <TableCell>{product}</TableCell>
-            <TableCell>{price}</TableCell>
-            <TableCell>{date}</TableCell>
-            <TableCell>{city}</TableCell>
-            <TableCell>
-              <Chip label={status} classes={{root: classes[states[status.toLowerCase()]]}}/>
-            </TableCell>
+            <TableCell className="pl-3 fw-normal">{id}</TableCell>
+            <TableCell>{school_name}</TableCell>
+            <TableCell>{school_principal}</TableCell>
           </TableRow>
         ))}
       </TableBody>
