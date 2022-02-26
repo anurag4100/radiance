@@ -345,6 +345,13 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "school_id": {
+                    "name": "school_id",
+                    "isArray": false,
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -671,5 +678,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "e93eeef91393e859b768228dc5e7b9d4"
+    "version": "b3945f379eabce2a75ee72b0176b4c62"
 };

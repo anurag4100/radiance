@@ -72,6 +72,7 @@ export declare class Student {
   readonly Schools?: Schools;
   readonly details?: string;
   readonly dob?: string;
+  readonly school_id?: number;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   readonly studentSchoolsId?: string;

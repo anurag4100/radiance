@@ -32,9 +32,11 @@ import Tables from "../../pages/tables";
 import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import School from "../../pages/school";
-
+import Teachers from "../../pages/teachers";
 // context
 import { useLayoutState } from "../../context/LayoutContext";
+import Students from "../../pages/students";
+
 
 function Layout(props) {
   var classes = useStyles();
@@ -57,6 +59,8 @@ function Layout(props) {
               <Route path="/app/dashboard" component={Dashboard} />
               <Route path="/app/typography" component={Typography} />
               <Route path="/app/tables" component={Tables} />
+              <Route path="/app/teachers" component={Teachers} />
+              <Route path="/app/students" component={Students} />
               <Route path="/app/notifications" component={Notifications} />
               <Route path="/app/school" component={School} />
               <Route

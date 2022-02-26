@@ -54,6 +54,7 @@ type Student @model @auth(rules: [{allow: public}]) {
   Schools: Schools @hasOne
   details: AWSJSON
   dob: AWSDate
+  school_id: Int
 }
 
 type Schools @model @auth(rules: [{allow: public}]) {
