@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { Button,TextField,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle } from "@material-ui/core";
 import {useForm} from "react-hook-form";
+import { FormInputText } from '../Form/FormInputText';
 
 export default function StudentForm() {
   const [open, setOpen] = React.useState(false);
-  const {register, handleSubmit} = useForm();
+  const {register, handleSubmit,control} = useForm();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -14,10 +15,7 @@ export default function StudentForm() {
     setOpen(false);
   };
   const actions = [
-    <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose} type="submit">Save</Button>
-    </DialogActions>
+    
   ];
   return (
     <div>
@@ -30,23 +28,12 @@ export default function StudentForm() {
           <DialogContentText>
             Please fill below form to add a new student.
           </DialogContentText>
-          <form action="/" method="POST" noValidate id="my-form-id" onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
-            <TextField
-              autoFocus
-              margin="dense"
-              inputRef={register('test')}
-              id="name"
-              label="Email Address"
-              type="email"
-              fullWidth
-              variant="standard"
-            />
-          <div style={{ textAlign: 'right', padding: 8, margin: '24px -24px -24px -24px' }}>
-            {actions}
-          </div>
-          </form>
+          <FormInputText name="first_name" control={control} label="First Name" />
         </DialogContent>
-        
+        <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleSubmit((data) => alert(JSON.stringify(data)))}>Save</Button>
+        </DialogActions>
       </Dialog>
     </div>
   );
