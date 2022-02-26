@@ -13,7 +13,12 @@ export default function StudentForm() {
   const handleClose = () => {
     setOpen(false);
   };
-
+  const actions = [
+    <DialogActions>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose} type="submit">Save</Button>
+    </DialogActions>
+  ];
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -25,7 +30,7 @@ export default function StudentForm() {
           <DialogContentText>
             Please fill below form to add a new student.
           </DialogContentText>
-          <form noValidate onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
+          <form action="/" method="POST" noValidate id="my-form-id" onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
             <TextField
               autoFocus
               margin="dense"
@@ -36,12 +41,12 @@ export default function StudentForm() {
               fullWidth
               variant="standard"
             />
+          <div style={{ textAlign: 'right', padding: 8, margin: '24px -24px -24px -24px' }}>
+            {actions}
+          </div>
           </form>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Save</Button>
-        </DialogActions>
+        
       </Dialog>
     </div>
   );
