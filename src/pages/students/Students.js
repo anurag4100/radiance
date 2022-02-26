@@ -50,15 +50,9 @@ export default function Students() {
   }, []);
   return (
     <>
-      <PageTitle title="Students" button={<Button
-          variant="contained"
-          size="medium"
-          color="secondary"
-        >
-            Add Student
-        </Button>}
+      <PageTitle title="Students" modal = {<StudentForm/>}
       />
-      <StudentForm></StudentForm>
+      
       <Grid container spacing={4}>
         <Grid item xs={12}>
           {

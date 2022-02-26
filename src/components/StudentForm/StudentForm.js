@@ -1,8 +1,10 @@
 import * as React from 'react';
 import { Button,TextField,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle } from "@material-ui/core";
+import {useForm} from "react-hook-form";
 
 export default function StudentForm() {
   const [open, setOpen] = React.useState(false);
+  const {register, handleSubmit} = useForm();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -15,28 +17,30 @@ export default function StudentForm() {
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
-        Open form dialog
+        Add Student
       </Button>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+        <DialogTitle>Add Student</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+            Please fill below form to add a new student.
           </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
+          <form noValidate onSubmit={handleSubmit((data) => alert(JSON.stringify(data)))}>
+            <TextField
+              autoFocus
+              margin="dense"
+              inputRef={register('test')}
+              id="name"
+              label="Email Address"
+              type="email"
+              fullWidth
+              variant="standard"
+            />
+          </form>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>

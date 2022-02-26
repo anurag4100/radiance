@@ -15,6 +15,7 @@ export default function PageTitle(props) {
         {props.title}
       </Typography>
       {props.button && props.button}
+      {props.modal && props.modal}
     </div>
   );
 }
