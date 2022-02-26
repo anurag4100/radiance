@@ -29,7 +29,7 @@ type Teacher @model @auth(rules: [{allow: public}]) {
   dob: AWSDate
   religion: String
   email: AWSEmail
-  mobile: AWSPhone
+  mobile: String
   Schools: Schools @hasOne
   classID: ID! @index(name: "byClass")
   details: AWSJSON
@@ -62,8 +62,8 @@ type Schools @model @auth(rules: [{allow: public}]) {
   school_name: String
   school_principal: String
   details: AWSJSON
-  phone: AWSPhone
-  mobile: AWSPhone
+  phone: String
+  mobile: String
   email: AWSEmail
   addrs_id: Int
 }

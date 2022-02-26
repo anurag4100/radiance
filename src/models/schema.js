@@ -435,14 +435,14 @@ export const schema = {
                 "phone": {
                     "name": "phone",
                     "isArray": false,
-                    "type": "AWSPhone",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
                 "mobile": {
                     "name": "mobile",
                     "isArray": false,
-                    "type": "AWSPhone",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -571,7 +571,7 @@ export const schema = {
                 "mobile": {
                     "name": "mobile",
                     "isArray": false,
-                    "type": "AWSPhone",
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -671,5 +671,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "93c0747e489c17b4398b42201713cb53"
+    "version": "e93eeef91393e859b768228dc5e7b9d4"
 };
