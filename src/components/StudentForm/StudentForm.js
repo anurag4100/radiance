@@ -1,7 +1,9 @@
 import * as React from 'react';
-import { Button,TextField,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle } from "@material-ui/core";
+import { Button,TextField,Dialog,DialogActions,DialogContent,DialogContentText,DialogTitle,MenuItem } from "@material-ui/core";
 import {useForm} from "react-hook-form";
 import { FormInputText } from '../Form/FormInputText';
+import { FormInputDropdown } from '../Form/FormInputDropdown';
+import { FormInputDate } from '../Form/FormInputDate';
 
 export default function StudentForm() {
   const [open, setOpen] = React.useState(false);
@@ -17,6 +19,96 @@ export default function StudentForm() {
   const actions = [
     
   ];
+  const classOptions = [
+    {
+      label: "Class I",
+      value: "1",
+    },
+    {
+      label: "Class II",
+      value: "2",
+    },
+    {
+      label: "Class III",
+      value: "3",
+    },
+    {
+      label: "Class IV",
+      value: "4",
+    },
+    {
+      label: "Class V",
+      value: "5",
+    },
+    {
+      label: "Class VI",
+      value: "6",
+    },
+    {
+      label: "Class VII",
+      value: "7",
+    },
+    {
+      label: "Class VIII",
+      value: "8",
+    },
+    {
+      label: "Class IX",
+      value: "9",
+    },
+    {
+      label: "Class X",
+      value: "10",
+    },
+    {
+      label: "Class XI",
+      value: "11",
+    },
+    {
+      label: "Class XII",
+      value: "12",
+    },
+  ];
+
+  const religionOptions = [
+    {
+      label: "Hindu",
+      value: "Hindu",
+    },
+    {
+      label: "Muslim",
+      value: "Muslim",
+    },
+    {
+      label: "Christian",
+      value: "Christian",
+    },
+    {
+      label: "Sikhism",
+      value: "Sikhism",
+    },
+    {
+      label: "Jainism",
+      value: "Jainism",
+    },
+    {
+      label: "Buddhism",
+      value: "Buddhism",
+    },
+    {
+      label: "Other",
+      value: "Other",
+    },
+  ];
+  const generateOptions = (options) => {
+    return options.map((option) => {
+      return (
+        <MenuItem key={option.value} value={option.value}>
+          {option.label}
+        </MenuItem>
+      );
+    });
+  };
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -31,6 +123,24 @@ export default function StudentForm() {
           <FormInputText name="first_name" control={control} label="First Name" />
           <FormInputText name="middle_name" control={control} label="Middle Name" />
           <FormInputText name="last_name" control={control} label="Last Name" />
+          <FormInputDate name="dob" control={control} label="Date of Birth" />
+          <FormInputDropdown
+            name="class_id"
+            control={control}
+            label="Class"
+            data={generateOptions(classOptions)}
+          />
+          <FormInputText name="enroll_fee" control={control} label="Enroll Fees" />
+          <FormInputText name="father_name" control={control} label="Father's Name" />
+          <FormInputText name="mother_name" control={control} label="Mother's Name" />
+          <FormInputDropdown
+            name="religion"
+            control={control}
+            label="Religion"
+            data = {generateOptions(religionOptions)}
+          />
+          <FormInputText name="email" control={control} label="Email" />
+          <FormInputText name="mobile" control={control} label="Mobile" />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
