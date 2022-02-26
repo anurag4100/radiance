@@ -21,6 +21,7 @@ export const FormInputText = ({ name, control, label }) => {
           fullWidth
           label={label}
           variant="outlined"
+          margin="dense"
         />
       )}
     />

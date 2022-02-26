@@ -22,13 +22,15 @@ export default function StudentForm() {
       <Button variant="outlined" onClick={handleClickOpen}>
         Add Student
       </Button>
-      <Dialog open={open} onClose={handleClose}>
+      <Dialog open={open}>
         <DialogTitle>Add Student</DialogTitle>
         <DialogContent>
           <DialogContentText>
             Please fill below form to add a new student.
           </DialogContentText>
           <FormInputText name="first_name" control={control} label="First Name" />
+          <FormInputText name="middle_name" control={control} label="Middle Name" />
+          <FormInputText name="last_name" control={control} label="Last Name" />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
