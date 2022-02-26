@@ -360,22 +360,6 @@ export const createStudent = /* GraphQL */ `
       religion
       email
       mobile
-      Schools {
-        id
-        school_id
-        school_name
-        school_principal
-        details
-        phone
-        mobile
-        email
-        addrs_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
       details
       dob
       school_id

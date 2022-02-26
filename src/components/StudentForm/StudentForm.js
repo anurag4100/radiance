@@ -4,6 +4,8 @@ import {useForm} from "react-hook-form";
 import { FormInputText } from '../Form/FormInputText';
 import { FormInputDropdown } from '../Form/FormInputDropdown';
 import { FormInputDate } from '../Form/FormInputDate';
+import { createStudent } from '../../graphql/mutations';
+import { API, graphqlOperation } from 'aws-amplify';
 
 export default function StudentForm() {
   const [open, setOpen] = React.useState(false);
@@ -109,6 +111,23 @@ export default function StudentForm() {
       );
     });
   };
+  const pushToCloud = async(data) => {
+    try {
+      console.log(JSON.stringify(data));
+      console.log("Starting createStudent")
+      await API.graphql(graphqlOperation(createStudent, {input: {
+        ...data,
+        "dob": data.dob.toISOString().split('T')[0],
+        "school_id": 18,
+        "student_id": Math.floor(Math.random() * 101),
+        "enroll_date" : new Date().toISOString().split('T')[0]
+      }})) 
+      console.log("addSchools complete.")
+      
+    } catch (err) {
+      console.log('error creating todo:', err)
+    }
+  }
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -144,7 +163,7 @@ export default function StudentForm() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit((data) => alert(JSON.stringify(data)))}>Save</Button>
+          <Button onClick={handleSubmit(async (data) => {await pushToCloud(data).then;})}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>

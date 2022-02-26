@@ -62,7 +62,7 @@ export default function Students() {
               data={students.items && students.items.map(function (item) {
                 return {
                   id:item.student_id,
-                  name: item.first_name.concat(" "+item.last_name), 
+                  name: item.first_name?.concat(" "+item.last_name), 
                   date: item.enroll_date,
                   mobile: item.mobile
                 }
