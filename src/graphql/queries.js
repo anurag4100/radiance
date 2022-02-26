@@ -211,15 +211,14 @@ export const getTeacher = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      classID
       details
       teacher_id
+      school_id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      teacherSchoolsId
     }
   }
 `;
@@ -241,15 +240,14 @@ export const listTeachers = /* GraphQL */ `
         religion
         email
         mobile
-        classID
         details
         teacher_id
+        school_id
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        teacherSchoolsId
       }
       nextToken
       startedAt
@@ -280,15 +278,14 @@ export const syncTeachers = /* GraphQL */ `
         religion
         email
         mobile
-        classID
         details
         teacher_id
+        school_id
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        teacherSchoolsId
       }
       nextToken
       startedAt

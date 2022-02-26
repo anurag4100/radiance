@@ -225,15 +225,14 @@ export const onCreateTeacher = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      classID
       details
       teacher_id
+      school_id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      teacherSchoolsId
     }
   }
 `;
@@ -266,15 +265,14 @@ export const onUpdateTeacher = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      classID
       details
       teacher_id
+      school_id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      teacherSchoolsId
     }
   }
 `;
@@ -307,15 +305,14 @@ export const onDeleteTeacher = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
-      classID
       details
       teacher_id
+      school_id
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      teacherSchoolsId
     }
   }
 `;
