@@ -36,10 +36,10 @@ import BigStat from "./components/BigStat/BigStat";
 
 const mainChartData = getMainChartData();
 const PieChartData = [
-  { name: "Group A", value: 400, color: "primary" },
-  { name: "Group B", value: 300, color: "secondary" },
-  { name: "Group C", value: 300, color: "warning" },
-  { name: "Group D", value: 200, color: "success" },
+  { name: "Secondary", value: 44598, color: "primary" },
+  { name: "Primary", value: 3156, color: "secondary" },
+  { name: "Junior", value: 2658, color: "warning" },
+  { name: "Others", value: 1489, color: "success" },
 ];
 
 export default function Dashboard(props) {
@@ -104,13 +104,13 @@ export default function Dashboard(props) {
             >
               <Grid item xs={4}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
-                  Registrations
+                  Regular
                 </Typography>
                 <Typography size="md">860</Typography>
               </Grid>
               <Grid item xs={4}>
                 <Typography color="text" colorBrightness="secondary" noWrap>
-                  Sign Out
+                  New
                 </Typography>
                 <Typography size="md">32</Typography>
               </Grid>
@@ -125,7 +125,7 @@ export default function Dashboard(props) {
         </Grid>
         <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
-            title="App Performance"
+            title="Student Performance"
             upperTitle
             className={classes.card}
             bodyClass={classes.fullHeightBody}
@@ -138,7 +138,7 @@ export default function Dashboard(props) {
                   colorBrightness="secondary"
                   className={classes.legendElementText}
                 >
-                  Integration
+                  Pass
                 </Typography>
               </div>
               <div className={classes.legendElement}>
@@ -148,7 +148,7 @@ export default function Dashboard(props) {
                   colorBrightness="secondary"
                   className={classes.legendElementText}
                 >
-                  SDK
+                  Fail
                 </Typography>
               </div>
             </div>
@@ -159,7 +159,7 @@ export default function Dashboard(props) {
                 colorBrightness="secondary"
                 className={classes.progressSectionTitle}
               >
-                Integration
+                Pass
               </Typography>
               <LinearProgress
                 variant="determinate"
@@ -175,7 +175,7 @@ export default function Dashboard(props) {
                 colorBrightness="secondary"
                 className={classes.progressSectionTitle}
               >
-                SDK
+                Fail
               </Typography>
               <LinearProgress
                 variant="determinate"
@@ -188,7 +188,7 @@ export default function Dashboard(props) {
         </Grid>
         <Grid item lg={3} md={8} sm={6} xs={12}>
           <Widget
-            title="Server Overview"
+            title="Attendance Trend"
             upperTitle
             className={classes.card}
             bodyClass={classes.fullHeightBody}
@@ -200,7 +200,7 @@ export default function Dashboard(props) {
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-                60% / 37°С / 3.3 Ghz
+                Students  85.88%
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
@@ -224,7 +224,7 @@ export default function Dashboard(props) {
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-                54% / 31°С / 3.3 Ghz
+                Teachers 90.91%
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
@@ -248,7 +248,7 @@ export default function Dashboard(props) {
                 className={classes.serverOverviewElementText}
                 noWrap
               >
-                57% / 21°С / 3.3 Ghz
+                Staff 75.05%
               </Typography>
               <div className={classes.serverOverviewElementChartWrapper}>
                 <ResponsiveContainer height={50} width="99%">
@@ -317,25 +317,25 @@ export default function Dashboard(props) {
                   color="text"
                   colorBrightness="secondary"
                 >
-                  Daily Line Chart
+                  Fee Collection Trend
                 </Typography>
                 <div className={classes.mainChartHeaderLabels}>
                   <div className={classes.mainChartHeaderLabel}>
                     <Dot color="warning" />
                     <Typography className={classes.mainChartLegentElement}>
-                      Tablet
+                      Secondary
                     </Typography>
                   </div>
                   <div className={classes.mainChartHeaderLabel}>
                     <Dot color="primary" />
                     <Typography className={classes.mainChartLegentElement}>
-                      Mobile
+                      Primary
                     </Typography>
                   </div>
                   <div className={classes.mainChartHeaderLabel}>
                     <Dot color="secondary" />
                     <Typography className={classes.mainChartLegentElement}>
-                      Desktop
+                      Junior
                     </Typography>
                   </div>
                 </div>

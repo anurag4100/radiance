@@ -1,63 +1,70 @@
 type Subject @model @auth(rules: [{allow: public}]) {
   id: ID!
+  subject_id: Int
   subject_name: String
-  subject_marks: String
   details: AWSJSON
+  subject_marks: String
 }
 
 type Class @model @auth(rules: [{allow: public}]) {
   id: ID!
-  year: String
-  subject_id: String
+  subject_id: Int
+  class_id: Int
   class_name: String
   dept_name: String
   shift: String
   Student: Student @hasOne
   Teachers: [Teacher] @hasMany(indexName: "byClass", fields: ["id"])
   details: AWSJSON
+  year: Int
 }
 
 type Teacher @model @auth(rules: [{allow: public}]) {
   id: ID!
-  joining_date: String
-  year: String
+  joining_date: AWSDate
+  year: Int
   first_name: String
   middle_name: String
   last_name: String
-  dob: String
+  dob: AWSDate
   religion: String
-  email: String
-  mobile: String
+  email: AWSEmail
+  mobile: AWSPhone
   Schools: Schools @hasOne
   classID: ID! @index(name: "byClass")
   details: AWSJSON
+  teacher_id: Int
 }
 
 type Student @model @auth(rules: [{allow: public}]) {
   id: ID!
-  year: String
-  enroll_date: String
-  class: String
-  enroll_fee: String
+  student_id: Int
+  enroll_date: AWSDate
+  class_id: Int
+  enroll_fee: Float
   first_name: String
   middle_name: String
-  last_name: String
+  year: Int
   father_name: String
   mother_name: String
-  dob: String
+  last_name: String
   religion: String
-  email: String
+  email: AWSEmail
   mobile: String
   Schools: Schools @hasOne
   details: AWSJSON
+  dob: AWSDate
 }
 
 type Schools @model @auth(rules: [{allow: public}]) {
   id: ID!
-  addrs_id: String
+  school_id: Int
   school_name: String
   school_principal: String
-  other: String
   details: AWSJSON
+  phone: AWSPhone
+  mobile: AWSPhone
+  email: AWSEmail
+  addrs_id: Int
 }
  

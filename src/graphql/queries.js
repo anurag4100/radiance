@@ -5,10 +5,14 @@ export const getSchools = /* GraphQL */ `
   query GetSchools($id: ID!) {
     getSchools(id: $id) {
       id
-      addrs_id
+      school_id
       school_name
       school_principal
-      other
+      details
+      phone
+      mobile
+      email
+      addrs_id
       createdAt
       updatedAt
       _version
@@ -26,10 +30,14 @@ export const listSchools = /* GraphQL */ `
     listSchools(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        addrs_id
-        school_name
-        school_principal
-        other
+      school_id
+      school_name
+      school_principal
+      details
+      phone
+      mobile
+      email
+      addrs_id
         createdAt
         updatedAt
         _version
@@ -56,10 +64,14 @@ export const syncSchools = /* GraphQL */ `
     ) {
       items {
         id
-        addrs_id
-        school_name
-        school_principal
-        other
+      school_id
+      school_name
+      school_principal
+      details
+      phone
+      mobile
+      email
+      addrs_id
         createdAt
         updatedAt
         _version

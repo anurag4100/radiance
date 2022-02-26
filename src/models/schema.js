@@ -10,15 +10,15 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "subject_name": {
-                    "name": "subject_name",
+                "subject_id": {
+                    "name": "subject_id",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
-                "subject_marks": {
-                    "name": "subject_marks",
+                "subject_name": {
+                    "name": "subject_name",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -28,6 +28,13 @@ export const schema = {
                     "name": "details",
                     "isArray": false,
                     "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "subject_marks": {
+                    "name": "subject_marks",
+                    "isArray": false,
+                    "type": "String",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -83,17 +90,17 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "year": {
-                    "name": "year",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "subject_id": {
                     "name": "subject_id",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "class_id": {
+                    "name": "class_id",
+                    "isArray": false,
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -150,6 +157,13 @@ export const schema = {
                     "name": "details",
                     "isArray": false,
                     "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "year": {
+                    "name": "year",
+                    "isArray": false,
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -212,31 +226,31 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "year": {
-                    "name": "year",
+                "student_id": {
+                    "name": "student_id",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
                 "enroll_date": {
                     "name": "enroll_date",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
-                "class": {
-                    "name": "class",
+                "class_id": {
+                    "name": "class_id",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
                 "enroll_fee": {
                     "name": "enroll_fee",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Float",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -254,10 +268,10 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "last_name": {
-                    "name": "last_name",
+                "year": {
+                    "name": "year",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -275,8 +289,8 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "dob": {
-                    "name": "dob",
+                "last_name": {
+                    "name": "last_name",
                     "isArray": false,
                     "type": "String",
                     "isRequired": false,
@@ -292,7 +306,7 @@ export const schema = {
                 "email": {
                     "name": "email",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSEmail",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -321,6 +335,13 @@ export const schema = {
                     "name": "details",
                     "isArray": false,
                     "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "dob": {
+                    "name": "dob",
+                    "isArray": false,
+                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -383,10 +404,10 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "addrs_id": {
-                    "name": "addrs_id",
+                "school_id": {
+                    "name": "school_id",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -404,17 +425,38 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
-                "other": {
-                    "name": "other",
-                    "isArray": false,
-                    "type": "String",
-                    "isRequired": false,
-                    "attributes": []
-                },
                 "details": {
                     "name": "details",
                     "isArray": false,
                     "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "phone": {
+                    "name": "phone",
+                    "isArray": false,
+                    "type": "AWSPhone",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "mobile": {
+                    "name": "mobile",
+                    "isArray": false,
+                    "type": "AWSPhone",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "email": {
+                    "name": "email",
+                    "isArray": false,
+                    "type": "AWSEmail",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "addrs_id": {
+                    "name": "addrs_id",
+                    "isArray": false,
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -473,14 +515,14 @@ export const schema = {
                 "joining_date": {
                     "name": "joining_date",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
                 "year": {
                     "name": "year",
                     "isArray": false,
-                    "type": "String",
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -508,7 +550,7 @@ export const schema = {
                 "dob": {
                     "name": "dob",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSDate",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -522,14 +564,14 @@ export const schema = {
                 "email": {
                     "name": "email",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSEmail",
                     "isRequired": false,
                     "attributes": []
                 },
                 "mobile": {
                     "name": "mobile",
                     "isArray": false,
-                    "type": "String",
+                    "type": "AWSPhone",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -558,6 +600,13 @@ export const schema = {
                     "name": "details",
                     "isArray": false,
                     "type": "AWSJSON",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "teacher_id": {
+                    "name": "teacher_id",
+                    "isArray": false,
+                    "type": "Int",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -622,5 +671,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "e22e0575856ba9afb9754714cf0c9988"
+    "version": "93c0747e489c17b4398b42201713cb53"
 };

@@ -8,10 +8,14 @@ export const createSchools = /* GraphQL */ `
   ) {
     createSchools(input: $input, condition: $condition) {
       id
-      addrs_id
+      school_id
       school_name
       school_principal
-      other
+      details
+      phone
+      mobile
+      email
+      addrs_id
       createdAt
       updatedAt
       _version
@@ -27,10 +31,14 @@ export const updateSchools = /* GraphQL */ `
   ) {
     updateSchools(input: $input, condition: $condition) {
       id
-      addrs_id
+      school_id
       school_name
       school_principal
-      other
+      details
+      phone
+      mobile
+      email
+      addrs_id
       createdAt
       updatedAt
       _version
@@ -46,10 +54,14 @@ export const deleteSchools = /* GraphQL */ `
   ) {
     deleteSchools(input: $input, condition: $condition) {
       id
-      addrs_id
+      school_id
       school_name
       school_principal
-      other
+      details
+      phone
+      mobile
+      email
+      addrs_id
       createdAt
       updatedAt
       _version

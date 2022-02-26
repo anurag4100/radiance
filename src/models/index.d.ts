@@ -26,9 +26,10 @@ type TeacherMetaData = {
 
 export declare class Subject {
   readonly id: string;
+  readonly subject_id?: number;
   readonly subject_name?: string;
-  readonly subject_marks?: string;
   readonly details?: string;
+  readonly subject_marks?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Subject, SubjectMetaData>);
@@ -37,14 +38,15 @@ export declare class Subject {
 
 export declare class Class {
   readonly id: string;
-  readonly year?: string;
-  readonly subject_id?: string;
+  readonly subject_id?: number;
+  readonly class_id?: number;
   readonly class_name?: string;
   readonly dept_name?: string;
   readonly shift?: string;
   readonly Student?: Student;
   readonly Teachers?: (Teacher | null)[];
   readonly details?: string;
+  readonly year?: number;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   readonly classStudentId?: string;
@@ -54,21 +56,22 @@ export declare class Class {
 
 export declare class Student {
   readonly id: string;
-  readonly year?: string;
+  readonly student_id?: number;
   readonly enroll_date?: string;
-  readonly class?: string;
-  readonly enroll_fee?: string;
+  readonly class_id?: number;
+  readonly enroll_fee?: number;
   readonly first_name?: string;
   readonly middle_name?: string;
-  readonly last_name?: string;
+  readonly year?: number;
   readonly father_name?: string;
   readonly mother_name?: string;
-  readonly dob?: string;
+  readonly last_name?: string;
   readonly religion?: string;
   readonly email?: string;
   readonly mobile?: string;
   readonly Schools?: Schools;
   readonly details?: string;
+  readonly dob?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   readonly studentSchoolsId?: string;
@@ -78,11 +81,14 @@ export declare class Student {
 
 export declare class Schools {
   readonly id: string;
-  readonly addrs_id?: string;
+  readonly school_id?: number;
   readonly school_name?: string;
   readonly school_principal?: string;
-  readonly other?: string;
   readonly details?: string;
+  readonly phone?: string;
+  readonly mobile?: string;
+  readonly email?: string;
+  readonly addrs_id?: number;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Schools, SchoolsMetaData>);
@@ -92,7 +98,7 @@ export declare class Schools {
 export declare class Teacher {
   readonly id: string;
   readonly joining_date?: string;
-  readonly year?: string;
+  readonly year?: number;
   readonly first_name?: string;
   readonly middle_name?: string;
   readonly last_name?: string;
@@ -103,6 +109,7 @@ export declare class Teacher {
   readonly Schools?: Schools;
   readonly classID: string;
   readonly details?: string;
+  readonly teacher_id?: number;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   readonly teacherSchoolsId?: string;

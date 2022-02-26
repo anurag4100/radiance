@@ -50,10 +50,14 @@ export default function Dashboard(props) {
       try {
         console.log("Starting addSchools...")
         await API.graphql(graphqlOperation(createSchools, {input: {
-          "addrs_id": "Chinga school",
-          "school_name": "Chinga school",
-          "school_principal": "Anurag",
-          "other": "Lorem ipsum dolor sit amet"
+          "school_id": Math.floor(Math.random() * 101),
+          "school_name": "DPS Gorakhpur",
+          "school_principal": "Dr. S Mishra",
+          "details": '{"extra":"some data"}',
+          "phone": "+1 555 764 4377",
+          "mobile": 9876453241,
+          "email": "info@dpsgkp.com",
+          "addrs_id": Math.floor(Math.random() * 101)
         }})) 
         console.log("addSchools complete.")
       } catch (err) {

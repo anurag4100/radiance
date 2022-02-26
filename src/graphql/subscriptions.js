@@ -5,10 +5,14 @@ export const onCreateSchools = /* GraphQL */ `
   subscription OnCreateSchools {
     onCreateSchools {
       id
-      addrs_id
+      school_id
       school_name
       school_principal
-      other
+      details
+      phone
+      mobile
+      email
+      addrs_id
       createdAt
       updatedAt
       _version
@@ -21,10 +25,14 @@ export const onUpdateSchools = /* GraphQL */ `
   subscription OnUpdateSchools {
     onUpdateSchools {
       id
-      addrs_id
+      school_id
       school_name
       school_principal
-      other
+      details
+      phone
+      mobile
+      email
+      addrs_id
       createdAt
       updatedAt
       _version
@@ -37,10 +45,14 @@ export const onDeleteSchools = /* GraphQL */ `
   subscription OnDeleteSchools {
     onDeleteSchools {
       id
-      addrs_id
+      school_id
       school_name
       school_principal
-      other
+      details
+      phone
+      mobile
+      email
+      addrs_id
       createdAt
       updatedAt
       _version
