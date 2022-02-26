@@ -93,7 +93,6 @@ export const createClass = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        studentSchoolsId
       }
       Teachers {
         nextToken
@@ -145,7 +144,6 @@ export const updateClass = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        studentSchoolsId
       }
       Teachers {
         nextToken
@@ -197,7 +195,6 @@ export const deleteClass = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        studentSchoolsId
       }
       Teachers {
         nextToken
@@ -387,7 +384,6 @@ export const createStudent = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      studentSchoolsId
     }
   }
 `;
@@ -435,7 +431,6 @@ export const updateStudent = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      studentSchoolsId
     }
   }
 `;
@@ -483,7 +478,6 @@ export const deleteStudent = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      studentSchoolsId
     }
   }
 `;

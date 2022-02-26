@@ -103,7 +103,6 @@ export const getClass = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        studentSchoolsId
       }
       Teachers {
         nextToken
@@ -333,7 +332,6 @@ export const getStudent = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      studentSchoolsId
     }
   }
 `;
@@ -367,7 +365,6 @@ export const listStudents = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        studentSchoolsId
       }
       nextToken
       startedAt
@@ -410,7 +407,6 @@ export const syncStudents = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        studentSchoolsId
       }
       nextToken
       startedAt
