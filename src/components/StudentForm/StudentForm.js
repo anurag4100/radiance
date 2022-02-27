@@ -6,11 +6,12 @@ import { FormInputDropdown } from '../Form/FormInputDropdown';
 import { FormInputDate } from '../Form/FormInputDate';
 import { createStudent } from '../../graphql/mutations';
 import { API, graphqlOperation } from 'aws-amplify';
+import { useSnackbar } from 'notistack';
 
 export default function StudentForm() {
   const [open, setOpen] = React.useState(false);
   const {register, handleSubmit,control} = useForm();
-
+  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const handleClickOpen = () => {
     setOpen(true);
   };
@@ -115,19 +116,21 @@ export default function StudentForm() {
     try {
       console.log(JSON.stringify(data));
       console.log("Starting createStudent")
-      await API.graphql(graphqlOperation(createStudent, {input: {
+      const result = await API.graphql(graphqlOperation(createStudent, {input: {
         ...data,
-        "dob": data.dob.toISOString().split('T')[0],
+        "dob": data?.dob?.toISOString().split('T')[0],
         "school_id": 18,
         "student_id": Math.floor(Math.random() * 101),
-        "enroll_date" : new Date().toISOString().split('T')[0]
+        "enroll_date" :  new Date().toISOString().split('T')[0]
       }})) 
-      console.log("addSchools complete.")
-      
+      console.log("addSchools complete: ",JSON.stringify(result))
+      enqueueSnackbar('Student added successfully.',{ variant: 'success'})
     } catch (err) {
       console.log('error creating todo:', err)
+      enqueueSnackbar('Error occured while adding student!',{ variant: 'error'})
     }
-  }
+  };
+
   return (
     <div>
       <Button variant="outlined" onClick={handleClickOpen}>
@@ -163,7 +166,7 @@ export default function StudentForm() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSubmit(async (data) => {await pushToCloud(data).then;})}>Save</Button>
+          <Button onClick={handleSubmit(async (data) => {await pushToCloud(data)})}>Save</Button>
         </DialogActions>
       </Dialog>
     </div>
