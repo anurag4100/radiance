@@ -8,7 +8,7 @@ import { createStudent } from '../../graphql/mutations';
 import { API, graphqlOperation } from 'aws-amplify';
 import { useSnackbar } from 'notistack';
 
-export default function StudentForm() {
+export default function StudentForm({stateChanger}) {
   const [open, setOpen] = React.useState(false);
   const {register, handleSubmit,control} = useForm();
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
@@ -125,6 +125,7 @@ export default function StudentForm() {
       }})) 
       console.log("addSchools complete: ",JSON.stringify(result))
       enqueueSnackbar('Student added successfully.',{ variant: 'success'})
+      stateChanger();
       handleClose()
     } catch (err) {
       console.log('error creating todo:', err)

@@ -14,9 +14,6 @@ import { studentsByCreatedDate } from '../.././graphql/queries'
 import mock from "../dashboard/mock";
 import StudentForm from "../../components/StudentForm/StudentForm";
 
-const datatableData = [
-  ["1","Munna Chaubey",  "01/02/2022", "986547896"],
-];
 
 const useStyles = makeStyles(theme => ({
   tableOverflow: {
@@ -27,33 +24,27 @@ const useStyles = makeStyles(theme => ({
 export default function Students() {
   const classes = useStyles();
   var [students, setStudents] = useState([]);
+  
   useEffect(() => {
-    const fetchData = async () => {
-        console.log("Fetching Students...")
-        const data = await API.graphql(graphqlOperation(studentsByCreatedDate, {
-            school_id: 18, //hardcoding school to 18, will be taken from login
-            sortDirection: "DESC"
-        })) ;
-        console.log(data);
-        return data;
-      };
-      fetchData().then(res => setStudents(res?.data?.studentsByCreatedDate)).catch(console.error);
-      console.log("Final Students");
-      console.log(students.items);
-      console.log("destruct2",students.items && students.items.map(function (item) {
-        return {
-          id:item.student_id,
-          name: item.first_name.concat(item.last_name), 
-          date: item.enroll_date,
-          mobile: item.mobile
-        }
-    }).map(op => Object.values(op)))
-
-      
+    fetchStudents(setStudents, students);
   }, []);
+
+  function fetchStudents() {
+    const fetchData = async () => {
+      console.log("Fetching Students...");
+      const data = await API.graphql(graphqlOperation(studentsByCreatedDate, {
+        school_id: 18,
+        sortDirection: "DESC"
+      }));
+      return data;
+    };
+    fetchData().then(res => setStudents(res?.data?.studentsByCreatedDate)).catch(console.error);
+    console.log("Retrieved Students:",JSON.stringify(students.items));
+  }
+  
   return (
     <>
-      <PageTitle title="Students" modal = {<StudentForm/>}
+      <PageTitle title="Students" modal = {<StudentForm stateChanger = {fetchStudents}/>}
       />
       
       <Grid container spacing={4}>
@@ -88,3 +79,4 @@ export default function Students() {
     </>
   );
 }
+
