@@ -9,7 +9,7 @@ import Widget from "../../components/Widget/Widget";
 import Table from "../dashboard/components/Table/Table";
 import { API, graphqlOperation } from 'aws-amplify';
 import { createStudent } from '../.././graphql/mutations';
-import { listStudents } from '../.././graphql/queries'
+import { studentsByCreatedDate } from '../.././graphql/queries'
 // data
 import mock from "../dashboard/mock";
 import StudentForm from "../../components/StudentForm/StudentForm";
@@ -30,13 +30,14 @@ export default function Students() {
   useEffect(() => {
     const fetchData = async () => {
         console.log("Fetching Students...")
-        const data = await API.graphql(graphqlOperation(listStudents, {
-            filter: {school_id: {eq: 18}} //hardcoding school to 18, will be taken from login
+        const data = await API.graphql(graphqlOperation(studentsByCreatedDate, {
+            school_id: 18, //hardcoding school to 18, will be taken from login
+            sortDirection: "DESC"
         })) ;
         console.log(data);
         return data;
       };
-      fetchData().then(res => setStudents(res?.data?.listStudents)).catch(console.error);
+      fetchData().then(res => setStudents(res?.data?.studentsByCreatedDate)).catch(console.error);
       console.log("Final Students");
       console.log(students.items);
       console.log("destruct2",students.items && students.items.map(function (item) {

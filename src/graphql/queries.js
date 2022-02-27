@@ -350,6 +350,52 @@ export const syncStudents = /* GraphQL */ `
     }
   }
 `;
+export const studentsByCreatedDate = /* GraphQL */ `
+  query StudentsByCreatedDate(
+    $school_id: Int!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelStudentFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    studentsByCreatedDate(
+      school_id: $school_id
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        student_id
+        enroll_date
+        class_id
+        enroll_fee
+        first_name
+        middle_name
+        year
+        father_name
+        mother_name
+        last_name
+        religion
+        email
+        mobile
+        details
+        dob
+        school_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
 export const getSchools = /* GraphQL */ `
   query GetSchools($id: ID!) {
     getSchools(id: $id) {

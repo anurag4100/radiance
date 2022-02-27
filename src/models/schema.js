@@ -443,17 +443,15 @@ export const schema = {
                     "name": "createdAt",
                     "isArray": false,
                     "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
+                    "isRequired": true,
+                    "attributes": []
                 },
                 "updatedAt": {
                     "name": "updatedAt",
                     "isArray": false,
                     "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
+                    "isRequired": true,
+                    "attributes": []
                 }
             },
             "syncable": true,
@@ -462,6 +460,17 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "studentsByCreatedDate",
+                        "queryField": "studentsByCreatedDate",
+                        "fields": [
+                            "school_id",
+                            "createdAt"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",
@@ -592,5 +601,5 @@ export const schema = {
     },
     "enums": {},
     "nonModels": {},
-    "version": "a90696480a1b86f0806e92caf0bd9be9"
+    "version": "0901752bef2156fbce483d1bf61a1e8d"
 };

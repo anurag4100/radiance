@@ -35,7 +35,7 @@ type Teacher @model @auth(rules: [{allow: public}]) {
 
 type Student @model @auth(rules: [{allow: public}]) {
   id: ID!
-  student_id: Int @primaryKey
+  student_id: Int 
   enroll_date: AWSDate
   class_id: Int
   enroll_fee: Float
@@ -50,7 +50,9 @@ type Student @model @auth(rules: [{allow: public}]) {
   mobile: String
   details: AWSJSON
   dob: AWSDate
-  school_id: Int
+  school_id: Int @index(name: "studentsByCreatedDate", queryField: "studentsByCreatedDate", sortKeyFields: ["createdAt"])
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
 }
 
 type Schools @model @auth(rules: [{allow: public}]) {
