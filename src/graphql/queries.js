@@ -80,34 +80,6 @@ export const getClass = /* GraphQL */ `
       class_name
       dept_name
       shift
-      Student {
-        id
-        student_id
-        enroll_date
-        class_id
-        enroll_fee
-        first_name
-        middle_name
-        year
-        father_name
-        mother_name
-        last_name
-        religion
-        email
-        mobile
-        details
-        dob
-        school_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      Teachers {
-        nextToken
-        startedAt
-      }
       details
       year
       createdAt
@@ -115,7 +87,6 @@ export const getClass = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      classStudentId
     }
   }
 `;
@@ -140,7 +111,6 @@ export const listClasses = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        classStudentId
       }
       nextToken
       startedAt
@@ -174,7 +144,6 @@ export const syncClasses = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
-        classStudentId
       }
       nextToken
       startedAt
@@ -194,22 +163,6 @@ export const getTeacher = /* GraphQL */ `
       religion
       email
       mobile
-      Schools {
-        id
-        school_id
-        school_name
-        school_principal
-        details
-        phone
-        mobile
-        email
-        addrs_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
       details
       teacher_id
       school_id
@@ -308,22 +261,6 @@ export const getStudent = /* GraphQL */ `
       religion
       email
       mobile
-      Schools {
-        id
-        school_id
-        school_name
-        school_principal
-        details
-        phone
-        mobile
-        email
-        addrs_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
       details
       dob
       school_id

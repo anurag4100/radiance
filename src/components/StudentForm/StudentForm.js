@@ -125,6 +125,7 @@ export default function StudentForm() {
       }})) 
       console.log("addSchools complete: ",JSON.stringify(result))
       enqueueSnackbar('Student added successfully.',{ variant: 'success'})
+      handleClose()
     } catch (err) {
       console.log('error creating todo:', err)
       enqueueSnackbar('Error occured while adding student!',{ variant: 'error'})

@@ -30,7 +30,9 @@ export default function Students() {
   useEffect(() => {
     const fetchData = async () => {
         console.log("Fetching Students...")
-        const data = await API.graphql(graphqlOperation(listStudents)) ;
+        const data = await API.graphql(graphqlOperation(listStudents, {
+            filter: {school_id: {eq: 18}} //hardcoding school to 18, will be taken from login
+        })) ;
         console.log(data);
         return data;
       };

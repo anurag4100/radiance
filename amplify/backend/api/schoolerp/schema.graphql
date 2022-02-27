@@ -35,7 +35,7 @@ type Teacher @model @auth(rules: [{allow: public}]) {
 
 type Student @model @auth(rules: [{allow: public}]) {
   id: ID!
-  student_id: Int
+  student_id: Int @primaryKey
   enroll_date: AWSDate
   class_id: Int
   enroll_fee: Float

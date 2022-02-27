@@ -70,34 +70,6 @@ export const createClass = /* GraphQL */ `
       class_name
       dept_name
       shift
-      Student {
-        id
-        student_id
-        enroll_date
-        class_id
-        enroll_fee
-        first_name
-        middle_name
-        year
-        father_name
-        mother_name
-        last_name
-        religion
-        email
-        mobile
-        details
-        dob
-        school_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      Teachers {
-        nextToken
-        startedAt
-      }
       details
       year
       createdAt
@@ -105,7 +77,6 @@ export const createClass = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      classStudentId
     }
   }
 `;
@@ -121,34 +92,6 @@ export const updateClass = /* GraphQL */ `
       class_name
       dept_name
       shift
-      Student {
-        id
-        student_id
-        enroll_date
-        class_id
-        enroll_fee
-        first_name
-        middle_name
-        year
-        father_name
-        mother_name
-        last_name
-        religion
-        email
-        mobile
-        details
-        dob
-        school_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      Teachers {
-        nextToken
-        startedAt
-      }
       details
       year
       createdAt
@@ -156,7 +99,6 @@ export const updateClass = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      classStudentId
     }
   }
 `;
@@ -172,34 +114,6 @@ export const deleteClass = /* GraphQL */ `
       class_name
       dept_name
       shift
-      Student {
-        id
-        student_id
-        enroll_date
-        class_id
-        enroll_fee
-        first_name
-        middle_name
-        year
-        father_name
-        mother_name
-        last_name
-        religion
-        email
-        mobile
-        details
-        dob
-        school_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      Teachers {
-        nextToken
-        startedAt
-      }
       details
       year
       createdAt
@@ -207,7 +121,6 @@ export const deleteClass = /* GraphQL */ `
       _version
       _deleted
       _lastChangedAt
-      classStudentId
     }
   }
 `;
@@ -227,22 +140,6 @@ export const createTeacher = /* GraphQL */ `
       religion
       email
       mobile
-      Schools {
-        id
-        school_id
-        school_name
-        school_principal
-        details
-        phone
-        mobile
-        email
-        addrs_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
       details
       teacher_id
       school_id
@@ -270,22 +167,6 @@ export const updateTeacher = /* GraphQL */ `
       religion
       email
       mobile
-      Schools {
-        id
-        school_id
-        school_name
-        school_principal
-        details
-        phone
-        mobile
-        email
-        addrs_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
       details
       teacher_id
       school_id
@@ -313,22 +194,6 @@ export const deleteTeacher = /* GraphQL */ `
       religion
       email
       mobile
-      Schools {
-        id
-        school_id
-        school_name
-        school_principal
-        details
-        phone
-        mobile
-        email
-        addrs_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
       details
       teacher_id
       school_id
@@ -391,22 +256,6 @@ export const updateStudent = /* GraphQL */ `
       religion
       email
       mobile
-      Schools {
-        id
-        school_id
-        school_name
-        school_principal
-        details
-        phone
-        mobile
-        email
-        addrs_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
       details
       dob
       school_id
@@ -438,22 +287,6 @@ export const deleteStudent = /* GraphQL */ `
       religion
       email
       mobile
-      Schools {
-        id
-        school_id
-        school_name
-        school_principal
-        details
-        phone
-        mobile
-        email
-        addrs_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
       details
       dob
       school_id
