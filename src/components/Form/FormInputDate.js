@@ -7,7 +7,7 @@ import {
 import { Controller, useFormContext } from "react-hook-form";
 const DATE_FORMAT = "dd-MMM-yy";
 
-export const FormInputDate = ({ name, control, label }) => {
+export const FormInputDate = ({ name, control, label, defaultValue }) => {
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Controller
@@ -17,7 +17,6 @@ export const FormInputDate = ({ name, control, label }) => {
           <KeyboardDatePicker
             fullWidth
             variant="inline"
-            defaultValue={new Date()}
             id={`date-${Math.random()}`}
             label={label}
             rifmFormatter={(val) => val.replace(/[^[a-zA-Z0-9-]*$]+/gi, "")}
@@ -28,6 +27,8 @@ export const FormInputDate = ({ name, control, label }) => {
             }}
             format={DATE_FORMAT}
             {...field}
+            margin="dense"
+            value={defaultValue}
           />
         )}
       />

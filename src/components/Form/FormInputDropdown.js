@@ -80,6 +80,7 @@ export const FormInputDropdown= ({
         )}
         control={control}
         name={name}
+        margin="dense"
       />
     </FormControl>
   );
