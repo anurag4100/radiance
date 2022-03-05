@@ -16,23 +16,6 @@ type Class @model @auth(rules: [{allow: public}]) {
   details: AWSJSON
   year: Int
 }
-
-type Teacher @model @auth(rules: [{allow: public}]) {
-  id: ID!
-  joining_date: AWSDate
-  year: Int
-  first_name: String
-  middle_name: String
-  last_name: String
-  dob: AWSDate
-  religion: String
-  email: AWSEmail
-  mobile: String
-  details: AWSJSON
-  teacher_id: Int
-  school_id: Int
-}
-
 type Student @model @auth(rules: [{allow: public}]) {
   id: ID!
   student_id: Int 
@@ -50,7 +33,8 @@ type Student @model @auth(rules: [{allow: public}]) {
   mobile: String
   details: AWSJSON
   dob: AWSDate
-  school_id: Int @index(name: "studentsByCreatedDate", queryField: "studentsByCreatedDate", sortKeyFields: ["createdAt"])
+  school_id: Int 
+  schoolsStudentsId: ID @index(name: "studentsByCreatedDate", queryField: "studentsByCreatedDate", sortKeyFields: ["createdAt"])
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
@@ -65,6 +49,8 @@ type Schools @model @auth(rules: [{allow: public}]) {
   mobile: String
   email: AWSEmail
   address: Address @hasOne
+  students: [Student] @hasMany
+  employees: [Employee] @hasMany
 }
 
 type Employee @model @auth(rules: [{allow: public}]) {
@@ -77,6 +63,8 @@ type Employee @model @auth(rules: [{allow: public}]) {
   email: AWSEmail
   mobile: String
   details: AWSJSON
+  role: [Role] @hasMany
+  compensation: Compensation @hasOne 
 }
 
 type Address @model @auth(rules: [{allow: public}]) {
@@ -90,4 +78,17 @@ type Address @model @auth(rules: [{allow: public}]) {
   country: String
   zip: String
 }
- 
+
+type Role @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  name: String
+  type: String
+  payBand: String
+}
+
+type Compensation @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  type: String
+  amount: Float
+  isTaxable: Boolean
+}

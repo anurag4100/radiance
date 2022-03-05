@@ -8,8 +8,7 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import Widget from "../../components/Widget/Widget";
 import Table from "../dashboard/components/Table/Table";
 import { API, graphqlOperation } from 'aws-amplify';
-import { createTeacher } from '../.././graphql/mutations';
-import { listTeachers } from '../.././graphql/queries'
+import { listEmployees } from '../.././graphql/queries'
 // data
 import mock from "../dashboard/mock";
 
@@ -30,11 +29,11 @@ export default function Teachers() {
   useEffect(() => {
     const fetchData = async () => {
         console.log("Fetching Teachers...")
-        const data = await API.graphql(graphqlOperation(listTeachers)) ;
+        const data = await API.graphql(graphqlOperation(listEmployees)) ;
         console.log(data);
         return data;
       };
-      fetchData().then(res => setTeachers(res?.data?.listTeachers)).catch(console.error);
+      fetchData().then(res => setTeachers(res?.data?.listEmployees)).catch(console.error);
       console.log("Final Teachers");
       console.log(teachers.items);
       

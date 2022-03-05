@@ -124,87 +124,6 @@ export const deleteClass = /* GraphQL */ `
     }
   }
 `;
-export const createTeacher = /* GraphQL */ `
-  mutation CreateTeacher(
-    $input: CreateTeacherInput!
-    $condition: ModelTeacherConditionInput
-  ) {
-    createTeacher(input: $input, condition: $condition) {
-      id
-      joining_date
-      year
-      first_name
-      middle_name
-      last_name
-      dob
-      religion
-      email
-      mobile
-      details
-      teacher_id
-      school_id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const updateTeacher = /* GraphQL */ `
-  mutation UpdateTeacher(
-    $input: UpdateTeacherInput!
-    $condition: ModelTeacherConditionInput
-  ) {
-    updateTeacher(input: $input, condition: $condition) {
-      id
-      joining_date
-      year
-      first_name
-      middle_name
-      last_name
-      dob
-      religion
-      email
-      mobile
-      details
-      teacher_id
-      school_id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const deleteTeacher = /* GraphQL */ `
-  mutation DeleteTeacher(
-    $input: DeleteTeacherInput!
-    $condition: ModelTeacherConditionInput
-  ) {
-    deleteTeacher(input: $input, condition: $condition) {
-      id
-      joining_date
-      year
-      first_name
-      middle_name
-      last_name
-      dob
-      religion
-      email
-      mobile
-      details
-      teacher_id
-      school_id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
 export const createStudent = /* GraphQL */ `
   mutation CreateStudent(
     $input: CreateStudentInput!
@@ -228,6 +147,7 @@ export const createStudent = /* GraphQL */ `
       details
       dob
       school_id
+      schoolsStudentsId
       createdAt
       updatedAt
       _version
@@ -259,6 +179,7 @@ export const updateStudent = /* GraphQL */ `
       details
       dob
       school_id
+      schoolsStudentsId
       createdAt
       updatedAt
       _version
@@ -290,6 +211,7 @@ export const deleteStudent = /* GraphQL */ `
       details
       dob
       school_id
+      schoolsStudentsId
       createdAt
       updatedAt
       _version
@@ -322,6 +244,8 @@ export const createSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       details
       phone
@@ -342,6 +266,14 @@ export const createSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      students {
+        nextToken
+        startedAt
+      }
+      employees {
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
@@ -377,6 +309,8 @@ export const updateSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       details
       phone
@@ -397,6 +331,14 @@ export const updateSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      students {
+        nextToken
+        startedAt
+      }
+      employees {
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
@@ -432,6 +374,8 @@ export const deleteSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       details
       phone
@@ -452,6 +396,14 @@ export const deleteSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      students {
+        nextToken
+        startedAt
+      }
+      employees {
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
@@ -478,11 +430,28 @@ export const createEmployee = /* GraphQL */ `
       email
       mobile
       details
+      role {
+        nextToken
+        startedAt
+      }
+      compensation {
+        id
+        type
+        amount
+        isTaxable
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsEmployeesId
+      employeeCompensationId
     }
   }
 `;
@@ -501,11 +470,28 @@ export const updateEmployee = /* GraphQL */ `
       email
       mobile
       details
+      role {
+        nextToken
+        startedAt
+      }
+      compensation {
+        id
+        type
+        amount
+        isTaxable
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsEmployeesId
+      employeeCompensationId
     }
   }
 `;
@@ -524,11 +510,28 @@ export const deleteEmployee = /* GraphQL */ `
       email
       mobile
       details
+      role {
+        nextToken
+        startedAt
+      }
+      compensation {
+        id
+        type
+        amount
+        isTaxable
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsEmployeesId
+      employeeCompensationId
     }
   }
 `;
@@ -593,6 +596,117 @@ export const deleteAddress = /* GraphQL */ `
       state
       country
       zip
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createRole = /* GraphQL */ `
+  mutation CreateRole(
+    $input: CreateRoleInput!
+    $condition: ModelRoleConditionInput
+  ) {
+    createRole(input: $input, condition: $condition) {
+      id
+      name
+      type
+      payBand
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      employeeRoleId
+    }
+  }
+`;
+export const updateRole = /* GraphQL */ `
+  mutation UpdateRole(
+    $input: UpdateRoleInput!
+    $condition: ModelRoleConditionInput
+  ) {
+    updateRole(input: $input, condition: $condition) {
+      id
+      name
+      type
+      payBand
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      employeeRoleId
+    }
+  }
+`;
+export const deleteRole = /* GraphQL */ `
+  mutation DeleteRole(
+    $input: DeleteRoleInput!
+    $condition: ModelRoleConditionInput
+  ) {
+    deleteRole(input: $input, condition: $condition) {
+      id
+      name
+      type
+      payBand
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      employeeRoleId
+    }
+  }
+`;
+export const createCompensation = /* GraphQL */ `
+  mutation CreateCompensation(
+    $input: CreateCompensationInput!
+    $condition: ModelCompensationConditionInput
+  ) {
+    createCompensation(input: $input, condition: $condition) {
+      id
+      type
+      amount
+      isTaxable
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateCompensation = /* GraphQL */ `
+  mutation UpdateCompensation(
+    $input: UpdateCompensationInput!
+    $condition: ModelCompensationConditionInput
+  ) {
+    updateCompensation(input: $input, condition: $condition) {
+      id
+      type
+      amount
+      isTaxable
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteCompensation = /* GraphQL */ `
+  mutation DeleteCompensation(
+    $input: DeleteCompensationInput!
+    $condition: ModelCompensationConditionInput
+  ) {
+    deleteCompensation(input: $input, condition: $condition) {
+      id
+      type
+      amount
+      isTaxable
       createdAt
       updatedAt
       _version

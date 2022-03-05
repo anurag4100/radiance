@@ -106,78 +106,6 @@ export const onDeleteClass = /* GraphQL */ `
     }
   }
 `;
-export const onCreateTeacher = /* GraphQL */ `
-  subscription OnCreateTeacher {
-    onCreateTeacher {
-      id
-      joining_date
-      year
-      first_name
-      middle_name
-      last_name
-      dob
-      religion
-      email
-      mobile
-      details
-      teacher_id
-      school_id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onUpdateTeacher = /* GraphQL */ `
-  subscription OnUpdateTeacher {
-    onUpdateTeacher {
-      id
-      joining_date
-      year
-      first_name
-      middle_name
-      last_name
-      dob
-      religion
-      email
-      mobile
-      details
-      teacher_id
-      school_id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const onDeleteTeacher = /* GraphQL */ `
-  subscription OnDeleteTeacher {
-    onDeleteTeacher {
-      id
-      joining_date
-      year
-      first_name
-      middle_name
-      last_name
-      dob
-      religion
-      email
-      mobile
-      details
-      teacher_id
-      school_id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
 export const onCreateStudent = /* GraphQL */ `
   subscription OnCreateStudent {
     onCreateStudent {
@@ -198,6 +126,7 @@ export const onCreateStudent = /* GraphQL */ `
       details
       dob
       school_id
+      schoolsStudentsId
       createdAt
       updatedAt
       _version
@@ -226,6 +155,7 @@ export const onUpdateStudent = /* GraphQL */ `
       details
       dob
       school_id
+      schoolsStudentsId
       createdAt
       updatedAt
       _version
@@ -254,6 +184,7 @@ export const onDeleteStudent = /* GraphQL */ `
       details
       dob
       school_id
+      schoolsStudentsId
       createdAt
       updatedAt
       _version
@@ -283,6 +214,8 @@ export const onCreateSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       details
       phone
@@ -303,6 +236,14 @@ export const onCreateSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      students {
+        nextToken
+        startedAt
+      }
+      employees {
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
@@ -335,6 +276,8 @@ export const onUpdateSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       details
       phone
@@ -355,6 +298,14 @@ export const onUpdateSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      students {
+        nextToken
+        startedAt
+      }
+      employees {
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
@@ -387,6 +338,8 @@ export const onDeleteSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       details
       phone
@@ -407,6 +360,14 @@ export const onDeleteSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      students {
+        nextToken
+        startedAt
+      }
+      employees {
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
@@ -430,11 +391,28 @@ export const onCreateEmployee = /* GraphQL */ `
       email
       mobile
       details
+      role {
+        nextToken
+        startedAt
+      }
+      compensation {
+        id
+        type
+        amount
+        isTaxable
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsEmployeesId
+      employeeCompensationId
     }
   }
 `;
@@ -450,11 +428,28 @@ export const onUpdateEmployee = /* GraphQL */ `
       email
       mobile
       details
+      role {
+        nextToken
+        startedAt
+      }
+      compensation {
+        id
+        type
+        amount
+        isTaxable
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsEmployeesId
+      employeeCompensationId
     }
   }
 `;
@@ -470,11 +465,28 @@ export const onDeleteEmployee = /* GraphQL */ `
       email
       mobile
       details
+      role {
+        nextToken
+        startedAt
+      }
+      compensation {
+        id
+        type
+        amount
+        isTaxable
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsEmployeesId
+      employeeCompensationId
     }
   }
 `;
@@ -530,6 +542,99 @@ export const onDeleteAddress = /* GraphQL */ `
       state
       country
       zip
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateRole = /* GraphQL */ `
+  subscription OnCreateRole {
+    onCreateRole {
+      id
+      name
+      type
+      payBand
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      employeeRoleId
+    }
+  }
+`;
+export const onUpdateRole = /* GraphQL */ `
+  subscription OnUpdateRole {
+    onUpdateRole {
+      id
+      name
+      type
+      payBand
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      employeeRoleId
+    }
+  }
+`;
+export const onDeleteRole = /* GraphQL */ `
+  subscription OnDeleteRole {
+    onDeleteRole {
+      id
+      name
+      type
+      payBand
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      employeeRoleId
+    }
+  }
+`;
+export const onCreateCompensation = /* GraphQL */ `
+  subscription OnCreateCompensation {
+    onCreateCompensation {
+      id
+      type
+      amount
+      isTaxable
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateCompensation = /* GraphQL */ `
+  subscription OnUpdateCompensation {
+    onUpdateCompensation {
+      id
+      type
+      amount
+      isTaxable
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteCompensation = /* GraphQL */ `
+  subscription OnDeleteCompensation {
+    onDeleteCompensation {
+      id
+      type
+      amount
+      isTaxable
       createdAt
       updatedAt
       _version

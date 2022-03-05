@@ -39,7 +39,7 @@ export default function Students() {
     const fetchData = async () => {
       console.log("Fetching Students...");
       const data = await API.graphql(graphqlOperation(studentsByCreatedDate, {
-        school_id: 18,
+        schoolsStudentsId: "5301f115-1c06-4189-9fbd-237fcbb403ac",
         sortDirection: "DESC",
       }));
       return data;

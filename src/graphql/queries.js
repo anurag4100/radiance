@@ -150,100 +150,6 @@ export const syncClasses = /* GraphQL */ `
     }
   }
 `;
-export const getTeacher = /* GraphQL */ `
-  query GetTeacher($id: ID!) {
-    getTeacher(id: $id) {
-      id
-      joining_date
-      year
-      first_name
-      middle_name
-      last_name
-      dob
-      religion
-      email
-      mobile
-      details
-      teacher_id
-      school_id
-      createdAt
-      updatedAt
-      _version
-      _deleted
-      _lastChangedAt
-    }
-  }
-`;
-export const listTeachers = /* GraphQL */ `
-  query ListTeachers(
-    $filter: ModelTeacherFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTeachers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        joining_date
-        year
-        first_name
-        middle_name
-        last_name
-        dob
-        religion
-        email
-        mobile
-        details
-        teacher_id
-        school_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncTeachers = /* GraphQL */ `
-  query SyncTeachers(
-    $filter: ModelTeacherFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncTeachers(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        joining_date
-        year
-        first_name
-        middle_name
-        last_name
-        dob
-        religion
-        email
-        mobile
-        details
-        teacher_id
-        school_id
-        createdAt
-        updatedAt
-        _version
-        _deleted
-        _lastChangedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getStudent = /* GraphQL */ `
   query GetStudent($id: ID!) {
     getStudent(id: $id) {
@@ -264,6 +170,7 @@ export const getStudent = /* GraphQL */ `
       details
       dob
       school_id
+      schoolsStudentsId
       createdAt
       updatedAt
       _version
@@ -297,6 +204,7 @@ export const listStudents = /* GraphQL */ `
         details
         dob
         school_id
+        schoolsStudentsId
         createdAt
         updatedAt
         _version
@@ -339,6 +247,7 @@ export const syncStudents = /* GraphQL */ `
         details
         dob
         school_id
+        schoolsStudentsId
         createdAt
         updatedAt
         _version
@@ -352,7 +261,7 @@ export const syncStudents = /* GraphQL */ `
 `;
 export const studentsByCreatedDate = /* GraphQL */ `
   query StudentsByCreatedDate(
-    $school_id: Int!
+    $schoolsStudentsId: ID!
     $createdAt: ModelStringKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelStudentFilterInput
@@ -360,7 +269,7 @@ export const studentsByCreatedDate = /* GraphQL */ `
     $nextToken: String
   ) {
     studentsByCreatedDate(
-      school_id: $school_id
+      schoolsStudentsId: $schoolsStudentsId
       createdAt: $createdAt
       sortDirection: $sortDirection
       filter: $filter
@@ -385,6 +294,7 @@ export const studentsByCreatedDate = /* GraphQL */ `
         details
         dob
         school_id
+        schoolsStudentsId
         createdAt
         updatedAt
         _version
@@ -417,6 +327,8 @@ export const getSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       details
       phone
@@ -437,6 +349,14 @@ export const getSchools = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+      }
+      students {
+        nextToken
+        startedAt
+      }
+      employees {
+        nextToken
+        startedAt
       }
       createdAt
       updatedAt
@@ -522,11 +442,28 @@ export const getEmployee = /* GraphQL */ `
       email
       mobile
       details
+      role {
+        nextToken
+        startedAt
+      }
+      compensation {
+        id
+        type
+        amount
+        isTaxable
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsEmployeesId
+      employeeCompensationId
     }
   }
 `;
@@ -552,6 +489,8 @@ export const listEmployees = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       nextToken
       startedAt
@@ -586,6 +525,8 @@ export const syncEmployees = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        schoolsEmployeesId
+        employeeCompensationId
       }
       nextToken
       startedAt
@@ -663,6 +604,143 @@ export const syncAddresses = /* GraphQL */ `
         state
         country
         zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getRole = /* GraphQL */ `
+  query GetRole($id: ID!) {
+    getRole(id: $id) {
+      id
+      name
+      type
+      payBand
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      employeeRoleId
+    }
+  }
+`;
+export const listRoles = /* GraphQL */ `
+  query ListRoles(
+    $filter: ModelRoleFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listRoles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        type
+        payBand
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        employeeRoleId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncRoles = /* GraphQL */ `
+  query SyncRoles(
+    $filter: ModelRoleFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncRoles(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        name
+        type
+        payBand
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        employeeRoleId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getCompensation = /* GraphQL */ `
+  query GetCompensation($id: ID!) {
+    getCompensation(id: $id) {
+      id
+      type
+      amount
+      isTaxable
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listCompensations = /* GraphQL */ `
+  query ListCompensations(
+    $filter: ModelCompensationFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCompensations(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        type
+        amount
+        isTaxable
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncCompensations = /* GraphQL */ `
+  query SyncCompensations(
+    $filter: ModelCompensationFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncCompensations(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        type
+        amount
+        isTaxable
         createdAt
         updatedAt
         _version

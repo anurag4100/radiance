@@ -179,7 +179,7 @@ export default function StudentForm({stateChanger,viewMode,student_data, setView
       input: {
         ...data,
         "dob": data?.dob?.toISOString().split('T')[0],
-        "school_id": 18,
+        "schoolsStudentsId": "5301f115-1c06-4189-9fbd-237fcbb403ac",
         "student_id": Math.floor(Math.random() * 101),
         "enroll_date": new Date().toISOString().split('T')[0]
       }

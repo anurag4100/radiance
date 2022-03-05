@@ -12,10 +12,6 @@ type ClassMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type TeacherMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
 type StudentMetaData = {
   readOnlyFields;
 }
@@ -25,6 +21,14 @@ type SchoolsMetaData = {
 }
 
 type EmployeeMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type RoleMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type CompensationMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -59,26 +63,6 @@ export declare class Class {
   static copyOf(source: Class, mutator: (draft: MutableModel<Class, ClassMetaData>) => MutableModel<Class, ClassMetaData> | void): Class;
 }
 
-export declare class Teacher {
-  readonly id: string;
-  readonly joining_date?: string;
-  readonly year?: number;
-  readonly first_name?: string;
-  readonly middle_name?: string;
-  readonly last_name?: string;
-  readonly dob?: string;
-  readonly religion?: string;
-  readonly email?: string;
-  readonly mobile?: string;
-  readonly details?: string;
-  readonly teacher_id?: number;
-  readonly school_id?: number;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<Teacher, TeacherMetaData>);
-  static copyOf(source: Teacher, mutator: (draft: MutableModel<Teacher, TeacherMetaData>) => MutableModel<Teacher, TeacherMetaData> | void): Teacher;
-}
-
 export declare class Student {
   readonly id: string;
   readonly student_id?: number;
@@ -97,6 +81,7 @@ export declare class Student {
   readonly details?: string;
   readonly dob?: string;
   readonly school_id?: number;
+  readonly schoolsStudentsId?: string;
   readonly createdAt: string;
   readonly updatedAt: string;
   constructor(init: ModelInit<Student>);
@@ -113,6 +98,8 @@ export declare class Schools {
   readonly mobile?: string;
   readonly email?: string;
   readonly address?: Address;
+  readonly students?: (Student | null)[];
+  readonly employees?: (Employee | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   readonly schoolsPrincipalId?: string;
@@ -131,10 +118,37 @@ export declare class Employee {
   readonly email?: string;
   readonly mobile?: string;
   readonly details?: string;
+  readonly role?: (Role | null)[];
+  readonly compensation?: Compensation;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly schoolsEmployeesId?: string;
+  readonly employeeCompensationId?: string;
   constructor(init: ModelInit<Employee, EmployeeMetaData>);
   static copyOf(source: Employee, mutator: (draft: MutableModel<Employee, EmployeeMetaData>) => MutableModel<Employee, EmployeeMetaData> | void): Employee;
+}
+
+export declare class Role {
+  readonly id: string;
+  readonly name?: string;
+  readonly type?: string;
+  readonly payBand?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  readonly employeeRoleId?: string;
+  constructor(init: ModelInit<Role, RoleMetaData>);
+  static copyOf(source: Role, mutator: (draft: MutableModel<Role, RoleMetaData>) => MutableModel<Role, RoleMetaData> | void): Role;
+}
+
+export declare class Compensation {
+  readonly id: string;
+  readonly type?: string;
+  readonly amount?: number;
+  readonly isTaxable?: boolean;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Compensation, CompensationMetaData>);
+  static copyOf(source: Compensation, mutator: (draft: MutableModel<Compensation, CompensationMetaData>) => MutableModel<Compensation, CompensationMetaData> | void): Compensation;
 }
 
 export declare class Address {
