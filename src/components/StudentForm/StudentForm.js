@@ -131,7 +131,7 @@ export default function StudentForm({stateChanger,viewMode,student_data, setView
 
   return (
     <div>
-      {!viewMode && <Button variant="outlined" onClick={handleClickOpen}>
+      {!viewMode && <Button color="secondary" variant="outlined" onClick={handleClickOpen}>
         Add Student
       </Button>}
       <Dialog open={open}>

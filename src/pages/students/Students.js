@@ -27,7 +27,8 @@ export default function Students() {
   var [students, setStudents] = useState([]);
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [isView,setIsView] = useState(false);
-  const [confirmDelete,setConfirmDelete] = useState(true);
+  const [confirmDelete,setConfirmDelete] = useState(false);
+  const [studentToDelete,setStudentToDelete] = useState([]);
   const [viewIndex,setViewIndex] = useState([]);
 
   useEffect(() => {
@@ -49,6 +50,7 @@ export default function Students() {
   
   const confirm_delete = (data) => {
     setConfirmDelete(true);
+    setStudentToDelete(data);
     console.log("confirm:",confirmDelete);
   }
   function del_student (data) {
@@ -77,7 +79,7 @@ export default function Students() {
       <PageTitle title="Students" modal = {<StudentForm stateChanger = {fetchStudents} viewMode = {false}/>}
       />
       {isView && <StudentForm stateChanger = {fetchStudents} viewMode = {true} student_data = {students[viewIndex]} setView= {setIsView}/>}
-      {<ConfirmDialog isOpen= {confirmDelete} action = {del_student}/>}
+      {confirmDelete && <ConfirmDialog isOpen= {confirmDelete} action = {del_student} data={studentToDelete} setConfirmDelete = {setConfirmDelete}/>}
       <Grid container spacing={4}>
         <Grid item xs={12}>
           {
@@ -102,8 +104,8 @@ export default function Students() {
                   console.log("To be deleted: ",JSON.stringify(rowsDeleted));
                   const idsToDelete = rowsDeleted?.data?.map (item => item.dataIndex)
                   console.log(JSON.stringify(students[idsToDelete]));
-                  del_student(students[idsToDelete]);
-                  //confirm_delete(students[idsToDelete]);
+                  //del_student(students[idsToDelete]);
+                  confirm_delete(students[idsToDelete]);
                 },
                 onRowClick : (rowData, rowMeta) => {
                   console.log("data:",JSON.stringify(rowData))
