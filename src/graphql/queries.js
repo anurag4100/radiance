@@ -401,18 +401,50 @@ export const getSchools = /* GraphQL */ `
     getSchools(id: $id) {
       id
       school_id
-      school_name
-      school_principal
+      name
+      principal {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       details
       phone
       mobile
       email
-      addrs_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsPrincipalId
+      schoolsAddressId
     }
   }
 `;
@@ -426,18 +458,18 @@ export const listSchools = /* GraphQL */ `
       items {
         id
         school_id
-        school_name
-        school_principal
+        name
         details
         phone
         mobile
         email
-        addrs_id
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        schoolsPrincipalId
+        schoolsAddressId
       }
       nextToken
       startedAt
@@ -460,13 +492,177 @@ export const syncSchools = /* GraphQL */ `
       items {
         id
         school_id
-        school_name
-        school_principal
+        name
         details
         phone
         mobile
         email
-        addrs_id
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+        schoolsPrincipalId
+        schoolsAddressId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getEmployee = /* GraphQL */ `
+  query GetEmployee($id: ID!) {
+    getEmployee(id: $id) {
+      id
+      joining_date
+      first_name
+      middle_name
+      last_name
+      dob
+      email
+      mobile
+      details
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listEmployees = /* GraphQL */ `
+  query ListEmployees(
+    $filter: ModelEmployeeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEmployees(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncEmployees = /* GraphQL */ `
+  query SyncEmployees(
+    $filter: ModelEmployeeFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncEmployees(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getAddress = /* GraphQL */ `
+  query GetAddress($id: ID!) {
+    getAddress(id: $id) {
+      id
+      line1
+      line2
+      line3
+      city
+      district
+      state
+      country
+      zip
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const listAddresses = /* GraphQL */ `
+  query ListAddresses(
+    $filter: ModelAddressFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAddresses(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncAddresses = /* GraphQL */ `
+  query SyncAddresses(
+    $filter: ModelAddressFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncAddresses(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
         createdAt
         updatedAt
         _version

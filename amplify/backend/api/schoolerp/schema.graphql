@@ -58,12 +58,36 @@ type Student @model @auth(rules: [{allow: public}]) {
 type Schools @model @auth(rules: [{allow: public}]) {
   id: ID!
   school_id: Int
-  school_name: String
-  school_principal: String
+  name: String
+  principal: Employee @hasOne
   details: AWSJSON
   phone: String
   mobile: String
   email: AWSEmail
-  addrs_id: Int
+  address: Address @hasOne
+}
+
+type Employee @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  joining_date: AWSDate
+  first_name: String
+  middle_name: String
+  last_name: String
+  dob: AWSDate
+  email: AWSEmail
+  mobile: String
+  details: AWSJSON
+}
+
+type Address @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  line1: String
+  line2: String
+  line3: String
+  city: String
+  district: String
+  state: String
+  country: String
+  zip: String
 }
  

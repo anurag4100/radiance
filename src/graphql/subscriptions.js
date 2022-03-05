@@ -267,18 +267,50 @@ export const onCreateSchools = /* GraphQL */ `
     onCreateSchools {
       id
       school_id
-      school_name
-      school_principal
+      name
+      principal {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       details
       phone
       mobile
       email
-      addrs_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsPrincipalId
+      schoolsAddressId
     }
   }
 `;
@@ -287,18 +319,50 @@ export const onUpdateSchools = /* GraphQL */ `
     onUpdateSchools {
       id
       school_id
-      school_name
-      school_principal
+      name
+      principal {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       details
       phone
       mobile
       email
-      addrs_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsPrincipalId
+      schoolsAddressId
     }
   }
 `;
@@ -307,13 +371,165 @@ export const onDeleteSchools = /* GraphQL */ `
     onDeleteSchools {
       id
       school_id
-      school_name
-      school_principal
+      name
+      principal {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       details
       phone
       mobile
       email
-      addrs_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      schoolsPrincipalId
+      schoolsAddressId
+    }
+  }
+`;
+export const onCreateEmployee = /* GraphQL */ `
+  subscription OnCreateEmployee {
+    onCreateEmployee {
+      id
+      joining_date
+      first_name
+      middle_name
+      last_name
+      dob
+      email
+      mobile
+      details
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateEmployee = /* GraphQL */ `
+  subscription OnUpdateEmployee {
+    onUpdateEmployee {
+      id
+      joining_date
+      first_name
+      middle_name
+      last_name
+      dob
+      email
+      mobile
+      details
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteEmployee = /* GraphQL */ `
+  subscription OnDeleteEmployee {
+    onDeleteEmployee {
+      id
+      joining_date
+      first_name
+      middle_name
+      last_name
+      dob
+      email
+      mobile
+      details
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onCreateAddress = /* GraphQL */ `
+  subscription OnCreateAddress {
+    onCreateAddress {
+      id
+      line1
+      line2
+      line3
+      city
+      district
+      state
+      country
+      zip
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onUpdateAddress = /* GraphQL */ `
+  subscription OnUpdateAddress {
+    onUpdateAddress {
+      id
+      line1
+      line2
+      line3
+      city
+      district
+      state
+      country
+      zip
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const onDeleteAddress = /* GraphQL */ `
+  subscription OnDeleteAddress {
+    onDeleteAddress {
+      id
+      line1
+      line2
+      line3
+      city
+      district
+      state
+      country
+      zip
       createdAt
       updatedAt
       _version

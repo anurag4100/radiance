@@ -306,18 +306,50 @@ export const createSchools = /* GraphQL */ `
     createSchools(input: $input, condition: $condition) {
       id
       school_id
-      school_name
-      school_principal
+      name
+      principal {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       details
       phone
       mobile
       email
-      addrs_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsPrincipalId
+      schoolsAddressId
     }
   }
 `;
@@ -329,18 +361,50 @@ export const updateSchools = /* GraphQL */ `
     updateSchools(input: $input, condition: $condition) {
       id
       school_id
-      school_name
-      school_principal
+      name
+      principal {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       details
       phone
       mobile
       email
-      addrs_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      schoolsPrincipalId
+      schoolsAddressId
     }
   }
 `;
@@ -352,13 +416,183 @@ export const deleteSchools = /* GraphQL */ `
     deleteSchools(input: $input, condition: $condition) {
       id
       school_id
-      school_name
-      school_principal
+      name
+      principal {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       details
       phone
       mobile
       email
-      addrs_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+      schoolsPrincipalId
+      schoolsAddressId
+    }
+  }
+`;
+export const createEmployee = /* GraphQL */ `
+  mutation CreateEmployee(
+    $input: CreateEmployeeInput!
+    $condition: ModelEmployeeConditionInput
+  ) {
+    createEmployee(input: $input, condition: $condition) {
+      id
+      joining_date
+      first_name
+      middle_name
+      last_name
+      dob
+      email
+      mobile
+      details
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateEmployee = /* GraphQL */ `
+  mutation UpdateEmployee(
+    $input: UpdateEmployeeInput!
+    $condition: ModelEmployeeConditionInput
+  ) {
+    updateEmployee(input: $input, condition: $condition) {
+      id
+      joining_date
+      first_name
+      middle_name
+      last_name
+      dob
+      email
+      mobile
+      details
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteEmployee = /* GraphQL */ `
+  mutation DeleteEmployee(
+    $input: DeleteEmployeeInput!
+    $condition: ModelEmployeeConditionInput
+  ) {
+    deleteEmployee(input: $input, condition: $condition) {
+      id
+      joining_date
+      first_name
+      middle_name
+      last_name
+      dob
+      email
+      mobile
+      details
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const createAddress = /* GraphQL */ `
+  mutation CreateAddress(
+    $input: CreateAddressInput!
+    $condition: ModelAddressConditionInput
+  ) {
+    createAddress(input: $input, condition: $condition) {
+      id
+      line1
+      line2
+      line3
+      city
+      district
+      state
+      country
+      zip
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const updateAddress = /* GraphQL */ `
+  mutation UpdateAddress(
+    $input: UpdateAddressInput!
+    $condition: ModelAddressConditionInput
+  ) {
+    updateAddress(input: $input, condition: $condition) {
+      id
+      line1
+      line2
+      line3
+      city
+      district
+      state
+      country
+      zip
+      createdAt
+      updatedAt
+      _version
+      _deleted
+      _lastChangedAt
+    }
+  }
+`;
+export const deleteAddress = /* GraphQL */ `
+  mutation DeleteAddress(
+    $input: DeleteAddressInput!
+    $condition: ModelAddressConditionInput
+  ) {
+    deleteAddress(input: $input, condition: $condition) {
+      id
+      line1
+      line2
+      line3
+      city
+      district
+      state
+      country
+      zip
       createdAt
       updatedAt
       _version

@@ -24,6 +24,14 @@ type SchoolsMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type EmployeeMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type AddressMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Subject {
   readonly id: string;
   readonly subject_id?: number;
@@ -98,15 +106,49 @@ export declare class Student {
 export declare class Schools {
   readonly id: string;
   readonly school_id?: number;
-  readonly school_name?: string;
-  readonly school_principal?: string;
+  readonly name?: string;
+  readonly principal?: Employee;
   readonly details?: string;
   readonly phone?: string;
   readonly mobile?: string;
   readonly email?: string;
-  readonly addrs_id?: number;
+  readonly address?: Address;
   readonly createdAt?: string;
   readonly updatedAt?: string;
+  readonly schoolsPrincipalId?: string;
+  readonly schoolsAddressId?: string;
   constructor(init: ModelInit<Schools, SchoolsMetaData>);
   static copyOf(source: Schools, mutator: (draft: MutableModel<Schools, SchoolsMetaData>) => MutableModel<Schools, SchoolsMetaData> | void): Schools;
+}
+
+export declare class Employee {
+  readonly id: string;
+  readonly joining_date?: string;
+  readonly first_name?: string;
+  readonly middle_name?: string;
+  readonly last_name?: string;
+  readonly dob?: string;
+  readonly email?: string;
+  readonly mobile?: string;
+  readonly details?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Employee, EmployeeMetaData>);
+  static copyOf(source: Employee, mutator: (draft: MutableModel<Employee, EmployeeMetaData>) => MutableModel<Employee, EmployeeMetaData> | void): Employee;
+}
+
+export declare class Address {
+  readonly id: string;
+  readonly line1?: string;
+  readonly line2?: string;
+  readonly line3?: string;
+  readonly city?: string;
+  readonly district?: string;
+  readonly state?: string;
+  readonly country?: string;
+  readonly zip?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<Address, AddressMetaData>);
+  static copyOf(source: Address, mutator: (draft: MutableModel<Address, AddressMetaData>) => MutableModel<Address, AddressMetaData> | void): Address;
 }
