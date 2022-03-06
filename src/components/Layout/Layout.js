@@ -88,7 +88,7 @@ function Layout(props) {
                   target={'_blank'}
                   className={classes.link}
                 >
-                  Flatlogic
+                  ChingaTech
                 </Link>
                 <Link
                   color={'primary'}

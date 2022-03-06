@@ -3,7 +3,7 @@ import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useState } from 'react';
 import { mixed, number, object } from 'yup';
-
+import { DatePickerField } from '../../components/Form/DatePickerField';
 const sleep = (time_mil: number) => new Promise((acc) => setTimeout(acc, time_mil));
 
 export default function Home() {
@@ -17,30 +17,38 @@ export default function Home() {
             millionaire: false,
             money: 0,
             description: '',
+            date: new Date().toISOString()
           }}
           onSubmit={async (values) => {
             await sleep(3000);
             console.log('values', values);
           }}
         >
-          <FormikStep label="Personal Data">
+          <FormikStep label="Personal">
             <Box paddingBottom={2}>
-              <Field fullWidth name="firstName" component={TextField} label="First Name" />
+              <Field fullWidth name="first_name" component={TextField} label="First Name" />
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="lastName" component={TextField} label="Last Name" />
+              <Field fullWidth name="middle_name" component={TextField} label="Middle Name" />
             </Box>
             <Box paddingBottom={2}>
-              <Field
-                name="millionaire"
-                type="checkbox"
-                component={CheckboxWithLabel}
-                Label={{ label: 'I am a millionaire' }}
-              />
+              <Field fullWidth name="last_name" component={TextField} label="Last Name" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="last_name" component={TextField} label="Last Name" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="mobile" component={TextField} label="Mobile No." />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="email" component={TextField} label="Email" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field name="date" component= {DatePickerField} label = "Date"/>
             </Box>
           </FormikStep>
           <FormikStep
-            label="Bank Accounts"
+            label="Address"
             validationSchema={object({
               money: mixed().when('millionaire', {
                 is: true,
@@ -54,20 +62,86 @@ export default function Home() {
               }),
             })}
           >
+            <Box paddingBottom={1}>
+              <Field
+                fullWidth
+                name="line1"
+                component={TextField}
+                label="Line 1"
+              />
+            </Box>
+            <Box paddingBottom={1}>
+              <Field
+                fullWidth
+                name="line2"
+                component={TextField}
+                label="Line 2"
+              />
+            </Box>
             <Box paddingBottom={2}>
               <Field
                 fullWidth
-                name="money"
-                type="number"
+                name="city"
                 component={TextField}
-                label="All the money I have"
+                label="City"
               />
             </Box>
+            <Grid container spacing={2}>
+              <Grid item>
+                <Box paddingBottom={1}>
+                  <Field
+                    fullWidth
+                    name="state"
+                    component={TextField}
+                    label="State"
+                  />
+              </Box>
+              </Grid>
+            <Grid item>
+              <Box paddingBottom={1}>
+                <Field
+                  fullWidth
+                  name="zip"
+                  type = "number"
+                  component={TextField}
+                  label="Zip/Postal code"
+                />
+              </Box>
+            </Grid>
+          </Grid>
           </FormikStep>
-          <FormikStep label="More Info">
+
+          <FormikStep label="Education">
             <Box paddingBottom={2}>
-              <Field fullWidth name="description" component={TextField} label="Description" />
+              <Field fullWidth name="highest" component={TextField} label="Highest Education" />
             </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="ssc" component={TextField} label="SSC" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="hsc" component={TextField} label="HSC" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="others" component={TextField} label="Others" />
+            </Box>
+          </FormikStep>
+          <FormikStep label="Experience">
+            <Box paddingBottom={2}>
+              <Field fullWidth name="lastOrg" component={TextField} label="Previous Organization" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="years" component={TextField} label="Years" />
+            </Box>
+          </FormikStep>
+          <FormikStep label="Compensation">
+            
+            <Box paddingBottom={2}>
+              <Field fullWidth name="role" component={TextField} label="Role" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="amount" component={TextField} label="Annual Compensation" />
+            </Box>
+            
           </FormikStep>
         </FormikStepper>
       </CardContent>
@@ -104,18 +178,6 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
           setCompleted(true);
         } else {
           setStep((s) => s + 1);
-
-          // the next line was not covered in the youtube video
-          //
-          // If you have multiple fields on the same step
-          // we will see they show the validation error all at the same time after the first step!
-          //
-          // If you want to keep that behaviour, then, comment the next line :)
-          // If you want the second/third/fourth/etc steps with the same behaviour
-          //    as the first step regarding validation errors, then the next line is for you! =)
-          //
-          // In the example of the video, it doesn't make any difference, because we only
-          //    have one field with validation in the second step :)
           helpers.setTouched({});
         }
       }}
