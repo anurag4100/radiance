@@ -65,6 +65,7 @@ type Employee @model @auth(rules: [{allow: public}]) {
   details: AWSJSON
   role: [Role] @hasMany
   compensation: Compensation @hasOne 
+  schoolsEmployeesId: ID @index(name: "employeesByCreatedDate", queryField: "employeesByCreatedDate", sortKeyFields: ["createdAt"])
 }
 
 type Address @model @auth(rules: [{allow: public}]) {

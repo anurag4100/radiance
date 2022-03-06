@@ -91,12 +91,13 @@ export default function Students() {
                 ?.map(function (item) {
                 return {
                   id:item.student_id,
-                  name: item.first_name?.concat(" "+item.last_name), 
+                  name: item.first_name?.concat(" "+item.last_name),
+                  class: item.class_id, 
                   date: item.enroll_date,
                   mobile: item.mobile
                 }
               }).map(op => Object.values(op))}
-              columns={["Student ID", "Name", "Joining Date", "Mobile"]}
+              columns={["Roll No.", "Name", "Class","Joining Date", "Mobile"]}
               options={{
                 filterType: "checkbox",
                 fixedHeader: true,
