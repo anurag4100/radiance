@@ -13,11 +13,28 @@ export default function Home() {
         <FormikStepper
           initialValues={{
             first_name: '',
-            lastName: '',
-            millionaire: false,
-            money: 0,
-            description: '',
-            joining_date: new Date().toISOString()
+            last_name: '',
+            middle_name: '',
+            dob: new Date().toISOString(),
+            email: '',
+            mobile: '',
+            details: '',
+            role_name: '',
+            role_type: 0,
+            role_payBand: '',
+            joining_date: new Date().toISOString(),
+            comp_type: '',
+            comp_amount: '',
+            comp_isTaxable: false,
+            add_line1: '',
+            add_line2: '',
+            add_line3: '',
+            add_city: '',
+            add_district: '',
+            add_state: '',
+            add_country: '',
+            add_zip: '',
+            millionaire:false
           }}
           onSubmit={async (values) => {
             await sleep(3000);
@@ -35,10 +52,10 @@ export default function Home() {
               <Field fullWidth name="last_name" component={TextField} label="Last Name" />
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="last_name" component={TextField} label="Last Name" />
+              <Field fullWidth name="mobile" component={TextField} label="Mobile No." />
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="mobile" component={TextField} label="Mobile No." />
+              <Field name="dob" component= {DatePickerField} label = "Date of Birth"/>
             </Box>
             <Box paddingBottom={2}>
               <Field fullWidth name="email" component={TextField} label="Email" />
@@ -47,23 +64,11 @@ export default function Home() {
           </FormikStep>
           <FormikStep
             label="Address"
-            validationSchema={object({
-              money: mixed().when('millionaire', {
-                is: true,
-                then: number()
-                  .required()
-                  .min(
-                    1_000_000,
-                    'Because you said you are a millionaire you need to have 1 million'
-                  ),
-                otherwise: number().required(),
-              }),
-            })}
           >
             <Box paddingBottom={1}>
               <Field
                 fullWidth
-                name="line1"
+                name="add_line1"
                 component={TextField}
                 label="Line 1"
               />
@@ -71,7 +76,7 @@ export default function Home() {
             <Box paddingBottom={1}>
               <Field
                 fullWidth
-                name="line2"
+                name="add_line2"
                 component={TextField}
                 label="Line 2"
               />
@@ -79,7 +84,7 @@ export default function Home() {
             <Box paddingBottom={2}>
               <Field
                 fullWidth
-                name="city"
+                name="add_city"
                 component={TextField}
                 label="City"
               />
@@ -89,7 +94,7 @@ export default function Home() {
                 <Box paddingBottom={1}>
                   <Field
                     fullWidth
-                    name="state"
+                    name="add_state"
                     component={TextField}
                     label="State"
                   />
@@ -99,7 +104,7 @@ export default function Home() {
               <Box paddingBottom={1}>
                 <Field
                   fullWidth
-                  name="zip"
+                  name="add_zip"
                   type = "number"
                   component={TextField}
                   label="Zip/Postal code"
@@ -111,24 +116,24 @@ export default function Home() {
 
           <FormikStep label="Education">
             <Box paddingBottom={2}>
-              <Field fullWidth name="highest" component={TextField} label="Highest Education" />
+              <Field fullWidth name="edu_highest" component={TextField} label="Highest Education" />
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="ssc" component={TextField} label="SSC" />
+              <Field fullWidth name="edu_ssc" component={TextField} label="SSC" />
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="hsc" component={TextField} label="HSC" />
+              <Field fullWidth name="edu_hsc" component={TextField} label="HSC" />
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="others" component={TextField} label="Others" />
+              <Field fullWidth name="edu_others" component={TextField} label="Others" />
             </Box>
           </FormikStep>
           <FormikStep label="Experience">
             <Box paddingBottom={2}>
-              <Field fullWidth name="lastOrg" component={TextField} label="Previous Organization" />
+              <Field fullWidth name="exp_lastOrg" component={TextField} label="Previous Organization" />
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="years" component={TextField} label="Years" />
+              <Field fullWidth name="exp_years" component={TextField} label="Years" />
             </Box>
           </FormikStep>
           <FormikStep label="Compensation">
@@ -136,12 +141,28 @@ export default function Home() {
               <Field name="joining_date" component= {DatePickerField} label = "Joining Date"/>
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="role" component={TextField} label="Role" />
+              <Field fullWidth name="role_name" component={TextField} label="Role Name" />
             </Box>
             <Box paddingBottom={2}>
-              <Field fullWidth name="amount" component={TextField} label="Annual Compensation" />
+              <Field fullWidth name="role_type" component={TextField} label="Role Type" />
             </Box>
-            
+            <Box paddingBottom={2}>
+              <Field fullWidth name="role_payBand" component={TextField} label="Role Pay band" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="comp_type" component={TextField} label="Compensation Type" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="comp_amount" component={TextField} label="Compensation Amount" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field
+                name="comp_isTaxable"
+                type="checkbox"
+                component={CheckboxWithLabel}
+                Label={{ label: 'This is taxable' }}
+              />
+            </Box>
           </FormikStep>
         </FormikStepper>
       </CardContent>
