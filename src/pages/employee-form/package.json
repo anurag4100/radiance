@@ -1,0 +1,6 @@
+{
+  "name": "EmployeeForm",
+  "version": "0.0.0",
+  "main": "EmployeeForm.tsx",
+  "private": true
+}

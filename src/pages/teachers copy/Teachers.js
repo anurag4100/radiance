@@ -8,14 +8,13 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import Widget from "../../components/Widget/Widget";
 import Table from "../dashboard/components/Table/Table";
 import { API, graphqlOperation } from 'aws-amplify';
-import { createEmployee, deleteEmployee } from '../.././graphql/mutations';
-import { listEmployees } from '../.././graphql/queries'
+import { createEmployee, deleteEmployee } from '../../graphql/mutations';
+import { listEmployees } from '../../graphql/queries'
 // data
 import mock from "../dashboard/mock";
 import StudentForm from "../../components/StudentForm/StudentForm";
 import { useSnackbar } from 'notistack';
 import ConfirmDialog from "../../components/Form/ConfirmDialog";
-import {Link} from "react-router-dom"
 
 const useStyles = makeStyles(theme => ({
   tableOverflow: {
@@ -80,17 +79,8 @@ export default function Students() {
   }
   return (
     <>
-      <PageTitle title="Teachers" button={
-        <Button
-          variant="contained"
-          size="medium"
-          color="secondary"
-          component={Link} 
-          to="/app/employees-form/"
-        >
-          Add Teacher
-        </Button>
-      } />
+      <PageTitle title="Teachers" modal = {<StudentForm stateChanger = {fetchTeachers} viewMode = {false}/>}
+      />
       {isView && <StudentForm stateChanger = {fetchTeachers} viewMode = {true} student_data = {teachers[viewIndex]} setView= {setIsView}/>}
       {confirmDelete && <ConfirmDialog isOpen= {confirmDelete} action = {del_teacher} data={teacherToDelete} setConfirmDelete = {setConfirmDelete}/>}
       <Grid container spacing={4}>

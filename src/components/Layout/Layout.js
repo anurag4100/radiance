@@ -33,6 +33,7 @@ import Icons from "../../pages/icons";
 import Charts from "../../pages/charts";
 import School from "../../pages/school";
 import Teachers from "../../pages/teachers";
+import EmployeesForm from "../../pages/employee-form";
 // context
 import { useLayoutState } from "../../context/LayoutContext";
 import Students from "../../pages/students";
@@ -63,6 +64,7 @@ function Layout(props) {
               <Route path="/app/students" component={Students} />
               <Route path="/app/notifications" component={Notifications} />
               <Route path="/app/school" component={School} />
+              <Route path="/app/employees-form" component={EmployeesForm} />
               <Route
                 exact
                 path="/app/ui"
