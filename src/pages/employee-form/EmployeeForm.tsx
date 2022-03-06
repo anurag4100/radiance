@@ -12,12 +12,12 @@ export default function Home() {
       <CardContent>
         <FormikStepper
           initialValues={{
-            firstName: '',
+            first_name: '',
             lastName: '',
             millionaire: false,
             money: 0,
             description: '',
-            date: new Date().toISOString()
+            joining_date: new Date().toISOString()
           }}
           onSubmit={async (values) => {
             await sleep(3000);
@@ -43,9 +43,7 @@ export default function Home() {
             <Box paddingBottom={2}>
               <Field fullWidth name="email" component={TextField} label="Email" />
             </Box>
-            <Box paddingBottom={2}>
-              <Field name="date" component= {DatePickerField} label = "Date"/>
-            </Box>
+            
           </FormikStep>
           <FormikStep
             label="Address"
@@ -134,7 +132,9 @@ export default function Home() {
             </Box>
           </FormikStep>
           <FormikStep label="Compensation">
-            
+            <Box paddingBottom={2}>
+              <Field name="joining_date" component= {DatePickerField} label = "Joining Date"/>
+            </Box>
             <Box paddingBottom={2}>
               <Field fullWidth name="role" component={TextField} label="Role" />
             </Box>
