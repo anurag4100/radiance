@@ -2,8 +2,8 @@ import { Box, Button, Card, CardContent, CircularProgress, Grid, Step, StepLabel
 import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useState } from 'react';
-import { mixed, number, object } from 'yup';
 import { DatePickerField } from '../../components/Form/DatePickerField';
+import { Preview } from './Preview';
 const sleep = (time_mil: number) => new Promise((acc) => setTimeout(acc, time_mil));
 
 export default function Home() {
@@ -60,7 +60,7 @@ export default function Home() {
             <Box paddingBottom={2}>
               <Field fullWidth name="email" component={TextField} label="Email" />
             </Box>
-            
+
           </FormikStep>
           <FormikStep
             label="Address"
@@ -162,6 +162,11 @@ export default function Home() {
                 component={CheckboxWithLabel}
                 Label={{ label: 'This is taxable' }}
               />
+            </Box>
+          </FormikStep>
+          <FormikStep label="Preview">
+            <Box paddingBottom={2}>
+              <Field name="dob" component= {Preview} label = "Preview"/>
             </Box>
           </FormikStep>
         </FormikStepper>
