@@ -15,14 +15,14 @@ export default function Home() {
             first_name: '',
             last_name: '',
             middle_name: '',
-            dob: new Date().toISOString(),
+            dob: new Date().toLocaleString().split(",")[0],
             email: '',
             mobile: '',
             details: '',
             role_name: '',
             role_type: 0,
             role_payBand: '',
-            joining_date: new Date().toISOString(),
+            joining_date: new Date().toLocaleString().split(",")[0],
             comp_type: '',
             comp_amount: '',
             comp_isTaxable: false,
@@ -209,7 +209,7 @@ export function FormikStepper({ children, ...props }: FormikConfig<FormikValues>
       }}
     >
       {({ isSubmitting }) => (
-        <Form autoComplete="off">
+        <Form autoComplete="on">
           <Stepper alternativeLabel activeStep={step}>
             {childrenArray.map((child, index) => (
               <Step key={child.props.label} completed={step > index || completed}>

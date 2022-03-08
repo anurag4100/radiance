@@ -20,7 +20,13 @@ export const nameToLabel = {
     add_district: 'District',
     add_state: 'State',
     add_country: 'Country',
-    add_zip: 'Zip/Postal Code'
+    add_zip: 'Zip/Postal Code',
+    edu_highest: 'Highest Education',
+    edu_ssc: 'SSC',
+    edu_hsc: 'HSC',
+    edu_others: 'Other Edu',
+    exp_lastOrg: 'Last Org',
+    exp_years: 'Experience'
   };
 
   export const mapToLabel = (arr) => {
