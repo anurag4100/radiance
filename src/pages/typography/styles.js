@@ -12,4 +12,8 @@ export default makeStyles(theme => ({
   text: {
     marginBottom: theme.spacing(2),
   },
+  tableRow: {
+    height: 30
+  },
+  tabelCell : {borderBottom:"none"}
 }));
