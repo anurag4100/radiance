@@ -1,5 +1,5 @@
 import {useField, useFormikContext} from "formik";
-import { Table, TableBody, TableCell, TableContainer, TableRow, Paper } from '@material-ui/core';
+import { Table, TableBody, TableCell, TableContainer, TableRow, Paper,Box } from '@material-ui/core';
 import {nameToLabel,mapToLabel} from './nameToLabel.js';
 import { Typography } from "../../components/Wrappers";
 import useStyles from "../typography/styles.js";
@@ -11,8 +11,12 @@ export const Preview = ({
     const data = Object.entries(props.form.values);
     var classes = useStyles();
     return (
+      <Box paddingTop={2} paddingLeft = {10}>
+        <Typography variant="h5" className={classes.text}>
+                Summary
+        </Typography>
         <TableContainer component={Paper}>
-              <Table  size="small" aria-label="a dense table">
+              <Table  sx={{ minWidth: 650 }} size="small" aria-label="Dense Table">
                 <TableBody>
                 {data.map((row) => (
                   <TableRow
@@ -20,8 +24,7 @@ export const Preview = ({
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     className={classes.tableRow}
                   >
-                    <TableCell className={classes.tabelCell}></TableCell>
-                    <TableCell component="th" scope="row" style={{width: 100,borderBottom:"none"}}>
+                    <TableCell component="th" scope="row" style={{width: 200,borderBottom:"none"}}>
                       <Typography className={classes.text} weight="bold">
                         {nameToLabel[row[0]]}
                       </Typography>
@@ -36,5 +39,6 @@ export const Preview = ({
                 </TableBody>
               </Table>
             </TableContainer>
+          </Box>
     );
 };
