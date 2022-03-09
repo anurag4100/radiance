@@ -322,12 +322,12 @@ export const getSchools = /* GraphQL */ `
         email
         mobile
         details
+        schoolsEmployeesId
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        schoolsEmployeesId
         employeeCompensationId
       }
       details
@@ -457,12 +457,12 @@ export const getEmployee = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
+      schoolsEmployeesId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      schoolsEmployeesId
       employeeCompensationId
     }
   }
@@ -484,12 +484,12 @@ export const listEmployees = /* GraphQL */ `
         email
         mobile
         details
+        schoolsEmployeesId
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        schoolsEmployeesId
         employeeCompensationId
       }
       nextToken
@@ -520,12 +520,52 @@ export const syncEmployees = /* GraphQL */ `
         email
         mobile
         details
+        schoolsEmployeesId
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
+        employeeCompensationId
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const employeesByCreatedDate = /* GraphQL */ `
+  query EmployeesByCreatedDate(
+    $schoolsEmployeesId: ID!
+    $createdAt: ModelStringKeyConditionInput
+    $sortDirection: ModelSortDirection
+    $filter: ModelEmployeeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    employeesByCreatedDate(
+      schoolsEmployeesId: $schoolsEmployeesId
+      createdAt: $createdAt
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        joining_date
+        first_name
+        middle_name
+        last_name
+        dob
+        email
+        mobile
+        details
         schoolsEmployeesId
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
         employeeCompensationId
       }
       nextToken

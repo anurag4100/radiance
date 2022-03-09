@@ -11,7 +11,7 @@ export const DatePickerField = ({
     const [field] = useField(props);
     return (
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker inputVariant="outlined" format="dd/MM/yyyy"
+            <KeyboardDatePicker inputVariant="outlined" format="yyyy-MM-dd"
                 KeyboardButtonProps={
                     {"aria-label": "change date"}
                 }

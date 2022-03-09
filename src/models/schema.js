@@ -619,26 +619,24 @@ export const schema = {
                         "targetName": "employeeCompensationId"
                     }
                 },
+                "schoolsEmployeesId": {
+                    "name": "schoolsEmployeesId",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
                     "type": "AWSDateTime",
                     "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
+                    "attributes": []
                 },
                 "updatedAt": {
                     "name": "updatedAt",
                     "isArray": false,
                     "type": "AWSDateTime",
-                    "isRequired": false,
-                    "attributes": [],
-                    "isReadOnly": true
-                },
-                "schoolsEmployeesId": {
-                    "name": "schoolsEmployeesId",
-                    "isArray": false,
-                    "type": "ID",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -656,6 +654,17 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "employeesByCreatedDate",
+                        "queryField": "employeesByCreatedDate",
+                        "fields": [
+                            "schoolsEmployeesId",
+                            "createdAt"
+                        ]
+                    }
                 },
                 {
                     "type": "auth",

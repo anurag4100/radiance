@@ -21,7 +21,7 @@ type SchoolsMetaData = {
 }
 
 type EmployeeMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
+  readOnlyFields;
 }
 
 type RoleMetaData = {
@@ -120,12 +120,12 @@ export declare class Employee {
   readonly details?: string;
   readonly role?: (Role | null)[];
   readonly compensation?: Compensation;
+  readonly schoolsEmployeesId?: string;
   readonly createdAt?: string;
   readonly updatedAt?: string;
-  readonly schoolsEmployeesId?: string;
   readonly employeeCompensationId?: string;
-  constructor(init: ModelInit<Employee, EmployeeMetaData>);
-  static copyOf(source: Employee, mutator: (draft: MutableModel<Employee, EmployeeMetaData>) => MutableModel<Employee, EmployeeMetaData> | void): Employee;
+  constructor(init: ModelInit<Employee>);
+  static copyOf(source: Employee, mutator: (draft: MutableModel<Employee>) => MutableModel<Employee> | void): Employee;
 }
 
 export declare class Role {

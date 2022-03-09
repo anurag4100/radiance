@@ -209,12 +209,12 @@ export const onCreateSchools = /* GraphQL */ `
         email
         mobile
         details
+        schoolsEmployeesId
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        schoolsEmployeesId
         employeeCompensationId
       }
       details
@@ -271,12 +271,12 @@ export const onUpdateSchools = /* GraphQL */ `
         email
         mobile
         details
+        schoolsEmployeesId
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        schoolsEmployeesId
         employeeCompensationId
       }
       details
@@ -333,12 +333,12 @@ export const onDeleteSchools = /* GraphQL */ `
         email
         mobile
         details
+        schoolsEmployeesId
         createdAt
         updatedAt
         _version
         _deleted
         _lastChangedAt
-        schoolsEmployeesId
         employeeCompensationId
       }
       details
@@ -406,12 +406,12 @@ export const onCreateEmployee = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
+      schoolsEmployeesId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      schoolsEmployeesId
       employeeCompensationId
     }
   }
@@ -443,12 +443,12 @@ export const onUpdateEmployee = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
+      schoolsEmployeesId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      schoolsEmployeesId
       employeeCompensationId
     }
   }
@@ -480,12 +480,12 @@ export const onDeleteEmployee = /* GraphQL */ `
         _deleted
         _lastChangedAt
       }
+      schoolsEmployeesId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
-      schoolsEmployeesId
       employeeCompensationId
     }
   }
