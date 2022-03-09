@@ -4,6 +4,8 @@ import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useState } from 'react';
 import { DatePickerField } from '../../components/Form/DatePickerField';
 import { Preview } from './Preview';
+import { addTeacher } from './employeeUtils';
+
 const sleep = (time_mil: number) => new Promise((acc) => setTimeout(acc, time_mil));
 
 export default function Home() {
@@ -37,7 +39,8 @@ export default function Home() {
             millionaire:false
           }}
           onSubmit={async (values) => {
-            await sleep(3000);
+            //await sleep(3000);
+            await addTeacher(values);
             console.log('values', values);
           }}
         >

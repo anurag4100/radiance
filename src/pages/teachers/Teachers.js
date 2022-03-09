@@ -91,7 +91,6 @@ export default function Students() {
           Add Teacher
         </Button>
       } />
-      {isView && <StudentForm stateChanger = {fetchTeachers} viewMode = {true} student_data = {teachers[viewIndex]} setView= {setIsView}/>}
       {confirmDelete && <ConfirmDialog isOpen= {confirmDelete} action = {del_teacher} data={teacherToDelete} setConfirmDelete = {setConfirmDelete}/>}
       <Grid container spacing={4}>
         <Grid item xs={12}>
