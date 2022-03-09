@@ -9,7 +9,7 @@ import Widget from "../../components/Widget/Widget";
 import Table from "../dashboard/components/Table/Table";
 import { API, graphqlOperation } from 'aws-amplify';
 import { createEmployee, deleteEmployee } from '../.././graphql/mutations';
-import { listEmployees } from '../.././graphql/queries'
+import { employeesByCreatedDate } from '../.././graphql/queries'
 // data
 import mock from "../dashboard/mock";
 import StudentForm from "../../components/StudentForm/StudentForm";
@@ -39,16 +39,13 @@ export default function Students() {
   function fetchTeachers() {
     const fetchData = async () => {
       console.log("Fetching Teachers...");
-      const data = await API.graphql(graphqlOperation(listEmployees, {
-        filter : {
-          schoolsEmployeesId: {
-            eq: "5301f115-1c06-4189-9fbd-237fcbb403ac"
-          }
-        }
+      const data = await API.graphql(graphqlOperation(employeesByCreatedDate, {
+        schoolsEmployeesId: "5301f115-1c06-4189-9fbd-237fcbb403ac",
+        sortDirection: "DESC",
       }));
       return data;
     };
-    fetchData().then(res => setTeachers(res?.data?.listEmployees?.items?.filter(item => item._deleted !== true))).catch(console.error);
+    fetchData().then(res => setTeachers(res?.data?.employeesByCreatedDate?.items?.filter(item => item._deleted !== true))).catch(console.error);
     console.log("Retrieved Teachers.",teachers);
   }
   
@@ -86,7 +83,7 @@ export default function Students() {
           size="medium"
           color="secondary"
           component={Link} 
-          to="/app/employees-form/"
+          to="/app/employee-form/"
         >
           Add Teacher
         </Button>
