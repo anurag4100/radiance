@@ -5,10 +5,15 @@ import React, { useState } from 'react';
 import { DatePickerField } from '../../components/Form/DatePickerField';
 import { Preview } from './Preview';
 import { addTeacher } from './employeeUtils';
+import { useSnackbar } from 'notistack';
+// @ts-ignore
+import { useHistory } from "react-router-dom";
 
 const sleep = (time_mil: number) => new Promise((acc) => setTimeout(acc, time_mil));
 
 export default function Home() {
+  const { enqueueSnackbar } = useSnackbar();
+  const history = useHistory();
   return (
     <Card>
       <CardContent>
@@ -40,8 +45,14 @@ export default function Home() {
           }}
           onSubmit={async (values) => {
             //await sleep(3000);
-            await addTeacher(values);
-            console.log('values', values);
+            try{
+              await addTeacher(values);
+              enqueueSnackbar('Employee added successfully.', { variant: 'success' });
+              history.push("/app/teachers");
+            }catch(err){
+              console.error(err)
+              enqueueSnackbar('Error occured while adding employee!',{ variant: 'error'})
+            }
           }}
         >
           <FormikStep label="Personal">

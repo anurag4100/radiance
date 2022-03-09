@@ -84,7 +84,7 @@ function Layout(props) {
               <div>
                 <Link
                   color={'primary'}
-                  href={'https://flatlogic.com/'}
+                  href={'https://chinga.com/'}
                   target={'_blank'}
                   className={classes.link}
                 >
@@ -92,7 +92,7 @@ function Layout(props) {
                 </Link>
                 <Link
                   color={'primary'}
-                  href={'https://flatlogic.com/about'}
+                  href={'https://chinga.com/about'}
                   target={'_blank'}
                   className={classes.link}
                 >
