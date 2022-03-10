@@ -29,6 +29,45 @@ export const nameToLabel = {
     exp_years: 'Experience'
   };
 
-  export const mapToLabel = (arr) => {
-      return arr.map(v => nameToLabel[v]);
+  export const mapToEmployee = (data) => {
+      return {
+        'Personal': {
+            'First Name' : data.first_name,
+            'Middle Name': data.middle_name,
+            'Last Name': data.last_name,
+            'Date of Birth': data.dob,
+            'Email' : data.email,
+            'Mobile': data.mobile
+        },
+        'Address': {
+            'Line 1': data.add_line1,
+            'Line 2': data.add_line2,
+            'Line 3': data.add_line3,
+            'City': data.add_city,
+            'District': data.add_district,
+            'State': data.add_state,
+            'Zip/Postal': data.add_zip
+            
+        },
+        'Education': {
+            'Highest Education': data.edu_highest,
+            'SSC': data.edu_ssc,
+            'HSC': data.edu_hsc,
+            'Others': data.edu_others
+        },
+        'Experience': {
+            'Previous Org': data.exp_lastOrg,
+            'Years': data.exp_years
+        },
+        'Compensation': {
+            'Joining Date': data.joining_date,
+            'Role Name': data.role_name,
+            'Role Type': data.role_type,
+            'Role Payband': data.role_payBand,
+            'Compensation Type': data.comp_type,
+            'Compensation Amount': data.comp_amount,
+            'Is Taxable': data.comp_isTaxable
+        }
+
+      }
   }

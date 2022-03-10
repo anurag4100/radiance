@@ -4,7 +4,7 @@ import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useState } from 'react';
 import { DatePickerField } from '../../components/Form/DatePickerField';
 import { Preview } from './Preview';
-import PinnedSubheaderList from './PinnedSubheaderList';
+import EmployeeView from './EmployeeView';
 import { addTeacher } from './employeeUtils';
 import { useSnackbar } from 'notistack';
 // @ts-ignore
@@ -181,7 +181,7 @@ export default function Home() {
           </FormikStep>
           <FormikStep label="Preview">
             <Box paddingBottom={2} paddingLeft={10}>
-              <Field name="preview" component= {PinnedSubheaderList} label = "Preview"/>
+              <Field name="preview" component= {EmployeeView} label = "Preview"/>
             </Box>
           </FormikStep>
         </FormikStepper>

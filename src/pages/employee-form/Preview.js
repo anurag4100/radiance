@@ -9,6 +9,7 @@ export const Preview = ({
     const {setFieldValue} = useFormikContext();
     const [field] = useField(props);
     const data = Object.entries(props.form.values);
+    
     var classes = useStyles();
     return (
       <Box paddingTop={2} paddingLeft = {10}>
