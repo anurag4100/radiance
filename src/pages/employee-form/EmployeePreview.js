@@ -9,7 +9,7 @@ import {useField, useFormikContext} from "formik";
 import { Box,Grid } from '@material-ui/core';
 import {mapToEmployee} from './nameToLabel';
 
-export default function EmployeeView({...props}) {
+export default function EmployeePreview({...props}) {
   const {setFieldValue} = useFormikContext();
     const [field] = useField(props);
     const data = mapToEmployee(props.form.values);

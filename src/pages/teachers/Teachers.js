@@ -16,6 +16,7 @@ import StudentForm from "../../components/StudentForm/StudentForm";
 import { useSnackbar } from 'notistack';
 import ConfirmDialog from "../../components/Form/ConfirmDialog";
 import {Link} from "react-router-dom"
+import EmployeePreview from "../employee-form/EmployeePreview";
 
 const useStyles = makeStyles(theme => ({
   tableOverflow: {
@@ -89,6 +90,7 @@ export default function Students() {
         </Button>
       } />
       {confirmDelete && <ConfirmDialog isOpen= {confirmDelete} action = {del_teacher} data={teacherToDelete} setConfirmDelete = {setConfirmDelete}/>}
+      {isView && <EmployeePreview employee_data = {teachers[viewIndex]} setView= {setIsView}/>}
       <Grid container spacing={4}>
         <Grid item xs={12}>
           {
