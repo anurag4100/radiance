@@ -147,7 +147,7 @@ export default function StudentForm({stateChanger,viewMode,student_data, setView
           <FormInputDropdown
             name="class_id"
             control={control}
-            label={viewMode ? classOptions?.find(o => o.value === student_data?.class_id?.toString())['label'] : "Class"}
+            label={viewMode ? classOptions?.find(o => o.value === student_data?.class_id?.toString()) : "Class"}
             data={generateOptions(classOptions)}
             defaultValue={student_data?.class_id}
           />
@@ -157,7 +157,7 @@ export default function StudentForm({stateChanger,viewMode,student_data, setView
           <FormInputDropdown
             name="religion"
             control={control}
-            label={viewMode ? religionOptions?.find(o => o.value === student_data?.religion?.toString())['label']:"Religion"}
+            label={viewMode ? religionOptions?.find(o => o.value === student_data?.religion?.toString()):"Religion"}
             data = {generateOptions(religionOptions)}
             defaultValue={student_data?.religion}
           />
@@ -194,7 +194,7 @@ export default function StudentForm({stateChanger,viewMode,student_data, setView
     console.log(JSON.stringify(data));
     delete student_data._deleted;
     delete student_data._lastChangedAt;
-    console.log("Starting updateStudent");
+    console.log("Starting editStudent");
     const result = await API.graphql(graphqlOperation(updateStudent, {
       input: {
         ...student_data,
@@ -202,7 +202,7 @@ export default function StudentForm({stateChanger,viewMode,student_data, setView
         "dob": data?.dob?.toISOString().split('T')[0]
       }
     }));
-    console.log("updateSchools complete: ", JSON.stringify(result));
+    console.log("editStudent complete: ", JSON.stringify(result));
     enqueueSnackbar('Student updated successfully.', { variant: 'success' });
     stateChanger();
     handleClose();

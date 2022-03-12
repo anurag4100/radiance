@@ -55,8 +55,8 @@ export default function Home() {
               }else{
                 await addTeacher(values);
               }
-              
-              enqueueSnackbar('Employee added successfully.', { variant: 'success' });
+              const msg = `Employee ${state?.editMode ? 'updated' : 'added'} successfully`;
+              enqueueSnackbar(msg, { variant: 'success' });
               history.push("/app/teachers");
             }catch(err){
               console.error(err)
