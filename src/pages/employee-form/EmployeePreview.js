@@ -26,13 +26,13 @@ export default function EmployeePreview({...props}) {
         subheader={<li />}
       >
          {Object.entries(data).map((section) => (
-          <li key="Personal">
+          <li key={section[0]}>
             <ul>
               <ListSubheader>
                 <Typography color="primary" variant="h5" className={classes.text}>{section[0]}</Typography>
               </ListSubheader>
               {Object.entries(section[1]).map((item) => (
-                <ListItem key="first_name">
+                <ListItem key={item[0]}>
                   <ListItemText primary={ 
                     <>
                     <Box maxWidth = {250} >

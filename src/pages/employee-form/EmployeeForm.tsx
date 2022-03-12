@@ -3,23 +3,26 @@ import { Field, Form, Formik, FormikConfig, FormikValues } from 'formik';
 import { CheckboxWithLabel, TextField } from 'formik-material-ui';
 import React, { useState } from 'react';
 import { DatePickerField } from '../../components/Form/DatePickerField';
-import { Preview } from './Preview';
 import EmployeePreview from './EmployeePreview';
-import { addTeacher } from './employeeUtils';
+import { addTeacher,editTeacher } from './employeeUtils';
 import { useSnackbar } from 'notistack';
 // @ts-ignore
-import { useHistory } from "react-router-dom";
+import { useHistory,useLocation } from "react-router-dom";
 
 const sleep = (time_mil: number) => new Promise((acc) => setTimeout(acc, time_mil));
 
 export default function Home() {
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
+  const {state} = useLocation();
+  console.log('idclor',state?.employee);
+  
+  
   return (
     <Card>
       <CardContent>
         <FormikStepper
-          initialValues={{
+          initialValues={state?.employee || {
             first_name: '',
             last_name: '',
             middle_name: '',
@@ -47,7 +50,12 @@ export default function Home() {
           onSubmit={async (values) => {
             //await sleep(3000);
             try{
-              await addTeacher(values);
+              if(state?.editMode){
+                await editTeacher(values);
+              }else{
+                await addTeacher(values);
+              }
+              
               enqueueSnackbar('Employee added successfully.', { variant: 'success' });
               history.push("/app/teachers");
             }catch(err){

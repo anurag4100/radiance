@@ -12,16 +12,32 @@ import { Typography } from "../../components/Wrappers/Wrappers";
 import useStyles from "../typography/styles.js";
 import { Box,Grid } from '@material-ui/core';
 import {mapToEmployee} from '../employee-form/nameToLabel';
+import { useHistory } from "react-router-dom";
 
 export default function TeacherView({...props}) {
   const [open, setOpen] = React.useState(true);
   const data = mapToEmployee(props.employee_data);
+  const history = useHistory();
   console.log(data);
   const classes = useStyles();
   const handleClose = () => {
     setOpen(false);
     props.setView(false);
   };
+  const handleEdit = () => {
+    setOpen(false);
+    props.setView(false);
+    history.push({
+      pathname: '/app/employee-form',
+      state: {
+        editMode: true,
+        id: props.employee_data.id,
+        employee : {
+          ...props.employee_data
+        }
+      }
+    })
+  }
 
   return (
     <div>
@@ -81,7 +97,7 @@ export default function TeacherView({...props}) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Edit</Button>
+          <Button onClick={handleEdit}>Edit</Button>
         </DialogActions>
       </Dialog>
     </div>
