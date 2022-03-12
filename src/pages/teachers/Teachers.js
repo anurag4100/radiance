@@ -16,6 +16,7 @@ import { useSnackbar } from 'notistack';
 import ConfirmDialog from "../../components/Form/ConfirmDialog";
 import {Link} from "react-router-dom"
 import TeacherView from "./TeacherView";
+import TableSkeleton from "../../components/Skeleton/TableSkeleton";
 
 const useStyles = makeStyles(theme => ({
   tableOverflow: {
@@ -31,6 +32,7 @@ export default function Students() {
   const [confirmDelete,setConfirmDelete] = useState(false);
   const [teacherToDelete,setTeacherToDelete] = useState([]);
   const [viewIndex,setViewIndex] = useState([]);
+  const [loading,setLoading] = useState(false);
 
   useEffect(() => {
     fetchTeachers();
@@ -38,12 +40,15 @@ export default function Students() {
 
   function fetchTeachers() {
     const fetchData = async () => {
+      setLoading(true);
       console.log("Fetching Teachers...");
       const data = await API.graphql(graphqlOperation(employeesByCreatedDate, {
         schoolsEmployeesId: "5301f115-1c06-4189-9fbd-237fcbb403ac",
         sortDirection: "DESC",
       }));
+      setLoading(false);
       return data;
+      
     };
     fetchData().then(res => setTeachers(res?.data?.employeesByCreatedDate?.items?.filter(item => item._deleted !== true))).catch(console.error);
     console.log("Retrieved Teachers.",teachers);
@@ -93,11 +98,10 @@ export default function Students() {
       <Grid container spacing={4}>
         <Grid item xs={12}>
           {
-            teachers &&
+            loading ? <TableSkeleton/> : 
               <MUIDataTable
               title="Teachers List"
               data={teachers && teachers
-                //?.filter(item => item._deleted !== true)
                 ?.map(function (item) {
                 return {
                   id:item.teacher_id,
