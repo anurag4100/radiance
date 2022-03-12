@@ -1,4 +1,3 @@
-import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -6,10 +5,10 @@ import ListSubheader from '@mui/material/ListSubheader';
 import { Typography } from "../../components/Wrappers/Wrappers";
 import useStyles from "../typography/styles.js";
 import { Box,Grid } from '@material-ui/core';
-import {mapToEmployee} from './nameToLabel';
+import {mapToEmployee} from '../employee-form/nameToLabel';
 
-export default function EmployeePreview({...props}) {
-    const data = mapToEmployee(props.form.values);
+export default function TeacherView({...props}) {
+    const data = mapToEmployee(props.employee_data);
     console.log(data);
     const classes = useStyles();
     return (

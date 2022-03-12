@@ -8,15 +8,14 @@ import PageTitle from "../../components/PageTitle/PageTitle";
 import Widget from "../../components/Widget/Widget";
 import Table from "../dashboard/components/Table/Table";
 import { API, graphqlOperation } from 'aws-amplify';
-import { createEmployee, deleteEmployee } from '../.././graphql/mutations';
+import { deleteEmployee } from '../.././graphql/mutations';
 import { employeesByCreatedDate } from '../.././graphql/queries'
 // data
 import mock from "../dashboard/mock";
-import StudentForm from "../../components/StudentForm/StudentForm";
 import { useSnackbar } from 'notistack';
 import ConfirmDialog from "../../components/Form/ConfirmDialog";
 import {Link} from "react-router-dom"
-import EmployeePreview from "../employee-form/EmployeePreview";
+import TeacherView from "./TeacherView";
 
 const useStyles = makeStyles(theme => ({
   tableOverflow: {
@@ -90,7 +89,7 @@ export default function Students() {
         </Button>
       } />
       {confirmDelete && <ConfirmDialog isOpen= {confirmDelete} action = {del_teacher} data={teacherToDelete} setConfirmDelete = {setConfirmDelete}/>}
-      {isView && <EmployeePreview employee_data = {teachers[viewIndex]} setView= {setIsView}/>}
+      {isView && <TeacherView employee_data = {teachers[viewIndex]} setView= {setIsView}/>}
       <Grid container spacing={4}>
         <Grid item xs={12}>
           {
