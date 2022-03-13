@@ -15,7 +15,7 @@ export default function Home() {
   const { enqueueSnackbar } = useSnackbar();
   const history = useHistory();
   const {state} = useLocation();
-  
+  console.log('ep in form: ',state?.employee);
   return (
     <Card>
       <CardContent>

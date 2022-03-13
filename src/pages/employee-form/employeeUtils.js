@@ -1,11 +1,19 @@
-import { createEmployee,createRole,createCompensation,updateEmployee } from '../../graphql/mutations';
-import { API, graphqlOperation } from 'aws-amplify';
-
+import {
+  createEmployee,
+  createRole,
+  createCompensation,
+  updateEmployee,
+  updateCompensation,
+  updateRole,
+} from "../../graphql/mutations";
+import { API, graphqlOperation } from "aws-amplify";
+import { getEmployee } from "../.././graphql/queries";
 export const addTeacher = async (data) => {
-    console.log(JSON.stringify(data));
-    console.log("Starting addTeacher");
-    const compensation = await addCompensation(data);
-    const employee = await API.graphql(graphqlOperation(createEmployee, {
+  console.log(JSON.stringify(data));
+  console.log("Starting addTeacher");
+  const compensation = await addCompensation(data);
+  const employee = await API.graphql(
+    graphqlOperation(createEmployee, {
       input: {
         first_name: data.first_name,
         middle_name: data.middle_name,
@@ -15,54 +23,121 @@ export const addTeacher = async (data) => {
         dob: data?.dob,
         schoolsEmployeesId: "5301f115-1c06-4189-9fbd-237fcbb403ac",
         joining_date: data?.joining_date,
-        employeeCompensationId : compensation?.data?.createCompensation?.id
-      }
-    }));
-    console.log("addEmployee complete: ", JSON.stringify(employee));
-    //role is one-to-many relationship so employee id needs to be linked to role
-     await addRole(data,employee?.data?.createEmployee?.id);
-    return employee;
+        employeeCompensationId: compensation?.data?.createCompensation?.id,
+      },
+    }),
+  );
+  console.log("addEmployee complete: ", JSON.stringify(employee));
+  // role is one-to-many relationship so employee id needs to be linked to role
+  await addRole(data, employee?.data?.createEmployee?.id);
+  return employee;
 };
 
 export const addRole = async (data, employeeId) => {
   console.log(JSON.stringify(data));
   console.log("Starting addRole");
-  const result = await API.graphql(graphqlOperation(createRole, {
-    input: {
-      name: data.role_name,
-      type: data.role_type,
-      payBand: data.role_payBand,
-      employeeRoleId : employeeId
-    }
-  }));
-  console.log("addRole complete: ", JSON.stringify(result)); 
+  const result = await API.graphql(
+    graphqlOperation(createRole, {
+      input: {
+        name: data.role_name,
+        type: data.role_type,
+        payBand: data.role_payBand,
+        employeeRoleId: employeeId,
+      },
+    }),
+  );
+  console.log("addRole complete: ", JSON.stringify(result));
   return result;
-}
+};
 
 export const addCompensation = async (data) => {
   console.log(JSON.stringify(data));
   console.log("Starting addCompensation");
-  const result = await API.graphql(graphqlOperation(createCompensation, {
-    input: {
-      type: data.comp_type,
-      amount: parseFloat(data.comp_amount),
-      isTaxable: data.comp_isTaxable
-    }
-  }));
-  console.log("addCompensation complete: ", JSON.stringify(result)); 
+  const result = await API.graphql(
+    graphqlOperation(createCompensation, {
+      input: {
+        type: data.comp_type,
+        amount: parseFloat(data.comp_amount),
+        isTaxable: data.comp_isTaxable,
+      },
+    }),
+  );
+  console.log("addCompensation complete: ", JSON.stringify(result));
   return result;
-}
+};
 
 export const editTeacher = async (data) => {
   console.log(JSON.stringify(data));
   console.log("Starting editTeacher");
   delete data._deleted;
   delete data._lastChangedAt;
-  const employee = await API.graphql(graphqlOperation(updateEmployee, {
-    input: {
-        ...data
-    }
-  }));
+  const employee = await API.graphql(
+    graphqlOperation(updateEmployee, {
+      input: {
+        id: data.id,
+        first_name: data.first_name,
+        middle_name: data.middle_name,
+        last_name: data.middle_name,
+        email: data.email,
+        mobile: data.mobile,
+        dob: data?.dob,
+        schoolsEmployeesId: data.schoolsEmployeesId,
+        joining_date: data?.joining_date,
+        _version: data._version,
+      },
+    }),
+  );
   console.log("editEmployee complete: ", JSON.stringify(employee));
+  await editRole(data, data.id);
+  await editCompensation(data);
   return employee;
+};
+
+export const editRole = async (data, employeeId) => {
+  console.log("Starting editRole");
+  console.log(JSON.stringify(data));
+  const result = await API.graphql(
+    graphqlOperation(updateRole, {
+      input: {
+        id: data.id,
+        name: data.role_name,
+        type: data.role_type,
+        payBand: data.role_payBand,
+        employeeRoleId: employeeId,
+        _version: data._version,
+      },
+    }),
+  );
+  console.log("editRole complete: ", JSON.stringify(result));
+  return result;
+};
+
+export const editCompensation = async (data) => {
+  console.log("Starting editCompensation");
+  console.log(JSON.stringify(data));
+
+  const result = await API.graphql(
+    graphqlOperation(updateCompensation, {
+      input: {
+        id: data.employeeCompensationId,
+        type: data.comp_type,
+        amount: parseFloat(data.comp_amount),
+        isTaxable: data.comp_isTaxable,
+        _version: data._version,
+      },
+    }),
+  );
+  console.log("editCompensation complete: ", JSON.stringify(result));
+  return result;
+};
+
+export const getTeacher = async (employeeId) => {
+  console.log("getTeacher...");
+  const res = await API.graphql(
+    graphqlOperation(getEmployee, {
+      id: employeeId,
+    }),
+  );
+  console.log("getTeacher complete: ", res?.data?.getEmployee);
+  return res?.data?.getEmployee;
 };
