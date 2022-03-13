@@ -14,9 +14,11 @@ import { Box, Grid } from "@material-ui/core";
 import { mapToEmployee } from "../employee-form/nameToLabel";
 import { useHistory } from "react-router-dom";
 import { getTeacher } from "../employee-form/employeeUtils";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export default function TeacherView({ ...props }) {
   const [open, setOpen] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
   const data = mapToEmployee(props.employee_data);
   const history = useHistory();
   console.log(data);
@@ -26,8 +28,8 @@ export default function TeacherView({ ...props }) {
     props.setView(false);
   };
   const handleEdit = async () => {
-    setOpen(false);
-    props.setView(false);
+    setLoading(true);
+
     const employee = await getTeacher(props.employee_data.id);
     console.log("ep in edit: ", employee);
     history.push({
@@ -52,6 +54,9 @@ export default function TeacherView({ ...props }) {
         },
       },
     });
+    setLoading(false);
+    setOpen(false);
+    props.setView(false);
   };
 
   return (
@@ -130,7 +135,12 @@ export default function TeacherView({ ...props }) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleEdit}>Edit</Button>
+          <Button
+            startIcon={loading ? <CircularProgress size="1rem" /> : null}
+            onClick={handleEdit}
+          >
+            Edit
+          </Button>
         </DialogActions>
       </Dialog>
     </div>
