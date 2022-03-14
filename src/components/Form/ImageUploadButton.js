@@ -7,20 +7,23 @@ import Avatar from "@mui/material/Avatar";
 import { CameraAlt } from "@material-ui/icons";
 
 import { uploadFile } from "../../pages/employee-form/employeeUtils";
+import { useField, useFormikContext } from "formik";
 
 const Input = styled("input")({
   display: "none",
 });
 
-export default function ImageUploadButton() {
+export default function ImageUploadButton({ ...props }) {
   const [selectedImage, setSelectedImage] = useState([]);
+  const { setFieldValue } = useFormikContext();
 
   const onImageChange = async (event) => {
     console.log("image selected", event.target.files);
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       setSelectedImage(URL.createObjectURL(img));
-      await uploadFile(img);
+      const res = await uploadFile(img);
+      setFieldValue(props.field.name, res.key);
     }
   };
   return (

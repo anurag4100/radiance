@@ -44,7 +44,8 @@ export default function Home() {
             add_state: '',
             add_country: '',
             add_zip: '',
-            millionaire:false
+            millionaire:false,
+            image:''
           }}
           onSubmit={async (values) => {
             //await sleep(3000);
@@ -65,7 +66,7 @@ export default function Home() {
         >
           <FormikStep label="Personal">
             <Box paddingBottom={2} paddingLeft={50}>
-              <Field fullWidth name="img_upload" component={ImageUploadButton} label="Email" />
+              <Field fullWidth name="image" component={ImageUploadButton} label="Email" />
             </Box>
             <Box paddingBottom={2}>
               <Field fullWidth name="first_name" component={TextField} label="First Name" />
