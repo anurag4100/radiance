@@ -17,6 +17,10 @@
           "appId": "d3fv47ggh99x1",
           "type": "manual"
         }
+      },
+      "auth": {
+        "schoolerpc6386a7b": {},
+        "true": {}
       }
     }
   }

@@ -8,6 +8,8 @@ import {
 } from "../../graphql/mutations";
 import { API, graphqlOperation } from "aws-amplify";
 import { getEmployee } from "../.././graphql/queries";
+import { Storage } from "aws-amplify";
+import { v4 as uuidv4 } from "uuid";
 export const addTeacher = async (data) => {
   console.log(JSON.stringify(data));
   console.log("Starting addTeacher");
@@ -140,4 +142,15 @@ export const getTeacher = async (employeeId) => {
   );
   console.log("getTeacher complete: ", res?.data?.getEmployee);
   return res?.data?.getEmployee;
+};
+
+export const uploadFile = async (file) => {
+  try {
+    console.log("uploading file: ", file?.name);
+    const result = await Storage.put(file.name + uuidv4(), file);
+    console.log("file upload complete", result);
+    return result;
+  } catch (err) {
+    console.log(err);
+  }
 };

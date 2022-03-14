@@ -5,26 +5,27 @@ import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Avatar from "@mui/material/Avatar";
 import { CameraAlt } from "@material-ui/icons";
+
+import { uploadFile } from "../../pages/employee-form/employeeUtils";
+
 const Input = styled("input")({
   display: "none",
 });
 
 export default function ImageUploadButton() {
   const [selectedImage, setSelectedImage] = useState([]);
-  const onImageChange = (event) => {
+
+  const onImageChange = async (event) => {
     console.log("image selected", event.target.files);
     if (event.target.files && event.target.files[0]) {
       let img = event.target.files[0];
       setSelectedImage(URL.createObjectURL(img));
+      await uploadFile(img);
     }
   };
   return (
     <Stack direction="row" alignItems="center" spacing={2}>
-      <Avatar
-        alt="Remy Sharp"
-        src={selectedImage}
-        sx={{ width: 100, height: 100 }}
-      />
+      <Avatar src={selectedImage} sx={{ width: 100, height: 100 }} />
       <label htmlFor="contained-button-file">
         <Input
           accept="image/*"

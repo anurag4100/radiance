@@ -8,19 +8,22 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { LayoutProvider } from "./context/LayoutContext";
 import { UserProvider } from "./context/UserContext";
-import Amplify from "aws-amplify";
+import Amplify, { Storage } from "aws-amplify";
 import awsExports from "./aws-exports";
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider } from "notistack";
 Amplify.configure(awsExports);
 
 ReactDOM.render(
   <LayoutProvider>
     <UserProvider>
       <ThemeProvider theme={Themes.default}>
-        <SnackbarProvider maxSnack={3} anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'center',
-        }}>
+        <SnackbarProvider
+          maxSnack={3}
+          anchorOrigin={{
+            vertical: "top",
+            horizontal: "center",
+          }}
+        >
           <CssBaseline />
           <App />
         </SnackbarProvider>

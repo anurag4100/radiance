@@ -64,6 +64,9 @@ export default function Home() {
           }}
         >
           <FormikStep label="Personal">
+            <Box paddingBottom={2} paddingLeft={50}>
+              <Field fullWidth name="img_upload" component={ImageUploadButton} label="Email" />
+            </Box>
             <Box paddingBottom={2}>
               <Field fullWidth name="first_name" component={TextField} label="First Name" />
             </Box>
@@ -82,9 +85,7 @@ export default function Home() {
             <Box paddingBottom={2}>
               <Field fullWidth name="email" component={TextField} label="Email" />
             </Box>
-            <Box paddingBottom={2}>
-              <Field fullWidth name="img_upload" component={ImageUploadButton} label="Email" />
-            </Box>
+            
 
           </FormikStep>
           <FormikStep
