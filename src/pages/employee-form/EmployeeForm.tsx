@@ -8,6 +8,7 @@ import { addTeacher,editTeacher } from './employeeUtils';
 import { useSnackbar } from 'notistack';
 // @ts-ignore
 import { useHistory,useLocation } from "react-router-dom";
+import ImageUploadButton from '../../components/Form/ImageUploadButton';
 
 const sleep = (time_mil: number) => new Promise((acc) => setTimeout(acc, time_mil));
 
@@ -80,6 +81,9 @@ export default function Home() {
             </Box>
             <Box paddingBottom={2}>
               <Field fullWidth name="email" component={TextField} label="Email" />
+            </Box>
+            <Box paddingBottom={2}>
+              <Field fullWidth name="img_upload" component={ImageUploadButton} label="Email" />
             </Box>
 
           </FormikStep>
