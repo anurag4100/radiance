@@ -15,14 +15,19 @@ import { mapToEmployee } from "../employee-form/nameToLabel";
 import { useHistory } from "react-router-dom";
 import { getTeacher } from "../employee-form/employeeUtils";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useState, useEffect } from "react";
 
 export default function TeacherView({ ...props }) {
   const [open, setOpen] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
-  const data = mapToEmployee(props.employee_data);
+  const [data, setData] = useState([]);
   const history = useHistory();
-  console.log(data);
   const classes = useStyles();
+
+  useEffect(() => {
+    setData(mapToEmployee(props.employee_data));
+  }, []);
+
   const handleClose = () => {
     setOpen(false);
     props.setView(false);
