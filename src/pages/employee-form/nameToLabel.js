@@ -38,7 +38,6 @@ export const mapToEmployee = (data) => {
       "Date of Birth": data.dob,
       Email: data.email,
       Mobile: data.mobile,
-      Image: data.image,
     },
     Address: {
       "Line 1": data.add_line1,

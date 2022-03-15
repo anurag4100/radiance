@@ -147,9 +147,23 @@ export const getTeacher = async (employeeId) => {
 export const uploadFile = async (file) => {
   try {
     console.log("uploading file: ", file?.name);
-    const result = await Storage.put(file.name + uuidv4(), file);
+    const result = await Storage.put(uuidv4() + file.name, file);
     console.log("file upload complete", result);
     return result;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getAvatar = (key) => {
+  try {
+    const fetchUrl = async (key) => {
+      console.log("fetching avatar: ", key);
+      const signedURL = await Storage.get(key);
+      console.log("Avatar URL: ", signedURL);
+      return signedURL;
+    };
+    return fetchUrl(key);
   } catch (err) {
     console.log(err);
   }
