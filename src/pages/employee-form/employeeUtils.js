@@ -10,6 +10,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { getEmployee } from "../.././graphql/queries";
 import { Storage } from "aws-amplify";
 import { v4 as uuidv4 } from "uuid";
+
 export const addTeacher = async (data) => {
   console.log(JSON.stringify(data));
   console.log("Starting addTeacher");
@@ -22,6 +23,7 @@ export const addTeacher = async (data) => {
         last_name: data.middle_name,
         email: data.email,
         mobile: data.mobile,
+        details: JSON.stringify({ image_key: data?.image_key }),
         dob: data?.dob,
         schoolsEmployeesId: "5301f115-1c06-4189-9fbd-237fcbb403ac",
         joining_date: data?.joining_date,
@@ -82,6 +84,7 @@ export const editTeacher = async (data) => {
         last_name: data.middle_name,
         email: data.email,
         mobile: data.mobile,
+        details: JSON.stringify({ image_key: data?.image_key }),
         dob: data?.dob,
         schoolsEmployeesId: data.schoolsEmployeesId,
         joining_date: data?.joining_date,

@@ -9,6 +9,7 @@ import { useSnackbar } from 'notistack';
 // @ts-ignore
 import { useHistory,useLocation } from "react-router-dom";
 import ImageUploadButton from '../../components/Form/ImageUploadButton';
+import DocumentUpload from '../../components/Form/DocumentUpload';
 
 const sleep = (time_mil: number) => new Promise((acc) => setTimeout(acc, time_mil));
 
@@ -46,7 +47,8 @@ export default function Home() {
             add_zip: '',
             millionaire:false,
             image_key:'',
-            image_blob: null
+            image_blob: null,
+            documents: null
           }}
           onSubmit={async (values) => {
             //await sleep(3000);
@@ -155,8 +157,6 @@ export default function Home() {
             <Box paddingBottom={2}>
               <Field fullWidth name="edu_others" component={TextField} label="Others" />
             </Box>
-          </FormikStep>
-          <FormikStep label="Experience">
             <Box paddingBottom={2}>
               <Field fullWidth name="exp_lastOrg" component={TextField} label="Previous Organization" />
             </Box>
@@ -164,6 +164,7 @@ export default function Home() {
               <Field fullWidth name="exp_years" component={TextField} label="Years" />
             </Box>
           </FormikStep>
+          
           <FormikStep label="Compensation">
             <Box paddingBottom={2}>
               <Field name="joining_date" component= {DatePickerField} label = "Joining Date"/>
@@ -190,6 +191,11 @@ export default function Home() {
                 component={CheckboxWithLabel}
                 Label={{ label: 'This is taxable' }}
               />
+            </Box>
+          </FormikStep>
+          <FormikStep label="Documents">
+          <Box paddingBottom={2} paddingLeft={10}>
+              <Field name="documents" component= {DocumentUpload} label = "Documents"/>
             </Box>
           </FormikStep>
           <FormikStep label="Preview">
