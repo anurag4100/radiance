@@ -17,9 +17,9 @@ import ConfirmDialog from "../../components/Form/ConfirmDialog";
 import { Link } from "react-router-dom";
 import TeacherView from "./TeacherView";
 import TableSkeleton from "../../components/Skeleton/TableSkeleton";
-import { Typography } from "../../components/Wrappers/Wrappers";
-import UserAvatar from "../../components/UserAvatar";
 import PersonAvatar from "../../components/PersonAvatar/PersonAvatar";
+import { formatDate } from "../../utils/dateUtils";
+
 const useStyles = makeStyles((theme) => ({
   tableOverflow: {
     overflow: "auto",
@@ -132,29 +132,30 @@ export default function Students() {
           ) : (
             <MUIDataTable
               title="Teachers List"
-              data={
-                teachers &&
-                teachers
-                  ?.map(function (item) {
-                    return {
-                      teacher: {
-                        first_name: item.first_name,
-                        last_name: item.last_name,
-                      },
-                      email: item.email,
-                      mobile: item.mobile,
-                      date: item.enroll_date,
-                      grade: item.mobile,
-                    };
-                  })
-                  .map((op) => Object.values(op))
-              }
+              data={teachers
+                ?.map(function (item) {
+                  return {
+                    teacher: {
+                      first_name: item.first_name,
+                      last_name: item.last_name,
+                      image_key: JSON.parse(item?.details)?.image_key,
+                    },
+                    email: item.email,
+                    mobile: item.mobile,
+                    date: formatDate(item.joining_date),
+                    grade: item.mobile,
+                  };
+                })
+                .map((op) => Object.values(op))}
               columns={[
                 {
                   name: "Teacher",
                   options: {
                     customBodyRender: (value, tableMeta, updateValue) => (
-                      <PersonAvatar name={value.first_name} />
+                      <PersonAvatar
+                        name={value.first_name + " " + value.last_name}
+                        image_key={value?.image_key}
+                      />
                     ),
                   },
                 },

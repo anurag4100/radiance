@@ -164,15 +164,12 @@ export const uploadFile = async (file) => {
   }
 };
 
-export const getAvatar = (key) => {
+export const getAvatar = async (key) => {
   try {
-    const fetchUrl = async (key) => {
-      console.log("fetching avatar: ", key);
-      const signedURL = await Storage.get(key);
-      console.log("Avatar URL: ", signedURL);
-      return signedURL;
-    };
-    return fetchUrl(key);
+    console.log("fetching avatar: ", key);
+    const signedURL = await Storage.get(key);
+    console.log("Avatar URL: ", signedURL);
+    return signedURL;
   } catch (err) {
     console.log(err);
   }
