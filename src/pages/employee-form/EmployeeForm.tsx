@@ -48,7 +48,7 @@ export default function Home() {
             millionaire:false,
             image_key:'',
             image_blob: null,
-            documents: null
+            documents: []
           }}
           onSubmit={async (values) => {
             //await sleep(3000);

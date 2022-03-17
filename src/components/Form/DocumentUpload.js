@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { FilePond, File, registerPlugin } from "react-filepond";
 import "filepond/dist/filepond.min.css";
@@ -16,6 +16,11 @@ export default function DocumentUpload({ ...props }) {
   //documents for formik
   const [documents, setDocuments] = useState([]);
   const { setFieldValue } = useFormikContext();
+
+  //useeffect because useState is async and first upload was missing
+  useEffect(() => {
+    setFieldValue(props.field.name, documents);
+  }, [documents]);
 
   async function handleUpload(
     fieldName,
@@ -35,11 +40,10 @@ export default function DocumentUpload({ ...props }) {
         },
         ///make resumable: true here to support abort functionality below.
       });
-      setDocuments((old) => [
-        ...old,
+      setDocuments([
+        ...documents,
         { file_name: file.name, aws_key: result.key },
       ]);
-      setFieldValue(props.field.name, documents);
       console.log("Uploaded: ", result.key);
       load(result.key);
       return {

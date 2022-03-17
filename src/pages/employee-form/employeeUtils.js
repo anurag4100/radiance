@@ -23,7 +23,10 @@ export const addTeacher = async (data) => {
         last_name: data.middle_name,
         email: data.email,
         mobile: data.mobile,
-        details: JSON.stringify({ image_key: data?.image_key }),
+        details: JSON.stringify({
+          image_key: data?.image_key,
+          documents: data?.documents,
+        }),
         dob: data?.dob,
         schoolsEmployeesId: "5301f115-1c06-4189-9fbd-237fcbb403ac",
         joining_date: data?.joining_date,
@@ -84,7 +87,10 @@ export const editTeacher = async (data) => {
         last_name: data.middle_name,
         email: data.email,
         mobile: data.mobile,
-        details: JSON.stringify({ image_key: data?.image_key }),
+        details: JSON.stringify({
+          image_key: data?.image_key,
+          documents: data?.documents,
+        }),
         dob: data?.dob,
         schoolsEmployeesId: data.schoolsEmployeesId,
         joining_date: data?.joining_date,

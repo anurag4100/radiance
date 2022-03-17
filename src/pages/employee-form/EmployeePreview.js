@@ -20,6 +20,8 @@ export default function EmployeePreview({ ...props }) {
   useEffect(() => {
     setData(mapToEmployee(props.form.values));
     console.log(data);
+    console.log("docs:", props.form.values.documents);
+
     getAvatar(props.form.values.image_key).then((res) => setAvatarUrl(res));
   }, []);
   return (
