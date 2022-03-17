@@ -17,7 +17,9 @@ import ConfirmDialog from "../../components/Form/ConfirmDialog";
 import { Link } from "react-router-dom";
 import TeacherView from "./TeacherView";
 import TableSkeleton from "../../components/Skeleton/TableSkeleton";
-
+import { Typography } from "../../components/Wrappers/Wrappers";
+import UserAvatar from "../../components/UserAvatar";
+import PersonAvatar from "../../components/PersonAvatar/PersonAvatar";
 const useStyles = makeStyles((theme) => ({
   tableOverflow: {
     overflow: "auto",
@@ -135,21 +137,31 @@ export default function Students() {
                 teachers
                   ?.map(function (item) {
                     return {
-                      id: item.teacher_id,
-                      name: item.first_name?.concat(" " + item.last_name),
-                      class: item.class_id,
-                      date: item.enroll_date,
+                      teacher: {
+                        first_name: item.first_name,
+                        last_name: item.last_name,
+                      },
+                      email: item.email,
                       mobile: item.mobile,
+                      date: item.enroll_date,
+                      grade: item.mobile,
                     };
                   })
                   .map((op) => Object.values(op))
               }
               columns={[
-                "Teacher ID",
-                "Name",
-                "Class",
-                "Joining Date",
-                "Mobile",
+                {
+                  name: "Teacher",
+                  options: {
+                    customBodyRender: (value, tableMeta, updateValue) => (
+                      <PersonAvatar name={value.first_name} />
+                    ),
+                  },
+                },
+                { name: "Email" },
+                { name: "Mobile" },
+                { name: "Joining Date" },
+                { name: "Grade" },
               ]}
               options={{
                 filterType: "checkbox",

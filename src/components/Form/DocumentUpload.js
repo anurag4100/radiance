@@ -61,7 +61,7 @@ export default function DocumentUpload({ ...props }) {
 
   async function deleteFile(uniqueFileId, error) {
     try {
-      console.log("into delete: ", uniqueFileId);
+      console.log("deleting...: ", uniqueFileId);
       await Storage.remove(uniqueFileId);
       setDocuments(documents.filter((file_name) => file_name === uniqueFileId));
       console.log(documents);
