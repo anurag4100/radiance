@@ -67,6 +67,11 @@ export default function Home() {
             }
           }}
         >
+          <FormikStep label="Documents">
+          <Box paddingBottom={2} paddingLeft={10}>
+              <Field name="documents" component= {DocumentUpload} label = "Documents"/>
+            </Box>
+          </FormikStep>
           <FormikStep label="Personal">
             <Box paddingBottom={2} paddingLeft={50}>
               <Field fullWidth name="image_key" component={ImageUploadButton} label="Email" />
@@ -193,11 +198,7 @@ export default function Home() {
               />
             </Box>
           </FormikStep>
-          <FormikStep label="Documents">
-          <Box paddingBottom={2} paddingLeft={10}>
-              <Field name="documents" component= {DocumentUpload} label = "Documents"/>
-            </Box>
-          </FormikStep>
+          
           <FormikStep label="Preview">
             <Box paddingBottom={2} paddingLeft={10}>
               <Field name="preview" component= {EmployeePreview} label = "Preview"/>

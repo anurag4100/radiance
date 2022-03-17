@@ -7,7 +7,7 @@ import Avatar from "@mui/material/Avatar";
 import { CameraAlt } from "@material-ui/icons";
 
 import { uploadFile } from "../../pages/employee-form/employeeUtils";
-import { useField, useFormikContext } from "formik";
+import { useFormikContext } from "formik";
 
 const Input = styled("input")({
   display: "none",
