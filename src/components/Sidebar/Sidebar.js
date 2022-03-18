@@ -10,6 +10,8 @@ import {
   LibraryBooks as LibraryIcon,
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
+  Person,
+  School,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -31,8 +33,8 @@ import {
 
 const structure = [
   { id: 0, label: "Dashboard", link: "/app/dashboard", icon: <HomeIcon /> },
-  { id: 1, label: "Teachers", link: "/app/teachers", icon: <TableIcon /> },
-  { id: 2, label: "Students", link: "/app/students", icon: <TableIcon /> },
+  { id: 1, label: "Teachers", link: "/app/teachers", icon: <Person /> },
+  { id: 2, label: "Students", link: "/app/students", icon: <School /> },
   {
     id: 3,
     label: "Typography",
@@ -59,9 +61,24 @@ const structure = [
   },
   { id: 7, type: "divider" },
   { id: 8, type: "title", label: "HELP" },
-  { id: 9, label: "Library", link: "https://flatlogic.com/templates", icon: <LibraryIcon /> },
-  { id: 10, label: "Support", link: "https://flatlogic.com/forum", icon: <SupportIcon /> },
-  { id: 11, label: "FAQ", link: "https://flatlogic.com/forum", icon: <FAQIcon /> },
+  {
+    id: 9,
+    label: "Library",
+    link: "https://flatlogic.com/templates",
+    icon: <LibraryIcon />,
+  },
+  {
+    id: 10,
+    label: "Support",
+    link: "https://flatlogic.com/forum",
+    icon: <SupportIcon />,
+  },
+  {
+    id: 11,
+    label: "FAQ",
+    link: "https://flatlogic.com/forum",
+    icon: <FAQIcon />,
+  },
   { id: 12, type: "divider" },
   { id: 13, type: "title", label: "PROJECTS" },
   {
@@ -101,7 +118,7 @@ function Sidebar({ location }) {
   // local
   var [isPermanent, setPermanent] = useState(true);
 
-  useEffect(function() {
+  useEffect(function () {
     window.addEventListener("resize", handleWindowWidthChange);
     handleWindowWidthChange();
     return function cleanup() {
@@ -135,7 +152,7 @@ function Sidebar({ location }) {
         </IconButton>
       </div>
       <List className={classes.sidebarList}>
-        {structure.map(link => (
+        {structure.map((link) => (
           <SidebarLink
             key={link.id}
             location={location}
