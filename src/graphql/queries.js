@@ -170,12 +170,29 @@ export const getStudent = /* GraphQL */ `
       details
       dob
       school_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       schoolsStudentsId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      studentAddressId
     }
   }
 `;
@@ -210,6 +227,7 @@ export const listStudents = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        studentAddressId
       }
       nextToken
       startedAt
@@ -253,6 +271,7 @@ export const syncStudents = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        studentAddressId
       }
       nextToken
       startedAt
@@ -300,6 +319,7 @@ export const studentsByCreatedDate = /* GraphQL */ `
         _version
         _deleted
         _lastChangedAt
+        studentAddressId
       }
       nextToken
       startedAt
@@ -329,6 +349,7 @@ export const getSchools = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       details
       phone
@@ -458,12 +479,29 @@ export const getEmployee = /* GraphQL */ `
         _lastChangedAt
       }
       schoolsEmployeesId
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       employeeCompensationId
+      employeeAddressId
     }
   }
 `;
@@ -491,6 +529,7 @@ export const listEmployees = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       nextToken
       startedAt
@@ -527,6 +566,7 @@ export const syncEmployees = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       nextToken
       startedAt
@@ -567,6 +607,7 @@ export const employeesByCreatedDate = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       nextToken
       startedAt

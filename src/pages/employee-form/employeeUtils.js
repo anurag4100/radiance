@@ -2,6 +2,7 @@ import {
   createEmployee,
   createRole,
   createCompensation,
+  createAddress,
   updateEmployee,
   updateCompensation,
   updateRole,
@@ -12,15 +13,16 @@ import { Storage } from "aws-amplify";
 import { v4 as uuidv4 } from "uuid";
 
 export const addTeacher = async (data) => {
-  console.log(JSON.stringify(data));
   console.log("Starting addTeacher");
+  console.log(JSON.stringify(data));
   const compensation = await addCompensation(data);
+  const address = await addAddress(data);
   const employee = await API.graphql(
     graphqlOperation(createEmployee, {
       input: {
         first_name: data.first_name,
         middle_name: data.middle_name,
-        last_name: data.middle_name,
+        last_name: data.last_name,
         email: data.email,
         mobile: data.mobile,
         details: JSON.stringify({
@@ -31,6 +33,7 @@ export const addTeacher = async (data) => {
         schoolsEmployeesId: "5301f115-1c06-4189-9fbd-237fcbb403ac",
         joining_date: data?.joining_date,
         employeeCompensationId: compensation?.data?.createCompensation?.id,
+        employeeAddressId: address?.data?.createAddress?.id,
       },
     }),
   );
@@ -41,8 +44,8 @@ export const addTeacher = async (data) => {
 };
 
 export const addRole = async (data, employeeId) => {
-  console.log(JSON.stringify(data));
   console.log("Starting addRole");
+  console.log(JSON.stringify(data));
   const result = await API.graphql(
     graphqlOperation(createRole, {
       input: {
@@ -58,8 +61,8 @@ export const addRole = async (data, employeeId) => {
 };
 
 export const addCompensation = async (data) => {
-  console.log(JSON.stringify(data));
   console.log("Starting addCompensation");
+  console.log(JSON.stringify(data));
   const result = await API.graphql(
     graphqlOperation(createCompensation, {
       input: {
@@ -74,8 +77,8 @@ export const addCompensation = async (data) => {
 };
 
 export const editTeacher = async (data) => {
-  console.log(JSON.stringify(data));
   console.log("Starting editTeacher");
+  console.log(JSON.stringify(data));
   delete data._deleted;
   delete data._lastChangedAt;
   const employee = await API.graphql(
@@ -84,7 +87,7 @@ export const editTeacher = async (data) => {
         id: data.id,
         first_name: data.first_name,
         middle_name: data.middle_name,
-        last_name: data.middle_name,
+        last_name: data.last_name,
         email: data.email,
         mobile: data.mobile,
         details: JSON.stringify({
@@ -107,18 +110,27 @@ export const editTeacher = async (data) => {
 export const editRole = async (data, employeeId) => {
   console.log("Starting editRole");
   console.log(JSON.stringify(data));
-  const result = await API.graphql(
-    graphqlOperation(updateRole, {
-      input: {
-        id: data.id,
-        name: data.role_name,
-        type: data.role_type,
-        payBand: data.role_payBand,
-        employeeRoleId: employeeId,
-        _version: data._version,
-      },
-    }),
-  );
+  const result = null;
+  try {
+    result = await API.graphql(
+      graphqlOperation(updateRole, {
+        input: {
+          id: data.id,
+          name: data.role_name,
+          type: data.role_type,
+          payBand: data.role_payBand,
+          employeeRoleId: employeeId,
+          _version: data._version,
+        },
+      }),
+    );
+  } catch (err) {
+    if (err?.errorType === "ConditionalCheckFailedException") {
+      console.log("Role does not exists, adding new role...");
+      result = await addRole(data, employeeId);
+    }
+  }
+
   console.log("editRole complete: ", JSON.stringify(result));
   return result;
 };
@@ -126,18 +138,26 @@ export const editRole = async (data, employeeId) => {
 export const editCompensation = async (data) => {
   console.log("Starting editCompensation");
   console.log(JSON.stringify(data));
+  const result = null;
+  try {
+    result = await API.graphql(
+      graphqlOperation(updateCompensation, {
+        input: {
+          id: data.employeeCompensationId,
+          type: data.comp_type,
+          amount: parseFloat(data.comp_amount),
+          isTaxable: data.comp_isTaxable,
+          _version: data?.compensation?._version,
+        },
+      }),
+    );
+  } catch (err) {
+    if (err?.errorType === "ConditionalCheckFailedException") {
+      console.log("Compensation does not exists, adding new compensation...");
+      result = await addCompensation(data);
+    }
+  }
 
-  const result = await API.graphql(
-    graphqlOperation(updateCompensation, {
-      input: {
-        id: data.employeeCompensationId,
-        type: data.comp_type,
-        amount: parseFloat(data.comp_amount),
-        isTaxable: data.comp_isTaxable,
-        _version: data._version,
-      },
-    }),
-  );
   console.log("editCompensation complete: ", JSON.stringify(result));
   return result;
 };
@@ -173,4 +193,25 @@ export const getAvatar = async (key) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const addAddress = async (data) => {
+  console.log("Starting addAddress");
+  console.log(JSON.stringify(data));
+  const result = await API.graphql(
+    graphqlOperation(createAddress, {
+      input: {
+        line1: data.add_line1,
+        line2: data.add_line2,
+        line3: data.add_line3,
+        city: data.add_city,
+        district: data.add_district,
+        state: data.add_state,
+        country: data.country,
+        zip: data.zip,
+      },
+    }),
+  );
+  console.log("addAddress complete: ", JSON.stringify(result));
+  return result;
 };

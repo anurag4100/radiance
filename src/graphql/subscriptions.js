@@ -126,12 +126,29 @@ export const onCreateStudent = /* GraphQL */ `
       details
       dob
       school_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       schoolsStudentsId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      studentAddressId
     }
   }
 `;
@@ -155,12 +172,29 @@ export const onUpdateStudent = /* GraphQL */ `
       details
       dob
       school_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       schoolsStudentsId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      studentAddressId
     }
   }
 `;
@@ -184,12 +218,29 @@ export const onDeleteStudent = /* GraphQL */ `
       details
       dob
       school_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       schoolsStudentsId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      studentAddressId
     }
   }
 `;
@@ -216,6 +267,7 @@ export const onCreateSchools = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       details
       phone
@@ -278,6 +330,7 @@ export const onUpdateSchools = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       details
       phone
@@ -340,6 +393,7 @@ export const onDeleteSchools = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       details
       phone
@@ -407,12 +461,29 @@ export const onCreateEmployee = /* GraphQL */ `
         _lastChangedAt
       }
       schoolsEmployeesId
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       employeeCompensationId
+      employeeAddressId
     }
   }
 `;
@@ -444,12 +515,29 @@ export const onUpdateEmployee = /* GraphQL */ `
         _lastChangedAt
       }
       schoolsEmployeesId
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       employeeCompensationId
+      employeeAddressId
     }
   }
 `;
@@ -481,12 +569,29 @@ export const onDeleteEmployee = /* GraphQL */ `
         _lastChangedAt
       }
       schoolsEmployeesId
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       employeeCompensationId
+      employeeAddressId
     }
   }
 `;

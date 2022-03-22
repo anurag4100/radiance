@@ -1,4 +1,4 @@
-type Subject @model @auth(rules: [{allow: public}]) {
+type Subject @model @auth(rules: [{ allow: public }]) {
   id: ID!
   subject_id: Int
   subject_name: String
@@ -6,7 +6,7 @@ type Subject @model @auth(rules: [{allow: public}]) {
   subject_marks: String
 }
 
-type Class @model @auth(rules: [{allow: public}]) {
+type Class @model @auth(rules: [{ allow: public }]) {
   id: ID!
   subject_id: Int
   class_id: Int
@@ -16,9 +16,9 @@ type Class @model @auth(rules: [{allow: public}]) {
   details: AWSJSON
   year: Int
 }
-type Student @model @auth(rules: [{allow: public}]) {
+type Student @model @auth(rules: [{ allow: public }]) {
   id: ID!
-  student_id: Int 
+  student_id: Int
   enroll_date: AWSDate
   class_id: Int
   enroll_fee: Float
@@ -33,13 +33,19 @@ type Student @model @auth(rules: [{allow: public}]) {
   mobile: String
   details: AWSJSON
   dob: AWSDate
-  school_id: Int 
-  schoolsStudentsId: ID @index(name: "studentsByCreatedDate", queryField: "studentsByCreatedDate", sortKeyFields: ["createdAt"])
+  school_id: Int
+  address: Address @hasOne
+  schoolsStudentsId: ID
+    @index(
+      name: "studentsByCreatedDate"
+      queryField: "studentsByCreatedDate"
+      sortKeyFields: ["createdAt"]
+    )
   createdAt: AWSDateTime!
   updatedAt: AWSDateTime!
 }
 
-type Schools @model @auth(rules: [{allow: public}]) {
+type Schools @model @auth(rules: [{ allow: public }]) {
   id: ID!
   school_id: Int
   name: String
@@ -53,7 +59,7 @@ type Schools @model @auth(rules: [{allow: public}]) {
   employees: [Employee] @hasMany
 }
 
-type Employee @model @auth(rules: [{allow: public}]) {
+type Employee @model @auth(rules: [{ allow: public }]) {
   id: ID!
   joining_date: AWSDate
   first_name: String
@@ -64,13 +70,19 @@ type Employee @model @auth(rules: [{allow: public}]) {
   mobile: String
   details: AWSJSON
   role: [Role] @hasMany
-  compensation: Compensation @hasOne 
-  schoolsEmployeesId: ID @index(name: "employeesByCreatedDate", queryField: "employeesByCreatedDate", sortKeyFields: ["createdAt"])
+  compensation: Compensation @hasOne
+  schoolsEmployeesId: ID
+    @index(
+      name: "employeesByCreatedDate"
+      queryField: "employeesByCreatedDate"
+      sortKeyFields: ["createdAt"]
+    )
+  address: Address @hasOne
   createdAt: AWSDateTime
   updatedAt: AWSDateTime
 }
 
-type Address @model @auth(rules: [{allow: public}]) {
+type Address @model @auth(rules: [{ allow: public }]) {
   id: ID!
   line1: String
   line2: String
@@ -82,14 +94,14 @@ type Address @model @auth(rules: [{allow: public}]) {
   zip: String
 }
 
-type Role @model @auth(rules: [{allow: public}]) {
+type Role @model @auth(rules: [{ allow: public }]) {
   id: ID!
   name: String
   type: String
   payBand: String
 }
 
-type Compensation @model @auth(rules: [{allow: public}]) {
+type Compensation @model @auth(rules: [{ allow: public }]) {
   id: ID!
   type: String
   amount: Float

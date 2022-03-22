@@ -147,12 +147,29 @@ export const createStudent = /* GraphQL */ `
       details
       dob
       school_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       schoolsStudentsId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      studentAddressId
     }
   }
 `;
@@ -179,12 +196,29 @@ export const updateStudent = /* GraphQL */ `
       details
       dob
       school_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       schoolsStudentsId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      studentAddressId
     }
   }
 `;
@@ -211,12 +245,29 @@ export const deleteStudent = /* GraphQL */ `
       details
       dob
       school_id
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       schoolsStudentsId
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
+      studentAddressId
     }
   }
 `;
@@ -246,6 +297,7 @@ export const createSchools = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       details
       phone
@@ -311,6 +363,7 @@ export const updateSchools = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       details
       phone
@@ -376,6 +429,7 @@ export const deleteSchools = /* GraphQL */ `
         _deleted
         _lastChangedAt
         employeeCompensationId
+        employeeAddressId
       }
       details
       phone
@@ -446,12 +500,29 @@ export const createEmployee = /* GraphQL */ `
         _lastChangedAt
       }
       schoolsEmployeesId
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       employeeCompensationId
+      employeeAddressId
     }
   }
 `;
@@ -486,12 +557,29 @@ export const updateEmployee = /* GraphQL */ `
         _lastChangedAt
       }
       schoolsEmployeesId
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       employeeCompensationId
+      employeeAddressId
     }
   }
 `;
@@ -526,12 +614,29 @@ export const deleteEmployee = /* GraphQL */ `
         _lastChangedAt
       }
       schoolsEmployeesId
+      address {
+        id
+        line1
+        line2
+        line3
+        city
+        district
+        state
+        country
+        zip
+        createdAt
+        updatedAt
+        _version
+        _deleted
+        _lastChangedAt
+      }
       createdAt
       updatedAt
       _version
       _deleted
       _lastChangedAt
       employeeCompensationId
+      employeeAddressId
     }
   }
 `;
