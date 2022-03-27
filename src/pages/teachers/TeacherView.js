@@ -22,6 +22,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Stack } from "@mui/material";
+import PageTitle from "../../components/PageTitle/PageTitle";
 
 export default function TeacherView({ ...props }) {
   const [open, setOpen] = React.useState(true);
@@ -103,200 +104,193 @@ export default function TeacherView({ ...props }) {
   });
 
   return (
-    <Dialog
-      open={open}
-      onClose={handleClose}
-      fullScreen
-      aria-labelledby="teacher-view-dialog"
-      aria-describedby="teacher-view-dialog-description"
-      TransitionComponent={Transition}
-    >
-      <DialogTitle id="teacher-view-dialog">Teacher Profile</DialogTitle>
-      <DialogContent style={{ overflow: "auto" }}>
-        <Grid container spacing={4}>
-          <Grid item xs={12} md="auto">
-            <Card>
-              <CardContent>
-                <Grid container justify="center">
-                  <Avatar src={avatarUrl} className={classes.large} />
-                </Grid>
-                <Grid container justify="center">
-                  <Typography variant="h2">
-                    {data.first_name + " " + data?.last_name}
-                  </Typography>
-                </Grid>
-                <Grid container justify="center">
-                  <Typography variant="h5">Asst. Teacher</Typography>
-                </Grid>
-                <Grid container justify="center">
-                  <Link color="primary">{data?.email}</Link>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md="auto">
-            <Card>
-              <CardContent>
-                <Grid container spacing={4}>
-                  <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
-                      Personal
-                    </Typography>
-                    <Box paddingTop={2}>
-                      <Stack spacing={0.5}>
-                        {label("First Name", data?.first_name)}
-                        {label("Middle Name", data?.middle_name)}
-                        {label("Mobile", data?.mobile)}
-                        {label("Email", data?.email)}
-                        {label("DOB", data?.dob)}
-                        {label("DOJ", data?.joining_date)}
-                      </Stack>
-                    </Box>
-                  </Grid>
-                  <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
-                      Address
-                    </Typography>
-                    <Box paddingTop={2}>
-                      <Stack spacing={1}>
-                        <Grid container spacing={0.5} direcion="row">
-                          <Grid item>
-                            <Typography weight="light">
-                              {data?.address?.line1 + ","}
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Typography weight="light">
-                              {data?.address?.line2 + ","}
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Typography weight="light">
-                              {data?.address?.line3}
-                            </Typography>
-                          </Grid>
-                        </Grid>
-                        <Typography weight="bold">
-                          {data?.address?.city}
-                        </Typography>
-                        <Typography weight="bold">North Flair</Typography>
-                        <Typography weight="bold">
-                          {data?.address?.state} - 453112
-                        </Typography>
-                      </Stack>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </CardContent>
-              <CardActions>
-                <Button size="small">Learn More</Button>
-              </CardActions>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md="auto">
-            <Card>
-              <CardContent>
-                <Grid container spacing={4}>
-                  <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
-                      Education
-                    </Typography>
-                    <Box paddingTop={2}>
-                      <Stack spacing={0.5}>
-                        {label("Highest Education", "B.Education")}
-                        {label("SSC", "67.76%")}
-                        {label("HSC", "78.98%")}
-                        {label("University", "Ohio State Univ.")}
-                      </Stack>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md="auto">
-            <Card>
-              <CardContent>
-                <Grid container spacing={4}>
-                  <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
-                      Experience
-                    </Typography>
-                    <Box paddingTop={2}>
-                      <Stack spacing={0.5}>
-                        {label(
-                          "Last Organization",
-                          "Billabong Elementry school, Riverdale, OH",
-                        )}
-                        {label("Joining Date", "3/4/2017")}
-                        {label("Years Spent", "5 years 1 Month")}
-                        {label("Total Experience", "10 year 11 Months")}
-                      </Stack>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md="auto">
-            <Card>
-              <CardContent>
-                <Grid container spacing={4}>
-                  <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
-                      Role and Compensation
-                    </Typography>
-                    <Box paddingTop={2}>
-                      <Stack spacing={0.5}>
-                        {label("Current Role", "Asst. Teacher")}
-                        {label("Payband", "1-Staff")}
-                        {label("Compensation (Annual)", "$12455.55")}
-                        {label("Previous Role", "N/A")}
-                      </Stack>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
-          <Grid item xs={12} md="auto">
-            <Card>
-              <CardContent>
-                <Grid container spacing={4}>
-                  <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
-                      Documents
-                    </Typography>
-                    <Box paddingTop={2}>
-                      <Stack spacing={0.5}>
-                        <Link color="primary">{"SSN.pdf"}</Link>
-                        <Link color="primary">
-                          {"Address verification.pdf"}
-                        </Link>
-                        <Link color="primary">{"photo.jpg"}</Link>
-                        <Link color="primary">
-                          {"Experience Certificate.pdf"}
-                        </Link>
-                        <Link color="primary">{"B Ed degree.pdf"}</Link>
-                      </Stack>
-                    </Box>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
-          </Grid>
+    <>
+      <PageTitle
+        title="Teacher Profile"
+        button={
+          <Button
+            variant="contained"
+            size="medium"
+            color="secondary"
+            component={Link}
+            to="/app/employee-form/"
+          >
+            Edit Teacher
+          </Button>
+        }
+      />
+      <Grid container spacing={4}>
+        <Grid item xs={12} md="auto">
+          <Card>
+            <CardContent>
+              <Grid container justify="center">
+                <Avatar src={avatarUrl} className={classes.large} />
+              </Grid>
+              <Grid container justify="center">
+                <Typography variant="h2">
+                  {data.first_name + " " + data?.last_name}
+                </Typography>
+              </Grid>
+              <Grid container justify="center">
+                <Typography variant="h5">Asst. Teacher</Typography>
+              </Grid>
+              <Grid container justify="center">
+                <Link color="primary">{data?.email}</Link>
+              </Grid>
+            </CardContent>
+          </Card>
         </Grid>
-      </DialogContent>
-      <DialogActions>
-        <Button onClick={handleClose}>Cancel</Button>
-        <Button
-          startIcon={loading ? <CircularProgress size="1rem" /> : null}
-          onClick={handleEdit}
-        >
-          Edit
-        </Button>
-      </DialogActions>
-    </Dialog>
+        <Grid item xs={12} md="auto">
+          <Card>
+            <CardContent>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md="auto">
+                  <Typography variant="h5" color="secondary">
+                    Personal
+                  </Typography>
+                  <Box paddingTop={2}>
+                    <Stack spacing={0.5}>
+                      {label("First Name", data?.first_name)}
+                      {label("Middle Name", data?.middle_name)}
+                      {label("Mobile", data?.mobile)}
+                      {label("Email", data?.email)}
+                      {label("DOB", data?.dob)}
+                      {label("DOJ", data?.joining_date)}
+                    </Stack>
+                  </Box>
+                </Grid>
+                <Grid item xs={12} md="auto">
+                  <Typography variant="h5" color="secondary">
+                    Address
+                  </Typography>
+                  <Box paddingTop={2}>
+                    <Stack spacing={1}>
+                      <Grid container spacing={0.5} direcion="row">
+                        <Grid item>
+                          <Typography weight="light">
+                            {data?.address?.line1 + ","}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography weight="light">
+                            {data?.address?.line2 + ","}
+                          </Typography>
+                        </Grid>
+                        <Grid item>
+                          <Typography weight="light">
+                            {data?.address?.line3}
+                          </Typography>
+                        </Grid>
+                      </Grid>
+                      <Typography weight="bold">
+                        {data?.address?.city}
+                      </Typography>
+                      <Typography weight="bold">North Flair</Typography>
+                      <Typography weight="bold">
+                        {data?.address?.state} - 453112
+                      </Typography>
+                    </Stack>
+                  </Box>
+                </Grid>
+              </Grid>
+            </CardContent>
+            <CardActions>
+              <Button size="small">Learn More</Button>
+            </CardActions>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md="auto">
+          <Card>
+            <CardContent>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md="auto">
+                  <Typography variant="h5" color="secondary">
+                    Education
+                  </Typography>
+                  <Box paddingTop={2}>
+                    <Stack spacing={0.5}>
+                      {label("Highest Education", "B.Education")}
+                      {label("SSC", "67.76%")}
+                      {label("HSC", "78.98%")}
+                      {label("University", "Ohio State Univ.")}
+                    </Stack>
+                  </Box>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md="auto">
+          <Card>
+            <CardContent>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md="auto">
+                  <Typography variant="h5" color="secondary">
+                    Experience
+                  </Typography>
+                  <Box paddingTop={2}>
+                    <Stack spacing={0.5}>
+                      {label(
+                        "Last Organization",
+                        "Billabong Elementry school, Riverdale, OH",
+                      )}
+                      {label("Joining Date", "3/4/2017")}
+                      {label("Years Spent", "5 years 1 Month")}
+                      {label("Total Experience", "10 year 11 Months")}
+                    </Stack>
+                  </Box>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md="auto">
+          <Card>
+            <CardContent>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md="auto">
+                  <Typography variant="h5" color="secondary">
+                    Role and Compensation
+                  </Typography>
+                  <Box paddingTop={2}>
+                    <Stack spacing={0.5}>
+                      {label("Current Role", "Asst. Teacher")}
+                      {label("Payband", "1-Staff")}
+                      {label("Compensation (Annual)", "$12455.55")}
+                      {label("Previous Role", "N/A")}
+                    </Stack>
+                  </Box>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+        <Grid item xs={12} md="auto">
+          <Card>
+            <CardContent>
+              <Grid container spacing={4}>
+                <Grid item xs={12} md="auto">
+                  <Typography variant="h5" color="secondary">
+                    Documents
+                  </Typography>
+                  <Box paddingTop={2}>
+                    <Stack spacing={0.5}>
+                      <Link color="primary">{"SSN.pdf"}</Link>
+                      <Link color="primary">{"Address verification.pdf"}</Link>
+                      <Link color="primary">{"photo.jpg"}</Link>
+                      <Link color="primary">
+                        {"Experience Certificate.pdf"}
+                      </Link>
+                      <Link color="primary">{"B Ed degree.pdf"}</Link>
+                    </Stack>
+                  </Box>
+                </Grid>
+              </Grid>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
+    </>
   );
 
   function label(label, data) {

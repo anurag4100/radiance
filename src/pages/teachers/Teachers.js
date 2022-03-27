@@ -19,6 +19,7 @@ import TeacherView from "./TeacherView";
 import TableSkeleton from "../../components/Skeleton/TableSkeleton";
 import PersonAvatar from "../../components/PersonAvatar/PersonAvatar";
 import { formatDate } from "../../utils/dateUtils";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   tableOverflow: {
@@ -35,7 +36,7 @@ export default function Students() {
   const [teacherToDelete, setTeacherToDelete] = useState([]);
   const [viewIndex, setViewIndex] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const history = useHistory();
   useEffect(() => {
     fetchTeachers();
   }, []);
@@ -95,8 +96,13 @@ export default function Students() {
   }
 
   const view_teacher = (rowData, rowMeta) => {
-    setIsView(true);
-    setViewIndex(rowMeta.dataIndex);
+    history.push({
+      pathname: "/app/employee-view",
+      state: {
+        empId: teachers[rowMeta.dataIndex].id,
+        image_key: JSON.parse(teachers[rowMeta.dataIndex]?.details)?.image_key,
+      },
+    });
   };
   return (
     <>
