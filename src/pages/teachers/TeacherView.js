@@ -193,6 +193,98 @@ export default function TeacherView({ ...props }) {
               </CardActions>
             </Card>
           </Grid>
+          <Grid item xs={12} md="auto">
+            <Card>
+              <CardContent>
+                <Grid container spacing={4}>
+                  <Grid item xs={12} md="auto">
+                    <Typography variant="h5" color="secondary">
+                      Education
+                    </Typography>
+                    <Box paddingTop={2}>
+                      <Stack spacing={0.5}>
+                        {label("Highest Education", "B.Education")}
+                        {label("SSC", "67.76%")}
+                        {label("HSC", "78.98%")}
+                        {label("University", "Ohio State Univ.")}
+                      </Stack>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md="auto">
+            <Card>
+              <CardContent>
+                <Grid container spacing={4}>
+                  <Grid item xs={12} md="auto">
+                    <Typography variant="h5" color="secondary">
+                      Experience
+                    </Typography>
+                    <Box paddingTop={2}>
+                      <Stack spacing={0.5}>
+                        {label(
+                          "Last Organization",
+                          "Billabong Elementry school, Riverdale, OH",
+                        )}
+                        {label("Joining Date", "3/4/2017")}
+                        {label("Years Spent", "5 years 1 Month")}
+                        {label("Total Experience", "10 year 11 Months")}
+                      </Stack>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md="auto">
+            <Card>
+              <CardContent>
+                <Grid container spacing={4}>
+                  <Grid item xs={12} md="auto">
+                    <Typography variant="h5" color="secondary">
+                      Role and Compensation
+                    </Typography>
+                    <Box paddingTop={2}>
+                      <Stack spacing={0.5}>
+                        {label("Current Role", "Asst. Teacher")}
+                        {label("Payband", "1-Staff")}
+                        {label("Compensation (Annual)", "$12455.55")}
+                        {label("Previous Role", "N/A")}
+                      </Stack>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md="auto">
+            <Card>
+              <CardContent>
+                <Grid container spacing={4}>
+                  <Grid item xs={12} md="auto">
+                    <Typography variant="h5" color="secondary">
+                      Documents
+                    </Typography>
+                    <Box paddingTop={2}>
+                      <Stack spacing={0.5}>
+                        <Link color="primary">{"SSN.pdf"}</Link>
+                        <Link color="primary">
+                          {"Address verification.pdf"}
+                        </Link>
+                        <Link color="primary">{"photo.jpg"}</Link>
+                        <Link color="primary">
+                          {"Experience Certificate.pdf"}
+                        </Link>
+                        <Link color="primary">{"B Ed degree.pdf"}</Link>
+                      </Stack>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
       </DialogContent>
       <DialogActions>
