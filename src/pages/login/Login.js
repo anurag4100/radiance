@@ -34,14 +34,14 @@ function Login(props) {
   var [error, setError] = useState(null);
   var [activeTabId, setActiveTabId] = useState(0);
   var [nameValue, setNameValue] = useState("");
-  var [loginValue, setLoginValue] = useState("demo@radiancetech.com");
+  var [loginValue, setLoginValue] = useState("demo@radiancetech.in");
   var [passwordValue, setPasswordValue] = useState("password");
 
   return (
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>Radiant Tech</Typography>
+        <Typography className={classes.logotypeText}>Radiance Tech</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>

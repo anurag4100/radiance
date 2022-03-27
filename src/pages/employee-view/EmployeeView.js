@@ -116,7 +116,7 @@ export default function EmployeeView({ ...props }) {
       />
       {!loading && (
         <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
+          <Grid item xs={12} md="auto">
             <Card>
               <CardContent>
                 <Grid container justify="center">
