@@ -4,28 +4,54 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import ListSubheader from "@mui/material/ListSubheader";
 import { Typography } from "../../components/Wrappers/Wrappers";
-import useStyles from "../typography/styles.js";
-import { Box, Grid } from "@material-ui/core";
+import {
+  Avatar,
+  Box,
+  Card,
+  CardActions,
+  CardContent,
+  Grid,
+  Link,
+  Slide,
+} from "@material-ui/core";
 import { mapToEmployee } from "../employee-form/nameToLabel";
 import { useHistory } from "react-router-dom";
-import { getTeacher } from "../employee-form/employeeUtils";
+import { getAvatar, getTeacher } from "../employee-form/employeeUtils";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useState, useEffect } from "react";
+import { makeStyles } from "@material-ui/styles";
+import { Stack } from "@mui/material";
 
 export default function TeacherView({ ...props }) {
   const [open, setOpen] = React.useState(true);
   const [loading, setLoading] = React.useState(false);
   const [data, setData] = useState([]);
+  const [avatarUrl, setAvatarUrl] = useState("https://ddd.ccc");
   const history = useHistory();
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      display: "flex",
+      "& > *": {
+        margin: theme.spacing(1),
+      },
+    },
+    small: {
+      width: theme.spacing(3),
+      height: theme.spacing(3),
+    },
+    large: {
+      width: theme.spacing(15),
+      height: theme.spacing(15),
+    },
+  }));
   const classes = useStyles();
 
   useEffect(() => {
-    setData(mapToEmployee(props.employee_data));
+    getTeacher(props.employee_data.id).then((res) => setData(res));
+    getAvatar(JSON.parse(props.employee_data?.details)?.image_key).then((res) =>
+      setAvatarUrl(res),
+    );
   }, []);
 
   const handleClose = () => {
@@ -35,7 +61,7 @@ export default function TeacherView({ ...props }) {
   const handleEdit = async () => {
     setLoading(true);
 
-    const employee = await getTeacher(props.employee_data.id);
+    const employee = data;
     console.log("ep in edit: ", employee);
     history.push({
       pathname: "/app/employee-form",
@@ -72,91 +98,124 @@ export default function TeacherView({ ...props }) {
     setOpen(false);
     props.setView(false);
   };
+  const Transition = React.forwardRef(function Transition(props, ref) {
+    return <Slide direction="up" ref={ref} {...props} />;
+  });
 
   return (
-    <div>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        fullWidth
-        aria-labelledby="teacher-view-dialog"
-        aria-describedby="teacher-view-dialog-description"
-      >
-        <DialogTitle id="teacher-view-dialog">Teacher</DialogTitle>
-        <DialogContent style={{ overflow: "hidden" }}>
-          <List
-            sx={{
-              width: "100%",
-              maxWidth: 850,
-              bgcolor: "background.paper",
-              position: "relative",
-              overflow: "auto",
-              maxHeight: 500,
-              "& ul": { padding: 0 },
-            }}
-            subheader={<li />}
-          >
-            {Object.entries(data).map((section) => (
-              <li key="Personal">
-                <ul>
-                  <ListSubheader>
-                    <Typography
-                      color="primary"
-                      variant="h5"
-                      className={classes.text}
-                    >
-                      {section[0]}
+    <Dialog
+      open={open}
+      onClose={handleClose}
+      fullScreen
+      aria-labelledby="teacher-view-dialog"
+      aria-describedby="teacher-view-dialog-description"
+      TransitionComponent={Transition}
+    >
+      <DialogTitle id="teacher-view-dialog">Teacher Profile</DialogTitle>
+      <DialogContent style={{ overflow: "auto" }}>
+        <Grid container spacing={4}>
+          <Grid item xs={12} md="auto">
+            <Card>
+              <CardContent>
+                <Grid container justify="center">
+                  <Avatar src={avatarUrl} className={classes.large} />
+                </Grid>
+                <Grid container justify="center">
+                  <Typography variant="h2">
+                    {data.first_name + " " + data?.last_name}
+                  </Typography>
+                </Grid>
+                <Grid container justify="center">
+                  <Typography variant="h5">Asst. Teacher</Typography>
+                </Grid>
+                <Grid container justify="center">
+                  <Link color="primary">{data?.email}</Link>
+                </Grid>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid item xs={12} md="auto">
+            <Card>
+              <CardContent>
+                <Grid container spacing={4}>
+                  <Grid item xs={12} md="auto">
+                    <Typography variant="h5" color="secondary">
+                      Personal
                     </Typography>
-                  </ListSubheader>
-                  {Object.entries(section[1]).map((item) => (
-                    <ListItem key="first_name">
-                      <ListItemText
-                        primary={
-                          <>
-                            <Box maxWidth={500}>
-                              <Grid
-                                container
-                                spacing={0.5}
-                                justify="flex-start"
-                              >
-                                <Grid item xs={6}>
-                                  <Typography
-                                    className={classes.text}
-                                    weight="bold"
-                                  >
-                                    {item[0]}
-                                  </Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                  <Typography
-                                    className={classes.text}
-                                    weight="light"
-                                  >
-                                    {item[1]}
-                                  </Typography>
-                                </Grid>
-                              </Grid>
-                            </Box>
-                          </>
-                        }
-                      />
-                    </ListItem>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </List>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button
-            startIcon={loading ? <CircularProgress size="1rem" /> : null}
-            onClick={handleEdit}
-          >
-            Edit
-          </Button>
-        </DialogActions>
-      </Dialog>
-    </div>
+                    <Box paddingTop={2}>
+                      <Stack spacing={0.5}>
+                        {label("First Name", data?.first_name)}
+                        {label("Middle Name", data?.middle_name)}
+                        {label("Mobile", data?.mobile)}
+                        {label("Email", data?.email)}
+                        {label("DOB", data?.dob)}
+                        {label("DOJ", data?.joining_date)}
+                      </Stack>
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} md="auto">
+                    <Typography variant="h5" color="secondary">
+                      Address
+                    </Typography>
+                    <Box paddingTop={2}>
+                      <Stack spacing={1}>
+                        <Grid container spacing={0.5} direcion="row">
+                          <Grid item>
+                            <Typography weight="light">
+                              {data?.address?.line1 + ","}
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography weight="light">
+                              {data?.address?.line2 + ","}
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography weight="light">
+                              {data?.address?.line3}
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                        <Typography weight="bold">
+                          {data?.address?.city}
+                        </Typography>
+                        <Typography weight="bold">North Flair</Typography>
+                        <Typography weight="bold">
+                          {data?.address?.state} - 453112
+                        </Typography>
+                      </Stack>
+                    </Box>
+                  </Grid>
+                </Grid>
+              </CardContent>
+              <CardActions>
+                <Button size="small">Learn More</Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        </Grid>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button
+          startIcon={loading ? <CircularProgress size="1rem" /> : null}
+          onClick={handleEdit}
+        >
+          Edit
+        </Button>
+      </DialogActions>
+    </Dialog>
   );
+
+  function label(label, data) {
+    return (
+      <>
+        <Typography weight="bold">
+          {" "}
+          <i>{label}</i>
+        </Typography>
+        <Typography>{data}</Typography>
+      </>
+    );
+  }
 }
