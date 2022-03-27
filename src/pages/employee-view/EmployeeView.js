@@ -17,6 +17,7 @@ import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Stack } from "@mui/material";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import { Edit } from "@material-ui/icons";
 
 export default function EmployeeView({ ...props }) {
   const [loading, setLoading] = React.useState(true);
@@ -102,10 +103,12 @@ export default function EmployeeView({ ...props }) {
             size="medium"
             color="secondary"
             onClick={handleEdit}
-            startIcon={loading ? <CircularProgress size="1rem" /> : null}
+            startIcon={
+              loading ? <CircularProgress size="1rem" /> : <Edit size="1rem" />
+            }
             disabled={loading}
           >
-            Edit Teacher
+            Edit
           </Button>
         }
       />
@@ -136,13 +139,14 @@ export default function EmployeeView({ ...props }) {
               <CardContent>
                 <Grid container spacing={4}>
                   <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
+                    <Typography variant="h5" color="primary">
                       Personal
                     </Typography>
                     <Box paddingTop={2}>
                       <Stack spacing={0}>
                         {label("First Name", data?.first_name)}
                         {label("Middle Name", data?.middle_name)}
+                        {label("Middle Name", data?.last_name)}
                         {label("Mobile", data?.mobile)}
                         {label("Email", data?.email)}
                         {label("DOB", data?.dob)}
@@ -151,7 +155,7 @@ export default function EmployeeView({ ...props }) {
                     </Box>
                   </Grid>
                   <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
+                    <Typography variant="h5" color="primary">
                       Address
                     </Typography>
                     <Box paddingTop={2}>
@@ -173,11 +177,11 @@ export default function EmployeeView({ ...props }) {
                             </Typography>
                           </Grid>
                         </Grid>
-                        <Typography weight="bold">
+                        <Typography weight="light">
                           {data?.address?.city}
                         </Typography>
-                        <Typography weight="bold">North Flair</Typography>
-                        <Typography weight="bold">
+                        <Typography weight="light">North Flair</Typography>
+                        <Typography weight="light">
                           {data?.address?.state} - 453112
                         </Typography>
                       </Stack>
@@ -186,7 +190,7 @@ export default function EmployeeView({ ...props }) {
                 </Grid>
               </CardContent>
               <CardActions>
-                <Button size="small">Learn More</Button>
+                <Button size="small">More</Button>
               </CardActions>
             </Card>
           </Grid>
@@ -196,7 +200,7 @@ export default function EmployeeView({ ...props }) {
               <CardContent>
                 <Grid container spacing={4}>
                   <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
+                    <Typography variant="h5" color="primary">
                       Education
                     </Typography>
                     <Box paddingTop={2}>
@@ -217,7 +221,7 @@ export default function EmployeeView({ ...props }) {
               <CardContent>
                 <Grid container spacing={4}>
                   <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
+                    <Typography variant="h5" color="primary">
                       Documents
                     </Typography>
                     <Box paddingTop={2}>
@@ -243,7 +247,7 @@ export default function EmployeeView({ ...props }) {
               <CardContent>
                 <Grid container spacing={4}>
                   <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
+                    <Typography variant="h5" color="primary">
                       Experience
                     </Typography>
                     <Box paddingTop={2}>
@@ -267,7 +271,7 @@ export default function EmployeeView({ ...props }) {
               <CardContent>
                 <Grid container spacing={4}>
                   <Grid item xs={12} md="auto">
-                    <Typography variant="h5" color="secondary">
+                    <Typography variant="h5" color="primary">
                       Role and Compensation
                     </Typography>
                     <Box paddingTop={2}>
