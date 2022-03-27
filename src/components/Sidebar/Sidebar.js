@@ -64,19 +64,19 @@ const structure = [
   {
     id: 9,
     label: "Library",
-    link: "https://flatlogic.com/templates",
+    link: "https://www.radiancetech.in",
     icon: <LibraryIcon />,
   },
   {
     id: 10,
     label: "Support",
-    link: "https://flatlogic.com/forum",
+    link: "https://www.radiancetech.in",
     icon: <SupportIcon />,
   },
   {
     id: 11,
     label: "FAQ",
-    link: "https://flatlogic.com/forum",
+    link: "https://www.radiancetech.in",
     icon: <FAQIcon />,
   },
   { id: 12, type: "divider" },

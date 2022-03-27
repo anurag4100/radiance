@@ -96,7 +96,7 @@ function Layout(props) {
               </Link>
               <Link
                 color={"primary"}
-                href={"https://flatlogic.com/blog"}
+                href={"https://www.radiancetech.in"}
                 target={"_blank"}
                 className={classes.link}
               >
@@ -104,20 +104,17 @@ function Layout(props) {
               </Link>
             </div>
             <div>
-              <Link
-                href={"https://www.facebook.com/flatlogic"}
-                target={"_blank"}
-              >
+              <Link href={"https://www.radiancetech.in"} target={"_blank"}>
                 <IconButton aria-label="facebook">
                   <Icon path={FacebookIcon} size={1} color="#6E6E6E99" />
                 </IconButton>
               </Link>
-              <Link href={"https://twitter.com/flatlogic"} target={"_blank"}>
+              <Link href={"https://www.radiancetech.in"} target={"_blank"}>
                 <IconButton aria-label="twitter">
                   <Icon path={TwitterIcon} size={1} color="#6E6E6E99" />
                 </IconButton>
               </Link>
-              <Link href={"https://github.com/flatlogic"} target={"_blank"}>
+              <Link href={"https://github.com/anurag4100"} target={"_blank"}>
                 <IconButton aria-label="github" style={{ marginRight: -12 }}>
                   <Icon path={GithubIcon} size={1} color="#6E6E6E99" />
                 </IconButton>
