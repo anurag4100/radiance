@@ -18,15 +18,16 @@ import { makeStyles } from "@material-ui/styles";
 import { Stack } from "@mui/material";
 import PageTitle from "../../components/PageTitle/PageTitle";
 import { Edit } from "@material-ui/icons";
+import { interval } from "../../utils/dateUtils";
+import { parseISO } from "date-fns";
 
 export default function EmployeeView({ ...props }) {
   const [loading, setLoading] = React.useState(true);
   const [data, setData] = useState([]);
-  const [avatarUrl, setAvatarUrl] = useState("https://ddd.ccc");
+  const [avatarUrl, setAvatarUrl] = useState("");
   const history = useHistory();
   const { state } = useLocation();
   const { empId } = useParams();
-  console.log("state in ep view: ", state);
   const useStyles = makeStyles((theme) => ({
     root: {
       display: "flex",
@@ -130,6 +131,12 @@ export default function EmployeeView({ ...props }) {
                 </Grid>
                 <Grid container justify="center">
                   <Link color="primary">{data?.email}</Link>
+                </Grid>
+                <Grid container justify="center">
+                  <Typography>
+                    {`${data.first_name} has spent ` +
+                      interval(parseISO(data?.joining_date), new Date())}
+                  </Typography>
                 </Grid>
               </CardContent>
             </Card>
