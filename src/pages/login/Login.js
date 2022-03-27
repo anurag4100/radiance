@@ -8,6 +8,7 @@ import {
   Tab,
   TextField,
   Fade,
+  Box,
 } from "@material-ui/core";
 import { withRouter } from "react-router-dom";
 import classnames from "classnames";
@@ -40,9 +41,7 @@ function Login(props) {
     <Grid container className={classes.container}>
       <div className={classes.logotypeContainer}>
         <img src={logo} alt="logo" className={classes.logotypeImage} />
-        <Typography className={classes.logotypeText}>
-          Radiant Technologies
-        </Typography>
+        <Typography className={classes.logotypeText}>Radiant Tech</Typography>
       </div>
       <div className={classes.formContainer}>
         <div className={classes.form}>
@@ -246,18 +245,6 @@ function Login(props) {
             </React.Fragment>
           )}
         </div>
-        <Typography color="primary" className={classes.copyright}>
-          © 2021-{new Date().getFullYear()}{" "}
-          <a
-            style={{ textDecoration: "none", color: "inherit" }}
-            href="https://www.radiancetech.in"
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Radiant Tech
-          </a>
-          , LLC. All rights reserved.
-        </Typography>
       </div>
     </Grid>
   );
