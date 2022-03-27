@@ -98,6 +98,7 @@ export default function EmployeeView({ ...props }) {
     <>
       <PageTitle
         title="Details"
+        showBack={true}
         button={
           <Button
             variant="contained"
