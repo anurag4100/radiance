@@ -60,7 +60,7 @@ function Layout(props) {
             <Route path="/app/notifications" component={Notifications} />
             <Route path="/app/school" component={School} />
             <Route path="/app/employee-form" component={EmployeesForm} />
-            <Route path="/app/employee-view" component={EmployeeView} />
+            <Route path="/app/employee/:empId" component={EmployeeView} />
             <Route
               exact
               path="/app/ui"

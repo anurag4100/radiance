@@ -11,7 +11,7 @@ import {
   Grid,
   Link,
 } from "@material-ui/core";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory, useLocation, useParams } from "react-router-dom";
 import { getAvatar, getTeacher } from "../employee-form/employeeUtils";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
@@ -24,6 +24,7 @@ export default function EmployeeView({ ...props }) {
   const [avatarUrl, setAvatarUrl] = useState("https://ddd.ccc");
   const history = useHistory();
   const { state } = useLocation();
+  const { empId } = useParams();
   console.log("state in ep view: ", state);
   const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,7 +46,7 @@ export default function EmployeeView({ ...props }) {
 
   useEffect(() => {
     const load = async () => {
-      const teacher = await getTeacher(state?.empId);
+      const teacher = await getTeacher(empId);
       setData(teacher);
       const url = await getAvatar(JSON.parse(teacher?.details)?.image_key);
       setAvatarUrl(url);
@@ -102,6 +103,7 @@ export default function EmployeeView({ ...props }) {
             color="secondary"
             onClick={handleEdit}
             startIcon={loading ? <CircularProgress size="1rem" /> : null}
+            disabled={loading}
           >
             Edit Teacher
           </Button>
@@ -138,7 +140,7 @@ export default function EmployeeView({ ...props }) {
                       Personal
                     </Typography>
                     <Box paddingTop={2}>
-                      <Stack spacing={0.5}>
+                      <Stack spacing={0}>
                         {label("First Name", data?.first_name)}
                         {label("Middle Name", data?.middle_name)}
                         {label("Mobile", data?.mobile)}

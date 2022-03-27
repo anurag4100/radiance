@@ -97,7 +97,7 @@ export default function Students() {
 
   const view_teacher = (rowData, rowMeta) => {
     history.push({
-      pathname: "/app/employee-view",
+      pathname: `/app/employee/${teachers[rowMeta.dataIndex].id}`,
       state: {
         empId: teachers[rowMeta.dataIndex].id,
         image_key: JSON.parse(teachers[rowMeta.dataIndex]?.details)?.image_key,
