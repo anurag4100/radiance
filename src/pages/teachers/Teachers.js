@@ -15,7 +15,6 @@ import mock from "../dashboard/mock";
 import { useSnackbar } from "notistack";
 import ConfirmDialog from "../../components/Form/ConfirmDialog";
 import { Link } from "react-router-dom";
-import TeacherView from "./TeacherView";
 import TableSkeleton from "../../components/Skeleton/TableSkeleton";
 import PersonAvatar from "../../components/PersonAvatar/PersonAvatar";
 import { formatDate } from "../../utils/dateUtils";
@@ -30,11 +29,9 @@ const useStyles = makeStyles((theme) => ({
 export default function Students() {
   const classes = useStyles();
   var [teachers, setTeachers] = useState([]);
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const [isView, setIsView] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [teacherToDelete, setTeacherToDelete] = useState([]);
-  const [viewIndex, setViewIndex] = useState([]);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   useEffect(() => {
@@ -128,9 +125,7 @@ export default function Students() {
           setConfirmDelete={setConfirmDelete}
         />
       )}
-      {isView && (
-        <TeacherView employee_data={teachers[viewIndex]} setView={setIsView} />
-      )}
+
       <Grid container spacing={4}>
         <Grid item xs={12}>
           {loading ? (

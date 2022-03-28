@@ -19,7 +19,6 @@ import TableSkeleton from "../../components/Skeleton/TableSkeleton";
 import PersonAvatar from "../../components/PersonAvatar/PersonAvatar";
 import { formatDate } from "../../utils/dateUtils";
 import { useHistory } from "react-router-dom";
-import TeacherView from "../teachers/TeacherView";
 
 const useStyles = makeStyles((theme) => ({
   tableOverflow: {
@@ -31,10 +30,8 @@ export default function Students() {
   const classes = useStyles();
   var [students, setStudents] = useState([]);
   const { enqueueSnackbar } = useSnackbar();
-  const [isView, setIsView] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [studentToDelete, setStudentToDelete] = useState([]);
-  const [viewIndex, setViewIndex] = useState([]);
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   useEffect(() => {
@@ -97,7 +94,7 @@ export default function Students() {
 
   const view_student = (rowData, rowMeta) => {
     history.push({
-      pathname: `/app/employee/${students[rowMeta.dataIndex].id}`,
+      pathname: `/app/student/${students[rowMeta.dataIndex].id}`,
       state: {
         empId: students[rowMeta.dataIndex].id,
         image_key: JSON.parse(students[rowMeta.dataIndex]?.details)?.image_key,
@@ -127,9 +124,6 @@ export default function Students() {
           data={studentToDelete}
           setConfirmDelete={setConfirmDelete}
         />
-      )}
-      {isView && (
-        <TeacherView employee_data={students[viewIndex]} setView={setIsView} />
       )}
       <Grid container spacing={4}>
         <Grid item xs={12}>

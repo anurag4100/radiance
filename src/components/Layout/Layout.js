@@ -33,6 +33,7 @@ import EmployeesForm from "../../pages/employee-form";
 import { useLayoutState } from "../../context/LayoutContext";
 import Students from "../../pages/students";
 import EmployeeView from "../../pages/employee-view/EmployeeView";
+import StudentView from "../../pages/students/StudentView";
 
 function Layout(props) {
   var classes = useStyles();
@@ -61,6 +62,7 @@ function Layout(props) {
             <Route path="/app/school" component={School} />
             <Route path="/app/employee-form" component={EmployeesForm} />
             <Route path="/app/employee/:empId" component={EmployeeView} />
+            <Route path="/app/student/:stuId" component={StudentView} />
             <Route
               exact
               path="/app/ui"

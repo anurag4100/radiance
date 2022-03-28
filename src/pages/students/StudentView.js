@@ -1,9 +1,5 @@
 import * as React from "react";
 import Button from "@mui/material/Button";
-import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
 import { Typography } from "../../components/Wrappers/Wrappers";
 import {
   Avatar,
@@ -15,21 +11,20 @@ import {
   Link,
   Slide,
 } from "@material-ui/core";
-import { mapToEmployee } from "../employee-form/nameToLabel";
-import { useHistory } from "react-router-dom";
-import { getAvatar, getTeacher } from "../employee-form/employeeUtils";
-import CircularProgress from "@mui/material/CircularProgress";
+import { useHistory, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { makeStyles } from "@material-ui/styles";
 import { Stack } from "@mui/material";
 import PageTitle from "../../components/PageTitle/PageTitle";
+import { fetchStudent } from "./studentUtils";
+import { getAvatar } from "../employee-form/employeeUtils";
 
-export default function TeacherView({ ...props }) {
-  const [open, setOpen] = React.useState(true);
+export default function StudentView({ ...props }) {
   const [loading, setLoading] = React.useState(false);
   const [data, setData] = useState([]);
-  const [avatarUrl, setAvatarUrl] = useState("https://ddd.ccc");
+  const [avatarUrl, setAvatarUrl] = useState("default");
   const history = useHistory();
+  const { stuId } = useParams();
   const useStyles = makeStyles((theme) => ({
     root: {
       display: "flex",
@@ -47,66 +42,41 @@ export default function TeacherView({ ...props }) {
     },
   }));
   const classes = useStyles();
-
   useEffect(() => {
-    getTeacher(props.employee_data.id).then((res) => setData(res));
-    getAvatar(JSON.parse(props.employee_data?.details)?.image_key).then((res) =>
-      setAvatarUrl(res),
-    );
+    fetchStudent(stuId).then((res) => setData(res));
   }, []);
-
-  const handleClose = () => {
-    setOpen(false);
-    props.setView(false);
-  };
   const handleEdit = async () => {
     setLoading(true);
-
-    const employee = data;
-    console.log("ep in edit: ", employee);
+    console.log("ep in edit: ", data);
     history.push({
       pathname: "/app/employee-form",
       state: {
         editMode: true,
-        id: props.employee_data.id,
+        id: data.id,
         employee: {
-          ...employee,
-          role_name: employee?.role?.items
-            ? employee?.role?.items[0]?.name
-            : "",
-          role_type: employee?.role?.items
-            ? employee?.role?.items[0]?.type
-            : "",
-          role_payBand: employee?.role?.items
-            ? employee?.role?.items[0]?.payBand
-            : "",
-          comp_type: employee?.compensation?.type,
-          comp_amount: employee?.compensation?.amount,
-          comp_isTaxable: employee?.compensation?.isTaxable,
-          add_line1: employee?.address?.line1,
-          add_line2: employee?.address?.line2,
-          add_line3: employee?.address?.line3,
-          add_city: employee?.address?.city,
-          add_district: employee?.address?.district,
-          add_state: employee?.address?.state,
-          add_zip: employee?.address?.zip,
-          image_key: JSON.parse(employee?.details)?.image_key,
-          documents: JSON.parse(employee?.details)?.documents,
+          ...data,
+          role_name: data?.role?.items ? data?.role?.items[0]?.name : "",
+          role_type: data?.role?.items ? data?.role?.items[0]?.type : "",
+          role_payBand: data?.role?.items ? data?.role?.items[0]?.payBand : "",
+          comp_type: data?.compensation?.type,
+          comp_amount: data?.compensation?.amount,
+          comp_isTaxable: data?.compensation?.isTaxable,
+          add_line1: data?.address?.line1,
+          add_line2: data?.address?.line2,
+          add_line3: data?.address?.line3,
+          add_city: data?.address?.city,
+          add_district: data?.address?.district,
+          add_state: data?.address?.state,
+          add_zip: data?.address?.zip,
         },
       },
     });
     setLoading(false);
-    setOpen(false);
-    props.setView(false);
   };
-  const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
-  });
-
   return (
     <>
       <PageTitle
-        title="Teacher Profile"
+        title="Profile"
         button={
           <Button
             variant="contained"
@@ -115,7 +85,7 @@ export default function TeacherView({ ...props }) {
             component={Link}
             to="/app/employee-form/"
           >
-            Edit Teacher
+            Edit Student
           </Button>
         }
       />
