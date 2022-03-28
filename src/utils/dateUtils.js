@@ -1,5 +1,6 @@
 import { format, parseISO, intervalToDuration } from "date-fns";
-export const formatDate = (date) => format(parseISO(date), "dd MMM yyyy");
+export const formatDate = (date) =>
+  date ? format(parseISO(date), "dd MMM yyyy") : "";
 export const interval = (start, end) => {
   const inter = intervalToDuration({
     start,

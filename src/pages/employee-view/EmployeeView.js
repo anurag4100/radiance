@@ -50,7 +50,9 @@ export default function EmployeeView({ ...props }) {
     const load = async () => {
       const teacher = await getTeacher(empId);
       setData(teacher);
-      const url = await getAvatar(JSON.parse(teacher?.details)?.image_key);
+      const url = await getAvatar(
+        JSON.parse(teacher?.details || "{}")?.image_key,
+      );
       setAvatarUrl(url);
       setLoading(false);
     };
