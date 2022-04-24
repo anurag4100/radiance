@@ -82,11 +82,11 @@ function Layout(props) {
             <div>
               <Link
                 color={"primary"}
-                href={"https://chinga.com/"}
+                href={"https://www.radiancetech.in/"}
                 target={"_blank"}
                 className={classes.link}
               >
-                ChingaTech
+                Radiance™
               </Link>
               <Link
                 color={"primary"}
